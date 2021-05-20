@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Native</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Native.DirectInput.XInputChecker">
+            <summary>
+            Finds out if a device is an XInputDevice
+            </summary>
+        </member>
+        <member name="M:Stride.Native.DirectInput.XInputChecker.IsXInputDevice(System.Guid@)">
+            <summary>
+            Check if device represented by <paramref name="guid"/> is indeed an XInput device.
+            </summary>
+            <param name="guid">Guid of device to check.</param>
+            <returns>True if XInput device.</returns>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

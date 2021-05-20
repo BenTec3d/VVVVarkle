@@ -1,0 +1,1035 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Core.Packages</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Core.Packages.ConstraintProvider">
+            <summary>
+            Collection of constraints associated to some packages expressed as version ranges.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.Packages.ConstraintProvider.constraints">
+            <summary>
+            Store <see cref="T:Stride.Core.PackageVersionRange"/> constraints associated to a given package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ConstraintProvider.HasConstraints">
+            <summary>
+            Does current instance have constraints?
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.ConstraintProvider.AddConstraint(System.String,Stride.Core.PackageVersionRange)">
+            <summary>
+            Add constraint <paramref name="range"/> to package ID <paramref name="packageId"/>.
+            </summary>
+            <param name="packageId">Package on which constraint <paramref name="range"/> will be applied.</param>
+            <param name="range">Range of constraint.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.ConstraintProvider.GetConstraint(System.String)">
+            <summary>
+            Retrieve constraint associated with <paramref name="packageId"/> if any.
+            </summary>
+            <param name="packageId">Id of package being queried.</param>
+            <returns>Constraint if any, null otherwise.</returns>
+        </member>
+        <member name="T:Stride.Core.Packages.IPackagesLogger">
+            <summary>
+            Generic interface for logging. See <see cref="T:Stride.Core.Packages.MessageLevel"/> for various level of logging.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.IPackagesLogger.Log(Stride.Core.Packages.MessageLevel,System.String)">
+            <summary>
+            Logs the <paramref name="message"/> using the log <paramref name="level"/>.
+            </summary>
+            <param name="level">The level of the logged message.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.IPackagesLogger.LogAsync(Stride.Core.Packages.MessageLevel,System.String)">
+            <summary>
+            Logs the <paramref name="message"/> using the log <paramref name="level"/>.
+            </summary>
+            <param name="level">The level of the logged message.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="T:Stride.Core.Packages.ManifestDependency">
+            <summary>
+            Representation of a dependency in a package manifest.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ManifestDependency.Id">
+            <summary>
+            Name of package dependency.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ManifestDependency.Version">
+            <summary>
+            Version of package dependency.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.ManifestFile">
+            <summary>
+            Describe a file in a package by giving the <see cref="P:Stride.Core.Packages.ManifestFile.Source"/> of a file or set of files, the destination <see cref="P:Stride.Core.Packages.ManifestFile.Target"/> where they will be copied
+            with some exclude rules <see cref="P:Stride.Core.Packages.ManifestFile.Exclude"/>.
+            Both Source and Exclude can use regular expressions.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ManifestFile.Source">
+            <summary>
+            Set of source files that will be copied to <see cref="P:Stride.Core.Packages.ManifestFile.Target"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ManifestFile.Target">
+            <summary>
+            Target location where files described by <see cref="P:Stride.Core.Packages.ManifestFile.Source"/> will be copied.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.ManifestFile.Exclude">
+            <summary>
+            Rules excluding copies of files from <see cref="P:Stride.Core.Packages.ManifestFile.Source"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.ManifestMetadata.AddDependency(System.String,Stride.Core.PackageVersionRange)">
+            <summary>
+            Add new dependency to package name <paramref name="name"/> with version <paramref name="v"/> to
+            the first set if it exists already, otherwise create a new sets where dependency will be added to.
+            </summary>
+            <param name="name">Name of package to add to <see cref="P:Stride.Core.Packages.ManifestMetadata.Dependencies"/></param>
+            <param name="v">Version range accepted for package to add to <see cref="P:Stride.Core.Packages.ManifestMetadata.Dependencies"/></param>
+        </member>
+        <member name="T:Stride.Core.Packages.MessageLevel">
+            <summary>
+            Possible level of logging used by <see cref="T:Stride.Core.Packages.IPackagesLogger"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToPackageVersionRange(NuGet.Versioning.VersionRange)">
+            <summary>
+            Converts a <see cref="T:NuGet.Versioning.VersionRange"/> into a <see cref="T:Stride.Core.PackageVersionRange"/>.
+            </summary>
+            <param name="range">The source of conversion.</param>
+            <returns>A new instance of <see cref="T:Stride.Core.PackageVersionRange"/> corresponding to <paramref name="range"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToPackageVersion(NuGet.Versioning.NuGetVersion)">
+            <summary>
+            Converts a <see cref="T:NuGet.Versioning.NuGetVersion"/> into a <see cref="T:Stride.Core.PackageVersion"/>.
+            </summary>
+            <param name="version">The source of conversion.</param>
+            <returns>A new instance of <see cref="T:Stride.Core.PackageVersion"/> corresponding to <paramref name="version"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToVersionRange(Stride.Core.PackageVersionRange)">
+            <summary>
+            Converts a <see cref="T:Stride.Core.PackageVersionRange"/> into a <see cref="T:NuGet.Versioning.VersionRange"/>.
+            </summary>
+            <param name="range">The source of conversion.</param>
+            <returns>A new instance of <see cref="T:NuGet.Versioning.VersionRange"/> corresponding to <paramref name="range"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToNuGetVersion(Stride.Core.PackageVersion)">
+            <summary>
+            Converts a <see cref="T:Stride.Core.PackageVersion"/> into a <see cref="T:NuGet.Versioning.NuGetVersion"/>.
+            </summary>
+            <param name="version">The source of conversion.</param>
+            <returns>A new instance of <see cref="T:NuGet.Versioning.NuGetVersion"/> corresponding to <paramref name="version"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToManifestFile(Stride.Core.Packages.ManifestFile)">
+            <summary>
+            Converts a <see cref="T:Stride.Core.Packages.ManifestFile"/> into a <see cref="T:NuGet.Packaging.ManifestFile"/>.
+            </summary>
+            <param name="file">The manifest file source of conversion.</param>
+            <returns>A new instance of <see cref="T:NuGet.Packaging.ManifestFile"/> corresponding to <paramref name="file"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NuGet3Extensions.ToManifestMetadata(Stride.Core.Packages.ManifestMetadata)">
+            <summary>
+            Converts a <see cref="T:Stride.Core.Packages.ManifestMetadata"/> into a <see cref="T:NuGet.Packaging.ManifestMetadata"/>.
+            </summary>
+            <param name="metadata">The metadata source of conversion.</param>
+            <returns>A new instance of <see cref="T:NuGet.Packaging.ManifestMetadata"/> corresponding to <paramref name="metadata"/>.</returns>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetLocalPackage">
+            <summary>
+            Description of a package that has been installed locally.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLocalPackage.#ctor(NuGet.Protocol.LocalPackageInfo)">
+            <summary>
+            A new instance of <see cref="T:Stride.Core.Packages.NugetLocalPackage"/> initialized from <see cref="T:NuGet.Protocol.LocalPackageSearchMetadata"/>.
+            </summary>
+            <param name="info">The NuGet local information about the package.</param>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.Copyright">
+            <summary>
+            The copyright of the current local package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.ReleaseNotes">
+            <summary>
+            The release notes of the current local package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.Language">
+            <summary>
+            The language of the current local package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.NupkgPath">
+            <summary>
+            Nupkg path.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.Path">
+            <summary>
+            Folder containing nupkg and extracted package.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLocalPackage.GetFiles">
+            <summary>
+            Gets the list of files that make up the current local package.
+            </summary>
+            <returns>The list of files making up the current local package.</returns>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetLocalPackage.Info">
+            <summary>
+            The reader of the associated .nuspec file of the current local package.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetLogger">
+            <summary>
+            Implementation of the <see cref="T:NuGet.Common.ILogger"/> interface using our <see cref="T:Stride.Core.Packages.IPackagesLogger"/> interface.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.#ctor(Stride.Core.Packages.IPackagesLogger)">
+            <summary>
+            Initialize new instance of NugetLogger.
+            </summary>
+            <param name="logger">The <see cref="T:Stride.Core.Packages.IPackagesLogger"/> instance to use to implement <see cref="T:NuGet.Common.ILogger"/></param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogDebug(System.String)">
+            <summary>
+            Logs a debug message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogVerbose(System.String)">
+            <summary>
+            Logs a verbose message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogInformation(System.String)">
+            <summary>
+            Logs an information message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogMinimal(System.String)">
+            <summary>
+            Logs a minimal message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogWarning(System.String)">
+            <summary>
+            Logs a warning message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogError(System.String)">
+            <summary>
+            Logs an error message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogInformationSummary(System.String)">
+            <summary>
+            Logs an information summary message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogErrorSummary(System.String)">
+            <summary>
+            Logs an error summary message <paramref name="data"/>.
+            </summary>
+            <param name="data">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.Log(NuGet.Common.LogLevel,System.String)">
+            <summary>
+            Logs a message <paramref name="data"/> using the log <paramref name="level"/>.
+            </summary>
+            <param name="level">The level of the logged message.</param>
+            <param name="data">The message to log.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="level"/> is not a valid log level.</exception>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogAsync(NuGet.Common.LogLevel,System.String)">
+            <summary>
+            Logs a message <paramref name="data"/> using the log <paramref name="level"/>.
+            </summary>
+            <param name="level">The level of the logged message.</param>
+            <param name="data">The message to log.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="level"/> is not a valid log level.</exception>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.Log(NuGet.Common.ILogMessage)">
+            <summary>
+            Logs a message <paramref name="message"/>.
+            </summary>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetLogger.LogAsync(NuGet.Common.ILogMessage)">
+            <summary>
+            Logs a message <paramref name="message"/>.
+            </summary>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetPackage">
+            <summary>
+            Nuget abstraction of a package.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.#ctor(NuGet.Protocol.Core.Types.IPackageSearchMetadata)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Core.Packages.NugetPackage"/> using some NuGet data.
+            </summary>
+            <param name="package">The NuGet metadata we will use to construct the current instance.</param>
+        </member>
+        <member name="F:Stride.Core.Packages.NugetPackage.packageMetadata">
+            <summary>
+            Storage for the NuGet metatadata.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.Equals(Stride.Core.Packages.NugetPackage)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.op_Equality(Stride.Core.Packages.NugetPackage,Stride.Core.Packages.NugetPackage)">
+            <summary>
+            Determines whether two specified <see cref="T:Stride.Core.Packages.NugetPackage"/> objects are equal.
+            </summary>
+            <param name="left">The first <see cref="T:Stride.Core.Packages.NugetPackage"/>object.</param>
+            <param name="right">The second <see cref="T:Stride.Core.Packages.NugetPackage"/>object.</param>
+            <returns><c>true</c> if <paramref name="left"/> is equal to <paramref name="right"/>, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackage.op_Inequality(Stride.Core.Packages.NugetPackage,Stride.Core.Packages.NugetPackage)">
+            <summary>
+            Determines whether two specified <see cref="T:Stride.Core.Packages.NugetPackage"/> objects are not equal.
+            </summary>
+            <param name="left">The first <see cref="T:Stride.Core.Packages.NugetPackage"/>object.</param>
+            <param name="right">The second <see cref="T:Stride.Core.Packages.NugetPackage"/>object.</param>
+            <returns><c>true</c> if <paramref name="left"/> is not equal to <paramref name="right"/>, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Version">
+            <summary>
+            Version of current package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.NuGetVersion">
+            <summary>
+            The <see cref="P:Stride.Core.Packages.NugetPackage.NuGetVersion"/> of this package's version.
+            </summary>
+            <remarks>Internal since it exposes a NuGet type.</remarks>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Identity">
+            <summary>
+            The <see cref="T:NuGet.Packaging.Core.PackageIdentity"/> of this package.
+            </summary>
+            <remarks>Internal since it exposes a NuGet type.</remarks>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Id">
+            <summary>
+            The Id of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Listed">
+            <summary>
+            The listed status of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Published">
+            <summary>
+            The date of publication if present.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Title">
+            <summary>
+            The title of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Authors">
+            <summary>
+            The list of authors of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Owners">
+            <summary>
+            The list of owners of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.IconUrl">
+            <summary>
+            The URL of this package's icon.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.LicenseUrl">
+            <summary>
+            The URL of this package's license.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.ProjectUrl">
+            <summary>
+            The URL of this package's project.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.RequireLicenseAcceptance">
+            <summary>
+            Determines if this package requires a license acceptance.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Description">
+            <summary>
+            The description of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Summary">
+            <summary>
+            The summary description of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Tags">
+            <summary>
+            The list of tags of this package separated by spaces.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.DependencySets">
+            <summary>
+            The list of dependencies of this package.
+            </summary>
+            <remarks>Internal since it exposes a NuGet type.</remarks>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.DownloadCount">
+            <summary>
+            The number of downloads for this package. It is specific to the version of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.ReportAbuseUrl">
+            <summary>
+            The URL to report abused on this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.DependencySetsCount">
+            <summary>
+            The number of dependency sets.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.Dependencies">
+            <summary>
+            Computed the list of dependencies of this package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackage.VersionInfo">
+            <summary>
+            The <see cref="P:Stride.Core.Packages.NugetPackage.VersionInfo"/> associated with this package.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetPackageBuilder">
+            <summary>
+            Abstraction to build a NuGet package.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/>.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Stride.Core.Packages.NugetPackageBuilder.Builder" -->
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.Equals(Stride.Core.Packages.NugetPackageBuilder)">
+            <summary>
+            Determines whether the <paramref name="other"/> object is equal to the current object.
+            </summary>
+            <param name="other">The object to compare against the current object.</param>
+            <returns><c>true</c> if <paramref name="other"/> is equal to the current object, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.op_Equality(Stride.Core.Packages.NugetPackageBuilder,Stride.Core.Packages.NugetPackageBuilder)">
+            <summary>
+            Determines whether two specified <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/> objects are equal.
+            </summary>
+            <param name="left">The first <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/>object.</param>
+            <param name="right">The second <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/>object.</param>
+            <returns><c>true</c> if <paramref name="left"/> is equal to <paramref name="right"/>, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.op_Inequality(Stride.Core.Packages.NugetPackageBuilder,Stride.Core.Packages.NugetPackageBuilder)">
+            <summary>
+            Determines whether two specified <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/> objects are equal.
+            </summary>
+            <param name="left">The first <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/>object.</param>
+            <param name="right">The second <see cref="T:Stride.Core.Packages.NugetPackageBuilder"/>object.</param>
+            <returns><c>true</c> if <paramref name="left"/> is not equal to <paramref name="right"/>, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Authors">
+            <summary>
+            The authors of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Copyright">
+            <summary>
+            The copyright of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Description">
+            <summary>
+            The description of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.DevelopmentDependency">
+            <summary>
+            Determines if this new package is used for development purpose and should not be listed as a dependency.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.IconUrl">
+            <summary>
+            The URL of this new package's icon.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Id">
+            <summary>
+            The Id of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Language">
+            <summary>
+            The language of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.LicenseUrl">
+            <summary>
+            The URL of this new package's license.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.MinClientVersion">
+            <summary>
+            The minimum client supported by this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Owners">
+            <summary>
+            The owners of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.ProjectUrl">
+            <summary>
+            The URL of this new package's project.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.ReleaseNotes">
+            <summary>
+            The release notes of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.RequireLicenseAcceptance">
+            <summary>
+            Determines if this new package requires a license acceptance.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Summary">
+            <summary>
+            The summary description of this new package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Tags">
+            <summary>
+            The list of tags of this package separated by spaces.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetPackageBuilder.Title">
+            <summary>
+            The title of this new package.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.Save(System.IO.Stream)">
+            <summary>
+            Saves this new package in <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The stream where package will be saved.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.Populate(Stride.Core.Packages.ManifestMetadata)">
+            <summary>
+            Fills the builder with the manifest metadata containing all the information about this new package.
+            </summary>
+            <param name="meta">The manifest metadata.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.PopulateFiles(Stride.Core.IO.UDirectory,System.Collections.Generic.List{Stride.Core.Packages.ManifestFile})">
+            <summary>
+            Fills the builder with the list of files that are part of this new package.
+            </summary>
+            <param name="rootDirectory">The root location where files are located.</param>
+            <param name="files">The files to include to the builder.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.ClearFiles">
+            <summary>
+            Removes the files previously added by <see cref="M:Stride.Core.Packages.NugetPackageBuilder.PopulateFiles(Stride.Core.IO.UDirectory,System.Collections.Generic.List{Stride.Core.Packages.ManifestFile})"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetPackageBuilder.ToManifsetFiles(System.Collections.Generic.IEnumerable{Stride.Core.Packages.ManifestFile})">
+            <summary>
+            Converts a list of <see cref="T:Stride.Core.Packages.ManifestFile"/> into a list of <see cref="T:NuGet.Packaging.ManifestFile"/>.
+            </summary>
+            <param name="list">The list to convert.</param>
+            <returns>A new list of <see cref="T:NuGet.Packaging.ManifestFile"/></returns>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetSourceRepositoryProvider">
+            <summary>
+            Copy of <see cref="T:NuGet.Protocol.CachingSourceProvider"/> from Nuget with the only change being adding V2 in the list 
+            of resource providers.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetSourceRepositoryProvider.GetRepositories">
+            <inheritdoc cref="T:NuGet.Protocol.Core.Types.ISourceRepositoryProvider"/>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetSourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource)">
+            <inheritdoc cref="T:NuGet.Protocol.Core.Types.ISourceRepositoryProvider"/>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetSourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource,NuGet.Protocol.FeedType)">
+            <inheritdoc cref="T:NuGet.Protocol.Core.Types.ISourceRepositoryProvider"/>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetSourceRepositoryProvider.PackageSourceProvider">
+            <inheritdoc cref="T:NuGet.Protocol.Core.Types.ISourceRepositoryProvider"/>
+        </member>
+        <member name="T:Stride.Core.Packages.NugetStore">
+            <summary>
+            Abstraction to interact with a store backed by the NuGet infrastructure.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.#ctor(System.String)">
+            <summary>
+            Initialize a new instance of <see cref="T:Stride.Core.Packages.NugetStore"/>.
+            </summary>
+            <param name="oldRootDirectory">The location of the Nuget store.</param>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetStore.InstallPath">
+            <summary>
+            Path where all packages are installed.
+            Usually `InstallPath = RootDirectory/RepositoryPath`.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetStore.MainPackageIds">
+            <summary>
+            List of package Ids under which the main package is known. Usually just one entry, but
+            we could have several in case there is a product name change.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetStore.VsixPluginId">
+            <summary>
+            Package Id of the Visual Studio Integration plugin.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetStore.Logger">
+            <summary>
+            Logger for all operations of the package manager.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.NugetStore.InstalledPathResolver">
+            <summary>
+            Helper to locate packages.
+            </summary>
+        </member>
+        <member name="E:Stride.Core.Packages.NugetStore.NugetPackageInstalled">
+            <summary>
+            Event executed when a package's installation has completed.
+            </summary>
+        </member>
+        <member name="E:Stride.Core.Packages.NugetStore.NugetPackageUninstalled">
+            <summary>
+            Event executed when a package's uninstallation has completed.
+            </summary>
+        </member>
+        <member name="E:Stride.Core.Packages.NugetStore.NugetPackageUninstalling">
+            <summary>
+            Event executed when a package's uninstallation is in progress.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetInstalledPath(System.String,Stride.Core.PackageVersion)">
+            <summary>
+            Installation path of <paramref name="package"/>
+            </summary>
+            <param name="id">Id of package to query.</param>
+            <param name="version">Version of package to query.</param>
+            <returns>The installation path if installed, null otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetLatestPackageInstalled(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get the most recent version associated to <paramref name="packageIds"/>. To make sense
+            it is assumed that packageIds represent the same package under a different name.
+            </summary>
+            <param name="packageIds">List of Ids representing a package name.</param>
+            <returns>The most recent version of `GetPackagesInstalled (packageIds)`.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetPackagesInstalled(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            List of all packages represented by <paramref name="packageIds"/>. The list is ordered
+            from the most recent version to the oldest.
+            </summary>
+            <param name="packageIds">List of Ids representing the package names to retrieve.</param>
+            <returns>The list of packages sorted from the most recent to the oldest.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetLocalPackages(System.String)">
+            <summary>
+            List of all installed packages.
+            </summary>
+            <returns>A list of packages.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetPackageVersionVariable(System.String,System.String)">
+            <summary>
+            Name of variable used to hold the version of <paramref name="packageId"/>.
+            </summary>
+            <param name="packageId">The package Id.</param>
+            <returns>The name of the variable holding the version of <paramref name="packageId"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetLocalRepositoryLock">
+            <summary>
+            Lock to ensure atomicity of updates to the local repository.
+            </summary>
+            <returns>A Lock.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.InstallPackage(System.String,Stride.Core.PackageVersion,Stride.Core.Packages.ProgressReport)">
+            <summary>
+            Fetch, if not already downloaded, and install the package represented by
+            (<paramref name="packageId"/>, <paramref name="version"/>).
+            </summary>
+            <remarks>It is safe to call it concurrently be cause we operations are done using the FileLock.</remarks>
+            <param name="packageId">Name of package to install.</param>
+            <param name="version">Version of package to install.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.UninstallPackage(Stride.Core.Packages.NugetPackage,Stride.Core.Packages.ProgressReport)">
+            <summary>
+            Uninstall <paramref name="package"/>, while still keeping the downloaded file in the cache.
+            </summary>
+            <remarks>It is safe to call it concurrently be cause we operations are done using the FileLock.</remarks>
+            <param name="package">Package to uninstall.</param>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.FindLocalPackage(System.String,Stride.Core.PackageVersion,Stride.Core.Packages.ConstraintProvider,System.Boolean,System.Boolean)">
+            <summary>
+            Find the installed package <paramref name="packageId"/> using the version <paramref name="versionRange"/> if not null, otherwise the <paramref name="constraintProvider"/> if specified.
+            If no constraints are specified, the first found entry, whatever it means for NuGet, is used.
+            </summary>
+            <param name="packageId">Name of the package.</param>
+            <param name="versionRange">The version range.</param>
+            <param name="constraintProvider">The package constraint provider.</param>
+            <param name="allowPrereleaseVersions">if set to <c>true</c> [allow prelease version].</param>
+            <param name="allowUnlisted">if set to <c>true</c> [allow unlisted].</param>
+            <returns>A Package matching the search criterion or null if not found.</returns>
+            <exception cref="T:System.ArgumentNullException">packageIdentity</exception>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.FindLocalPackage(System.String,Stride.Core.PackageVersionRange,Stride.Core.Packages.ConstraintProvider,System.Boolean,System.Boolean)">
+            <summary>
+            Find the installed package <paramref name="packageId"/> using the version <paramref name="versionRange"/> if not null, otherwise the <paramref name="constraintProvider"/> if specified.
+            If no constraints are specified, the first found entry, whatever it means for NuGet, is used.
+            </summary>
+            <param name="packageId">Name of the package.</param>
+            <param name="versionRange">The version range.</param>
+            <param name="constraintProvider">The package constraint provider.</param>
+            <param name="allowPrereleaseVersions">if set to <c>true</c> [allow prelease version].</param>
+            <param name="allowUnlisted">if set to <c>true</c> [allow unlisted].</param>
+            <returns>A Package matching the search criterion or null if not found.</returns>
+            <exception cref="T:System.ArgumentNullException">packageIdentity</exception>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.FindSourcePackages(System.Collections.Generic.IReadOnlyCollection{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Find available packages from source ith Ids matching <paramref name="packageIds"/>.
+            </summary>
+            <param name="packageIds">List of package Ids we are looking for.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A list of packages matching <paramref name="packageIds"/> or an empty list if none is found.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.FindSourcePackagesById(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Find available packages from source with Id matching <paramref name="packageId"/>.
+            </summary>
+            <param name="packageId">Id of package we are looking for.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A list of packages matching <paramref name="packageId"/> or an empty list if none is found.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.SourceSearch(System.String,System.Boolean)">
+            <summary>
+            Look for available packages from source containing <paramref name="searchTerm"/> in either the Id or description of the package.
+            </summary>
+            <param name="searchTerm">Term used for search.</param>
+            <param name="allowPrereleaseVersions">Are we looking in pre-release versions too?</param>
+            <returns>A list of packages matching <paramref name="searchTerm"/>.</returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.GetUpdates(Stride.Core.Packages.PackageName,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns updates for packages from the repository 
+            </summary>
+            <param name="packageName">Package to look for updates</param>
+            <param name="includePrerelease">Indicates whether to consider prerelease updates.</param>
+            <param name="includeAllVersions">Indicates whether to include all versions of an update as opposed to only including the latest version.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Core.Packages.NugetStore.PurgeCache">
+            <summary>
+            Clean all temporary files created thus far during store operations.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.NullPackagesLogger">
+            <summary>
+            Null implementation of <see cref="T:Stride.Core.Packages.IPackagesLogger"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.PackageFile">
+            <summary>
+            Representation of a file in a package.
+            TODO: Verify if this needs updating for NuGet 3.0
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.PackageFile.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Core.Packages.PackageFile"/> located in <paramref name="path"/>.
+            </summary>
+            <param name="path">Path of the file in the package.</param>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageFile.FullPath">
+            <summary>
+            Gets the full path of the file on the HDD.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageFile.Path">
+            <summary>
+            Gets the path of the file inside the package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageFile.SourcePath">
+            <summary>
+            Gets the source path of the file on the hard drive (if it has a source).
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.PackageFile.GetStream">
+            <summary>
+            Access to the stream content in read mode.
+            </summary>
+            <returns>A new stream reading file pointed by <see cref="P:Stride.Core.Packages.PackageFile.Path"/>.</returns>
+        </member>
+        <member name="T:Stride.Core.Packages.PackageName">
+            <summary>
+            Representation of the name of a package made of an Id and a version.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.PackageName.#ctor(System.String,Stride.Core.PackageVersion)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Core.Packages.PackageName"/>.
+            </summary>
+            <param name="id">Id of package.</param>
+            <param name="version">Version of package.</param>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageName.Id">
+            <summary>
+            Identity of the package.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageName.Version">
+            <summary>
+            Version of the package.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.PackageName.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.PackageName.Equals(Stride.Core.Packages.PackageName)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.PackageName.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Core.Packages.PackageOperationEventArgs.#ctor(Stride.Core.Packages.PackageName,System.String)">
+            <summary>
+            Initialize a new instance of <see cref="T:Stride.Core.Packages.PackageOperationEventArgs"/> using the corresponding NuGet abstraction.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageOperationEventArgs.Name">
+            <summary>
+            Name of package being installed/uninstalled.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageOperationEventArgs.Id">
+            <summary>
+            Id of <see cref="P:Stride.Core.Packages.PackageOperationEventArgs.Name"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.PackageOperationEventArgs.InstallPath">
+            <summary>
+            Location where package is installed to/uninstalled from.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.TargetGenerator">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGenerator.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.TargetGeneratorBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:Stride.Core.Packages.TargetGeneratorBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Packages.TargetGeneratorBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:Stride.Core.Packages.TargetGeneratorBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

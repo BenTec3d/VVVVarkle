@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.NET.HostModel</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppHostCustomizationUnsupportedOSException">
+            <summary>
+            The application host executable cannot be customized because adding resources requires 
+            that the build be performed on Windows (excluding Nano Server).
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.MachOFormatError">
+            <summary>
+            Additional details about the failure with caused an AppHostMachOFormatException
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppHostMachOFormatException">
+            <summary>
+            The MachO application host executable cannot be customized because 
+            it was not in the expected format
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppHostNotCUIException">
+            <summary>
+            Unable to use the input file as application host executable because it's not a 
+            Windows executable for the CUI (Console) subsystem.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppHostNotPEFileException">
+            <summary>
+             Unable to use the input file as an application host executable 
+             because it's not a Windows PE file
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppHostUpdateException">
+            <summary>
+            An instance of this exception is thrown when an AppHost binary update 
+            fails due to known user errors.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.AppNameTooLongException">
+            <summary>
+            Given app file name is longer than 1024 bytes
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.BinaryUtils.PEFileSignature">
+            <summary>
+            The first two bytes of a PE file are a constant signature.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.BinaryUtils.PEHeaderPointerOffset">
+            <summary>
+            The offset of the PE header pointer in the DOS header.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.BinaryUtils.SubsystemOffset">
+            <summary>
+            The offset of the Subsystem field in the PE header.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.BinaryUtils.WindowsGUISubsystem">
+            <summary>
+            The value of the sybsystem field which indicates Windows GUI (Graphical UI)
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.BinaryUtils.WindowsCUISubsystem">
+            <summary>
+            The value of the subsystem field which indicates Windows CUI (Console)
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.BinaryUtils.IsPEImage(System.IO.MemoryMappedFiles.MemoryMappedViewAccessor)">
+            <summary>
+            Check whether the apphost file is a windows PE image by looking at the first few bytes.
+            </summary>
+            <param name="accessor">The memory accessor which has the apphost file opened.</param>
+            <returns>true if the accessor represents a PE image, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.BinaryUtils.SetWindowsGraphicalUserInterfaceBit(System.IO.MemoryMappedFiles.MemoryMappedViewAccessor)">
+            <summary>
+            This method will attempt to set the subsystem to GUI. The apphost file should be a windows PE file.
+            </summary>
+            <param name="accessor">The memory accessor which has the apphost file opened.</param>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.BinaryUtils.GetWindowsGraphicalUserInterfaceBit(System.IO.MemoryMappedFiles.MemoryMappedViewAccessor)">
+            <summary>
+            This method will return the subsystem CUI/GUI value. The apphost file should be a windows PE file.
+            </summary>
+            <param name="accessor">The memory accessor which has the apphost file opened.</param>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.HostWriter">
+            <summary>
+            Embeds the App Name into the AppHost.exe
+            If an apphost is a single-file bundle, updates the location of the bundle headers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.AppHost.HostWriter.AppBinaryPathPlaceholder">
+            <summary>
+            hash value embedded in default apphost executable in a place where the path to the app binary should be stored.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.HostWriter.CreateAppHost(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Create an AppHost with embedded configuration of app binary location
+            </summary>
+            <param name="appHostSourceFilePath">The path of Apphost template, which has the place holder</param>
+            <param name="appHostDestinationFilePath">The destination path for desired location to place, including the file name</param>
+            <param name="appBinaryFilePath">Full path to app binary or relative path to the result apphost file</param>
+            <param name="windowsGraphicalUserInterface">Specify whether to set the subsystem to GUI. Only valid for PE apphosts.</param>
+            <param name="assemblyToCopyResorcesFrom">Path to the intermediate assembly, used for copying resources to PE apphosts.</param>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.HostWriter.SetAsBundle(System.String,System.Int64)">
+            <summary>
+            Set the current AppHost as a single-file bundle.
+            </summary>
+            <param name="appHostPath">The path of Apphost template, which has the place holder</param>
+            <param name="bundleHeaderOffset">The offset to the location of bundle header</param>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.HostWriter.IsBundle(System.String,System.Int64@)">
+            <summary>
+            Check if the an AppHost is a single-file bundle
+            </summary>
+            <param name="appHostFilePath">The path of Apphost to check</param>
+            <param name="bundleHeaderOffset">An out parameter containing the offset of the bundle header (if any)</param>
+            <returns>True if the AppHost is a single-file bundle, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.AppHost.MachOUtils.RemoveSignature(System.String)">
+            <summary>
+            This Method is a utility to remove the code-signature (if any)
+            from a MachO AppHost binary.
+            
+            The tool assumes the following layout of the executable:
+            
+            * MachoHeader (64-bit, executable, not swapped integers)
+            * LoadCommands
+                LC_SEGMENT_64 (__PAGEZERO)
+                LC_SEGMENT_64 (__TEXT)
+                LC_SEGMENT_64 (__DATA)
+                LC_SEGMENT_64 (__LINKEDIT)
+                ...
+                LC_SYMTAB 
+                ...
+                LC_CODE_SIGNATURE (last)
+                
+             * ... Different Segments ...
+             
+             * The __LINKEDIT Segment (last)
+                 * ... Different sections ... 
+                 * SYMTAB 
+                 * (Some alignment bytes)
+                 * The Code-signature
+                 
+            In order to remove the signature, the method:
+            - Removes (zeros out) the LC_CODE_SIGNATURE command
+            - Adjusts the size and count of the load commands in the header
+            - Truncates the size of the __LINKEDIT segment to the end of SYMTAB
+            - Truncates the apphost file to the end of the __LINKEDIT segment
+            
+            </summary>
+            <param name="filePath">Path to the AppHost</param>
+            <returns>
+             True if 
+               - The input is a MachO binary, and 
+               - It is a signed binary, and 
+               - The signature was successfully removed
+              False otherwise 
+            </returns>
+            <exception cref="T:Microsoft.NET.HostModel.AppHost.AppHostMachOFormatException">
+            The input is a MachO file, but doesn't match the expect format of the AppHost.
+            </exception>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.AppHost.PlaceHolderNotFoundInAppHostException">
+            <summary>
+            Unable to use input file as a valid application host executable, as it does not contain 
+            the expected placeholder byte sequence.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.HResultException">
+            <summary>
+            Represents an exception thrown because of a Win32 error
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.ResourceUpdater">
+            <summary>
+            Provides methods for modifying the embedded native resources
+            in a PE image. It currently only works on Windows, because it
+            requires various kernel32 APIs.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.ResourceUpdater.SafeUpdateHandle">
+            <summary>
+            Holds the update handle returned by BeginUpdateResource.
+            Normally, native resources for the update handle are
+            released by a call to ResourceUpdater.Update(). In case
+            this doesn't happen, the SafeUpdateHandle will release the
+            native resources for the update handle without updating
+            the target file.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.ResourceUpdater.hUpdate">
+            <summary>
+            Holds the native handle for the resource update.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.ResourceUpdater.IsSupportedOS">
+            <summary>
+             Determines if the ResourceUpdater is supported by the current operating system.
+             Some versions of Windows, such as Nano Server, do not support the needed APIs.
+             </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.ResourceUpdater.#ctor(System.String)">
+            <summary>
+            Create a resource updater for the given PE file. This will
+            acquire a native resource update handle for the file,
+            preparing it for updates. Resources can be added to this
+            updater, which will queue them for update. The target PE
+            file will not be modified until Update() is called, after
+            which the ResourceUpdater can not be used for further
+            updates.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.ResourceUpdater.AddResourcesFromPEImage(System.String)">
+            <summary>
+            Add all resources from a source PE file. It is assumed
+            that the input is a valid PE file. If it is not, an
+            exception will be thrown. This will not modify the target
+            until Update() is called.
+            Throws an InvalidOperationException if Update() was already called.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.ResourceUpdater.AddResource(System.Byte[],System.IntPtr,System.IntPtr)">
+            <summary>
+            Add a language-neutral integer resource from a byte[] with
+            a particular type and name. This will not modify the
+            target until Update() is called.
+            Throws an InvalidOperationException if Update() was already called.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.ResourceUpdater.Update">
+            <summary>
+            Write the pending resource updates to the target PE
+            file. After this, the ResourceUpdater no longer maintains
+            an update handle, and can not be used for further updates.
+            Throws an InvalidOperationException if Update() was already called.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.RetryUtil">
+            <summary>
+            HostModel library implements several services for updating the AppHost DLL.
+            These updates involve multiple file open/close operations.
+            An Antivirus scanner may intercept in-between and lock the file, 
+            causing the operations to fail with IO-Error.
+            So, the operations are retried a few times on failures such as
+            - IOException 
+            - Failure with Win32 errors indicating file-lock
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.BundleException">
+            <summary>
+            This exception is thrown when a bundle extraction
+            operation fails due to known user errors.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.Bundler">
+            <summary>
+            Bundler: Functionality to embed the managed app and its dependencies
+            into the host native binary.
+            </summary>
+        </member>
+        <member name="F:Microsoft.NET.HostModel.Bundle.Bundler.AssemblyAlignment">
+            <summary>
+            Align embedded assemblies such that they can be loaded 
+            directly from memory-mapped bundle.
+            TBD: Set the correct value of alignment while working on 
+            the runtime changes to load the embedded assemblies.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.Bundle.Bundler.AddToBundle(System.IO.Stream,System.IO.Stream,Microsoft.NET.HostModel.Bundle.FileType)">
+            <summary>
+            Embed 'file' into 'bundle'
+            </summary>
+            <returns>Returns the offset of the start 'file' within 'bundle'</returns>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.Bundle.Bundler.GenerateBundle(System.Collections.Generic.IReadOnlyList{Microsoft.NET.HostModel.Bundle.FileSpec})">
+            <summary>
+            Generate a bundle, given the specification of embedded files
+            </summary>
+            <param name="fileSpecs">
+            An enumeration FileSpecs for the files to be embedded.
+            </param>
+            <returns>
+            The full path the the generated bundle file
+            </returns>
+            <exceptions>
+            ArgumentException if input is invalid
+            IOExceptions and ArgumentExceptions from callees flow to the caller.
+            </exceptions>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.Bundle.Bundler.GenerateBundle(System.String)">
+            <summary>
+            Generate a bundle containind the (embeddable) files in sourceDir
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.Extractor">
+            <summary>
+            Extractor: The functionality to extract the files embedded 
+            within a bundle to separate files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.NET.HostModel.Bundle.Extractor.ExtractFiles">
+            <summary>
+            Extract all files in the bundle to disk
+            </summary>
+            <exceptions>
+            BundleException if the bundle is invalid or malformed.
+            IOExceptions and ArgumentExceptions from callees flow to the caller.
+            </exceptions>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.FileEntry">
+            <summary>
+            FileEntry: Records information about embedded files.
+            
+            The bundle manifest records the following meta-data for each 
+            file embedded in the bundle:
+            * Type       (1 byte)
+            * NameLength (7-bit extension encoding, typically 1 byte)
+            * Name       ("NameLength" Bytes)
+            * Offset     (Int64)
+            * Size       (Int64)
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.FileSpec">
+            <summary>
+             Information about files to embed into the Bundle (input to the Bundler).
+             
+              SourcePath: path to the file to be bundled at compile time
+              BundleRelativePath: path where the file is expected at run time, 
+                                  relative to the app DLL.
+            </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.FileType">
+             <summary>
+             FileType: Identifies the type of file embedded into the bundle.
+             
+             The bundler differentiates a few kinds of files via the manifest,
+             with respect to the way in which they'll be used by the runtime.
+            
+             - Runtime Configuration files: Processed directly from memory
+             - Assemblies: Loaded directly from memory.
+                           Currently, these are only pure-managed assemblies.
+                           Future versions should include R2R assemblies here.
+             - Other files: Files that will be extracted out to disk. 
+                            These include native binaries.
+             </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.Manifest">
+             <summary>
+              BundleManifest is a description of the contents of a bundle file.
+              This class handles creation and consumption of bundle-manifests.
+              
+              Here is the description of the Bundle Layout:
+              _______________________________________________
+              AppHost 
+            
+            
+             ------------Embedded Files ---------------------
+             The embedded files including the app, its
+             configuration files, dependencies, and 
+             possibly the runtime.
+             
+             
+             
+             
+             
+             
+            
+             ------------ Bundle Header -------------
+                 MajorVersion
+                 MinorVersion
+                 NumEmbeddedFiles
+                 ExtractionID
+                 
+             - - - - - - Manifest Entries - - - - - - - - - - -
+                 Series of FileEntries (for each embedded file)
+                 [File Type, Name, Offset, Size information]
+                 
+                 
+             
+             _________________________________________________
+             </summary>
+        </member>
+        <member name="T:Microsoft.NET.HostModel.Bundle.Trace">
+            <summary>
+             Tracing utilities for diagnostic output
+            </summary>
+        </member>
+    </members>
+</doc>

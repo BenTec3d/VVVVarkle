@@ -1,0 +1,14 @@
+NativeLib;x64\avcodec-57.dll;x64\avcodec-57.dll
+NativeLib;x64\avdevice-57.dll;x64\avdevice-57.dll
+NativeLib;x64\avfilter-6.dll;x64\avfilter-6.dll
+NativeLib;x64\avformat-57.dll;x64\avformat-57.dll
+NativeLib;x64\avutil-55.dll;x64\avutil-55.dll
+NativeLib;x64\swresample-2.dll;x64\swresample-2.dll
+NativeLib;x64\swscale-4.dll;x64\swscale-4.dll
+NativeLib;x86\avcodec-57.dll;x86\avcodec-57.dll
+NativeLib;x86\avdevice-57.dll;x86\avdevice-57.dll
+NativeLib;x86\avfilter-6.dll;x86\avfilter-6.dll
+NativeLib;x86\avformat-57.dll;x86\avformat-57.dll
+NativeLib;x86\avutil-55.dll;x86\avutil-55.dll
+NativeLib;x86\swresample-2.dll;x86\swresample-2.dll
+NativeLib;x86\swscale-4.dll;x86\swscale-4.dll

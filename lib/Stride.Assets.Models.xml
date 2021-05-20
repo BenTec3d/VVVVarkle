@@ -1,0 +1,576 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Assets.Models</name>
+    </assembly>
+    <members>
+        <member name="F:Stride.Assets.Models.AdditiveAnimationBaseMode.FirstFrame">
+            <summary>
+            Uses first frame of animation.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Models.AdditiveAnimationBaseMode.Animation">
+            <summary>
+            Uses animation.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Models.AnimationAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Models.AnimationAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.Source">
+            <summary>
+            Gets or sets the source file of this asset.
+            </summary>
+            <value>The source.</value>
+            <userdoc>
+            The source file of this asset.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.ClipDuration">
+            <summary>
+            Enable clipping of the animation duration
+            </summary>
+            <userdoc>
+            Enable clipping of the animation duration, constraining start and end frames.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.PivotPosition">
+            <summary>
+            Gets or sets the pivot position, that will be used as center of object. If a Skeleton is set, its value will be used instead.
+            </summary>
+            <userdoc>
+            The root (pivot) of the animation will be offset by this distance. If a Skeleton is set, its value will be used instead.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.ScaleImport">
+            <summary>
+            Gets or sets the scale import. If a Skeleton is set, its value will be used instead.
+            </summary>
+            <userdoc>The scale applied to the imported animation. If a Skeleton is set, its value will be used instead.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.RepeatMode">
+            <summary>
+            Gets or sets the animation repeat mode.
+            </summary>
+            <value>The repeat mode</value>
+            <userdoc>
+            Hint for the animation engine. Can be overridden at runtime when playing the animation. If no mode is specified at runtime, the hint will be used.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.Type">
+            <summary>
+            Determine the animation type of the asset, which will dictate in what blend mode we can use it
+            </summary>
+            <userdoc>
+            The animation type of the asset decides how we blend it - linear blending will be used for Animation Clip, additive blending for Difference Clip
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.Skeleton">
+            <summary>
+            Gets or sets the Skeleton.
+            </summary>
+            <userdoc>
+            Describes the node hierarchy that will be active at runtime.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.RootMotion">
+            <summary>
+            Gets or sets a boolean describing if root movement should be applied inside Skeleton (if false and a skeleton exists) or on TransformComponent (if true)
+            </summary>
+            <userdoc>
+            When root motion is enabled, main motion will be applied to TransformComponent. If false, it will be applied inside the skeleton nodes.
+            Note that if there is no skeleton, it will always apply motion to TransformComponent.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.ImportCustomAttributes">
+            <summary>
+            Gets or sets a boolean describing if custom attributes present in the source asset should be imported or not.
+            </summary>
+            <userdoc>If checked, import all the custom animation cuves present in the source file.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAsset.PreviewModel">
+            <summary>
+            Gets or sets the preview model
+            </summary>
+            <userdoc>
+            Choose a model to preview with.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Models.AnimationAssetDuration">
+            <summary>
+            Enable clipping of the animation duration
+            </summary>
+            <userdoc>
+            Enable clipping of the animation duration, constraining start and end frames.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAssetDuration.StartAnimationTime">
+            <summary>
+            Gets or sets the start frame of the animation.
+            </summary>
+            <userdoc>
+            The animation will start from this frame.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAssetDuration.EndAnimationTime">
+            <summary>
+            Gets or sets the end frame of the animation.
+            </summary>
+            <userdoc>
+            The animation will end on this frame.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Models.AnimationAssetDurationUnchecked">
+            <summary>
+            Enable clipping of the animation duration
+            </summary>
+            <userdoc>
+            Enable clipping of the animation duration, constraining start and end frames.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAssetDurationUnchecked.StartAnimationTimeBox">
+            <summary>
+            Gets or sets the start frame of the animation.
+            </summary>
+            <userdoc>
+            The animation will start from this frame.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.AnimationAssetDurationUnchecked.EndAnimationTimeBox">
+            <summary>
+            Gets or sets the end frame of the animation.
+            </summary>
+            <userdoc>
+            The animation will end on this frame.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.DifferenceAnimationAssetType.BaseSource">
+            <summary>
+            Gets or sets the path to the base source animation model when using additive animation.
+            </summary>
+            <value>The path to the reference clip.</value>
+            <userdoc>
+            The reference clip (R) is what the difference clip (D) will be calculated against, effectively resulting in D = S - R ((S) being the source clip)
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.DifferenceAnimationAssetType.Mode">
+            <userdoc>Specifies how to use the base animation.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.DifferenceAnimationAssetType.ClipDuration">
+            <summary>
+            Enable clipping of the animation duration
+            </summary>
+            <userdoc>
+            Enable clipping of the animation duration, constraining start and end frames.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Models.AnimationAssetTypeEnum">
+            <summary>
+            Type which describes the nature of the animation clip we want to use.
+            The terms are borrowed from the book Game Engine Architecture, Chapter 11.6.5 Additive Blending
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Models.AnimationAssetTypeEnum.AnimationClip">
+            <summary>
+            Single source animation clip which animates the character.
+            </summary>
+            <userdoc>
+            Single source animation clip which animates the character.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Models.AnimationAssetTypeEnum.DifferenceClip">
+            <summary>
+            Difference animation clip is computed as the difference against another animation. It is usually used for additive blending.
+            </summary>
+            <userdoc>
+            Difference animation clip is computed as the difference against another animation. It is usually used for additive blending.
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.Models.AssimpAssetImporter.GetEntityInfo(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Models.AssimpAssetImporter.GetAnimationDuration(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters,System.TimeSpan@,System.TimeSpan@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Models.FbxAssetImporter.GetEntityInfo(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Models.FbxAssetImporter.GetAnimationDuration(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters,System.TimeSpan@,System.TimeSpan@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Models.IModelAsset">
+            <summary>
+            This interface represents an asset containing a model.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.IModelAsset.Materials">
+            <summary>
+            The materials.
+            </summary>
+            <userdoc>
+            The list of materials in the model.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Models.IModelModifier">
+            <summary>
+            Apply various modification to a <see cref="T:Stride.Rendering.Model"/> during compilation of a <see cref="T:Stride.Assets.Models.ModelAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.IModelModifier.Version">
+            <summary>
+            Used for hashing.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Models.IModelModifier.Apply(Stride.Core.BuildEngine.ICommandContext,Stride.Rendering.Model)">
+            <summary>
+            Apply the modifications to the model.
+            </summary>
+            <param name="commandContext"></param>
+            <param name="model"></param>
+        </member>
+        <member name="P:Stride.Assets.Models.ImportAssimpCommand.Title">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Models.ImportFbxCommand.Title">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.DoCommandOverride(Stride.Core.BuildEngine.ICommandContext)">
+            <summary>
+            The method to override containing the actual command code. It is called by the <see cref="!:DoCommand" /> function
+            </summary>
+            <param name="commandContext">The command context.</param>
+            <returns>Task{ResultStatus}.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.CombineMatricesFromNodeIndices(Stride.Rendering.ModelNodeTransformation[],System.Int32,System.Int32)">
+            <summary>
+            Get the transformation matrix to go from rootIndex to index.
+            </summary>
+            <param name="nodes">The nodes containing the local matrices.</param>
+            <param name="rootIndex">The root index.</param>
+            <param name="index">The current index.</param>
+            <returns>The matrix at this index.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.CompareParameters(Stride.Rendering.Model,Stride.Rendering.Mesh,Stride.Rendering.Mesh)">
+            <summary>
+            Compares the parameters of the two meshes.
+            </summary>
+            <param name="baseMesh">The base mesh.</param>
+            <param name="newMesh">The mesh to compare.</param>
+            <param name="extra">Unused parameter.</param>
+            <returns>True if all the parameters are the same, false otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.CompareShadowOptions(Stride.Rendering.Model,Stride.Rendering.Mesh,Stride.Rendering.Mesh)">
+            <summary>
+            Compares the shadow options between the two meshes.
+            </summary>
+            <param name="baseMesh">The base mesh.</param>
+            <param name="newMesh">The mesh to compare.</param>
+            <param name="extra">Unused parameter.</param>
+            <returns>True if the options are the same, false otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.IsSubsetOf(Stride.Rendering.ParameterCollection,Stride.Rendering.ParameterCollection)">
+            <summary>
+            Test if two ParameterCollection are equal
+            </summary>
+            <param name="parameters0">The first ParameterCollection.</param>
+            <param name="parameters1">The second ParameterCollection.</param>
+            <returns>True if the collections are the same, false otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ImportModelCommand.CheckInputSlots(Stride.Core.BuildEngine.ICommandContext,Stride.Rendering.Model)">
+            <summary>
+            Checks if the vertex buffer input slots for the model are supported by the target graphics profile level
+            </summary>
+            <param name="commandContext">The context for this command, used to access the logger and parameters</param>
+            <param name="model">The model to be verified</param>
+        </member>
+        <member name="F:Stride.Assets.Models.ModelAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Models.ModelAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.Source">
+            <summary>
+            Gets or sets the source file of this asset.
+            </summary>
+            <value>The source.</value>
+            <userdoc>
+            The source file of this asset.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.Skeleton">
+            <summary>
+            Gets or sets the Skeleton.
+            </summary>
+            <userdoc>
+            Describes the node hierarchy that will be active at runtime.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.PivotPosition">
+            <summary>
+            Gets or sets the pivot position, that will be used as center of object. If a Skeleton is set, its value will be used instead.
+            </summary>
+            <userdoc>
+            The root (pivot) of the animation will be offset by this distance. If a Skeleton is set, its value will be used instead.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.ScaleImport">
+            <summary>
+            Gets or sets the scale import. If a Skeleton is set, its value will be used instead.
+            </summary>
+            <userdoc>The scale applied when importing a model. If a Skeleton is set, its value will be used instead.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.MergeMeshes">
+            <summary>
+            Gets or sets the model meshes merge property. When set to true to a model without skeleton, the meshes of the model are merged together by material.
+            </summary>
+            <userdoc>
+            When checked and the model has no skeleton, the meshes of the model are merged together by material.
+            In most cases this improves the performances but prevents the meshes to be culled independently.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.Materials">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelAsset.MainSource">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Models.ModelAssetImporter.GetEntityInfo(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters)">
+            <summary>
+            Get the entity information.
+            </summary>
+            <param name="localPath">The path of the asset.</param>
+            <param name="logger">The logger to use to log import message.</param>
+            <param name="importParameters">The import parameters.</param>
+            <returns>The EntityInfo.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ModelAssetImporter.GetAnimationDuration(Stride.Core.IO.UFile,Stride.Core.Diagnostics.Logger,Stride.Core.Assets.AssetImporterParameters,System.TimeSpan@,System.TimeSpan@)">
+            <summary>
+            Get the total animation clip duration.
+            </summary>
+            <param name="localPath">The path of the asset.</param>
+            <param name="logger">The logger to use to log import message.</param>
+            <param name="importParameters">The import parameters.</param>
+            <param name="startTime">Returns the first (start) keyframe's time for the animation</param>
+            <param name="endTime">Returns the last (end) keyframe's time for the animation</param>
+        </member>
+        <member name="M:Stride.Assets.Models.ModelAssetImporter.Import(Stride.Core.IO.UFile,Stride.Core.Assets.AssetImporterParameters)">
+            <summary>
+            Imports the model.
+            </summary>
+            <param name="localPath">The path of the asset.</param>
+            <param name="importParameters">The parameters used to import the model.</param>
+            <returns>A collection of assets.</returns>
+        </member>
+        <member name="M:Stride.Assets.Models.ModelAssetImporter.AdjustForTransparency(Stride.Assets.Materials.MaterialAsset)">
+            <summary>
+            Modify the material to comply with its transparency parameters.
+            </summary>
+            <param name="material">The material/</param>
+        </member>
+        <member name="T:Stride.Assets.Models.ModelMaterial">
+            <summary>
+            Represents a <see cref="P:Stride.Assets.Models.ModelMaterial.MaterialInstance"/> in a 
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelMaterial.Name">
+            <summary>
+            Gets or sets the material slot name in a <see cref="T:Stride.Assets.Models.ModelAsset"/>.
+            </summary>
+            <value>
+            The material slot name.
+            </value>
+            <userdoc>The .</userdoc>
+            <userdoc>The name of the material as written in the imported model and the reference to the corresponding material asset.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ModelMaterial.MaterialInstance">
+            <summary>
+            Gets or sets the material stored in this slot.
+            </summary>
+            <value>
+            The material.
+            </value>
+        </member>
+        <member name="P:Stride.Assets.Models.NodeInformation.Name">
+            <summary>
+            The name of the node.
+            </summary>
+            <userdoc>The name of the node (as it is written in the imported file).</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.NodeInformation.Depth">
+            <summary>
+             The index of the parent.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.NodeInformation.Preserve">
+            <summary>
+            A flag stating if the node is collapsible.
+            </summary>
+            <userdoc>If checked, the node is kept in the runtime version of the model. 
+            Otherwise, all the meshes of model are merged the node information is lost.
+            Nodes should be preserved in order to be animated or linked to an entity.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.Models.PrefabModelAsset">
+            <summary>
+            A model asset that is generated from a prefab, combining and merging meshes by materials and layout.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Models.PrefabModelAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Models.ProceduralModelAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.PrefabModelAsset.Materials">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Models.ProceduralModelAsset">
+            <summary>
+            The geometric primitive asset.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Models.ProceduralModelAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Models.ProceduralModelAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.ProceduralModelAsset.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+            <userdoc>The type of procedural model to generate</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.ProceduralModelAsset.Materials">
+            <inheritdoc/>
+        </member>
+        <member name="F:Stride.Assets.Models.SkeletonAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Models.SkeletonAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.Source">
+            <summary>
+            Gets or sets the source file of this asset.
+            </summary>
+            <value>The source.</value>
+            <userdoc>
+            The source file of this asset.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.PivotPosition">
+            <summary>
+            Gets or sets the pivot position, that will be used as center of object.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.ScaleImport">
+            <summary>
+            Gets or sets the scale import.
+            </summary>
+            <value>The scale import.</value>
+            <userdoc>The scale applied when importing a model.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.Nodes">
+            <summary>
+            List that stores if a node should be preserved
+            </summary>
+            <userdoc>
+            The mesh nodes of the model.
+            When checked, the nodes are kept in the runtime version of the model. 
+            Otherwise, all the meshes of model are merged and the node information is lost.
+            Nodes should be preserved in order to be animated or linked to entities.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.Compact">
+            <summary>
+            Gets or sets if the mesh will be compacted (meshes will be merged).
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Models.SkeletonAsset.NodesWithPreserveInfo">
+            <summary>
+            Returns to list of nodes that are preserved (they cannot be merged with other ones).
+            </summary>
+            <userdoc>
+            Checking nodes will garantee them to be available at runtime. Otherwise, it may be merged with their parents (for optimization purposes).
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.Models.SkeletonAsset.PreserveNodes(System.Collections.Generic.List{System.String})">
+            <summary>
+            Preserve the nodes.
+            </summary>
+            <param name="nodesToPreserve">List of nodes to preserve.</param>
+        </member>
+        <member name="M:Stride.Assets.Models.SkeletonAsset.PreserveNoNode">
+            <summary>
+            No longer preserve any node.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Models.SkeletonAsset.PreserveAllNodes">
+            <summary>
+            Preserve all the nodes.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Models.SkeletonAsset.InvertPreservation">
+            <summary>
+            Invert the preservation of the nodes.
+            </summary>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

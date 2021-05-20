@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Core.ProjectTemplating</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Core.ProjectTemplating.ProjectTemplate">
+            <summary>
+            Defines a project template that allows automated creation of a project structure with files.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.ProjectTemplating.ProjectTemplate.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.ProjectTemplating.ProjectTemplate"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplate.FilePath">
+            <summary>
+            Gets or sets the template file path.
+            </summary>
+            <value>The template path.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplate.IsDynamicTemplate">
+            <summary>
+            Gets a value indicating whether this template description is dynamic (itself requiring T4 parsing before 
+            generating content files)
+            </summary>
+            <value><c>true</c> if this instance is a dynamic template; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplate.Files">
+            <summary>
+            Gets or sets the files part of the template.
+            </summary>
+            <value>The files.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplate.Assemblies">
+            <summary>
+            Gets or sets the assemblies.
+            </summary>
+            <value>The assemblies.</value>
+        </member>
+        <member name="M:Stride.Core.ProjectTemplating.ProjectTemplate.Generate(System.String,System.String,System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Generates this project template to the specified output directory.
+            </summary>
+            <param name="outputDirectory">The output directory.</param>
+            <param name="projectName">Name of the project.</param>
+            <param name="projectGuid">The project unique identifier.</param>
+            <param name="options">The options arguments that will be made available through the Session property in each template.</param>
+            <returns>LoggerResult.</returns>
+            <exception cref="T:System.ArgumentNullException">outputDirectory
+            or
+            projectName</exception>
+            <exception cref="T:System.InvalidOperationException">FilePath cannot be null on this instance</exception>
+        </member>
+        <member name="M:Stride.Core.ProjectTemplating.ProjectTemplate.Generate(System.String,System.String,System.Guid,Stride.Core.Diagnostics.ILogger,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Collections.Generic.List{System.String})">
+            <summary>
+            Generates this project template to the specified output directory.
+            </summary>
+            <param name="outputDirectory">The output directory.</param>
+            <param name="projectName">Name of the project.</param>
+            <param name="projectGuid">The project unique identifier.</param>
+            <param name="log">The log to output errors to.</param>
+            <param name="options">The options arguments that will be made available through the Session property in each template.</param>
+            <param name="generatedOutputFiles">The generated files.</param>
+            <exception cref="T:System.ArgumentNullException">outputDirectory
+            or
+            projectName</exception>
+            <exception cref="T:System.InvalidOperationException">FilePath cannot be null on this instance</exception>
+        </member>
+        <member name="M:Stride.Core.ProjectTemplating.ProjectTemplate.Load(System.String)">
+            <summary>
+            Loads the a <see cref="T:Stride.Core.ProjectTemplating.ProjectTemplate"/> from the specified file path.
+            </summary>
+            <param name="filePath">The project template file.</param>
+            <returns>An instance of the project template.</returns>
+            <exception cref="T:System.ArgumentNullException">filePath</exception>
+        </member>
+        <member name="T:Stride.Core.ProjectTemplating.ProjectTemplateItem">
+            <summary>
+            A file item that will be copied by the template.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateItem.Source">
+            <summary>
+            Gets or sets the source location relative to the project template.
+            </summary>
+            <value>The source location.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateItem.Target">
+            <summary>
+            Gets or sets the target location. If null, the source location is used.
+            </summary>
+            <value>The target location.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateItem.IsTemplate">
+            <summary>
+            Gets or sets a value indicating whether this file is a T4 template. Default is false. If SourceLocation has the 
+            extension '.tt', this is default to true.
+            </summary>
+            <value><c>true</c> if this instance is a T4 template; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateItem.CurrentPlatform">
+            <summary>
+            Gets or sets a value the name of the current platform.
+            </summary>
+            <value>The name of the current platform.</value>
+        </member>
+        <member name="T:Stride.Core.ProjectTemplating.ProjectTemplateTransformation">
+            <summary>
+            Base that must be used for all ProjectTemplate
+            </summary>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateTransformation.ProjectName">
+            <summary>
+            Gets the name of the project.
+            </summary>
+            <value>The name of the project.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateTransformation.ProjectGuid">
+            <summary>
+            Gets the project unique identifier.
+            </summary>
+            <value>The project unique identifier.</value>
+        </member>
+        <member name="P:Stride.Core.ProjectTemplating.ProjectTemplateTransformation.Properties">
+            <summary>
+            Dynamic properties accessible from the template
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,10 @@
+NativeLib;x64\FreeImage.dll;x64\FreeImage.dll
+NativeLib;x64\FreeImageNET.dll;x64\FreeImageNET.dll
+NativeLib;x86\FreeImage.dll;x86\FreeImage.dll
+NativeLib;x86\FreeImageNET.dll;x86\FreeImageNET.dll
+NativeLib;x64\DxtWrapper.dll;x64\DxtWrapper.dll
+NativeLib;x64\PvrttWrapper.dll;x64\PvrttWrapper.dll
+NativeLib;x86\DxtWrapper.dll;x86\DxtWrapper.dll
+NativeLib;x86\PvrttWrapper.dll;x86\PvrttWrapper.dll
+NativeLib;x64\PVRTexLib.dll;x64\PVRTexLib.dll
+NativeLib;x86\PVRTexLib.dll;x86\PVRTexLib.dll

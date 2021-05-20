@@ -1,0 +1,8 @@
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\bin\Debug\netstandard2.0\VVVVarkleCS.deps.json
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\bin\Debug\netstandard2.0\VVVVarkleCS.dll
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\bin\Debug\netstandard2.0\VVVVarkleCS.pdb
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\obj\Debug\netstandard2.0\VVVVarkleCS.AssemblyInfoInputs.cache
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\obj\Debug\netstandard2.0\VVVVarkleCS.AssemblyInfo.cs
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\obj\Debug\netstandard2.0\VVVVarkleCS.csproj.CoreCompileInputs.cache
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\obj\Debug\netstandard2.0\VVVVarkleCS.dll
+C:\Users\benox\Documents\vvvv\gamma\Sketches\VVVVarkle\VVVVarkleCS\obj\Debug\netstandard2.0\VVVVarkleCS.pdb

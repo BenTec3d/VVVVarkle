@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VL.Lang.Roslyn</name>
+    </assembly>
+    <members>
+        <member name="M:VL.Lang.Roslyn.Export.BuildLogger.WriteLineWithSenderAndMessage(System.String,Microsoft.Build.Framework.BuildEventArgs)">
+            <summary>
+            Write a line to the log, adding the SenderName and Message
+            (these parameters are on all MSBuild event argument objects)
+            </summary>
+        </member>
+        <member name="M:VL.Lang.Roslyn.Export.BuildLogger.WriteLine(System.String,Microsoft.Build.Framework.BuildEventArgs)">
+            <summary>
+            Just write a line to the log
+            </summary>
+        </member>
+        <member name="F:VL.Lang.Roslyn.Export.SolutionBuilder.DefaultVisualStudioVersion">
+            <summary>
+            The visual studio version property used for newly created project solution files
+            </summary>
+        </member>
+    </members>
+</doc>

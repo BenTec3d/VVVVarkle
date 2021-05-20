@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VL.UI.PatchEditor.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:VL.HDE.ActiveControlManager">
+            <summary>
+            sees all interaction areas as a flat list that may have focus and react on keyboard
+            </summary>
+        </member>
+        <member name="T:VL.HDE.IInteractionRect">
+            <summary>
+            exposes a RectangleF for which it is responsible
+            </summary>
+        </member>
+        <member name="T:VL.HDE.DefaultInteractionRect">
+            <summary>
+            exposes a RectangleF for which it is responsible
+            </summary>
+        </member>
+        <member name="T:VL.HDE.TextEditor">
+            <summary>
+            implementation based on winows forms. but pretty trivial.
+            </summary>
+        </member>
+        <member name="T:VL.HDE.Tooltip">
+            <summary>
+            Description of Tooltip.
+            </summary>
+        </member>
+        <member name="F:VL.HDE.Tooltip.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:VL.HDE.Tooltip.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:VL.HDE.Tooltip.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:VL.UI.IWidgetView">
+            <summary>
+            If implemented by a widget, returns the optimal size for displaying itself
+            while respecting the constraints.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2704 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Assets</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Assets.AssetDisplayPriority">
+            <summary>
+            Define the display priority for groups of assets.
+            </summary>
+            <remarks>
+            Higher priority are displayed first.
+            </remarks>
+        </member>
+        <member name="T:Stride.Assets.GameSettingsAsset">
+            <summary>
+            Settings for a game with the default scene, resolution, graphics profile...
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.GameSettingsAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.GameSettingsAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.GameSettingsAsset.DefaultScene">
+            <summary>
+            Gets or sets the default scene
+            </summary>
+            <userdoc>The default scene loaded when the game starts</userdoc>
+        </member>
+        <member name="P:Stride.Assets.GameSettingsAsset.SplashScreenTexture">
+            <userdoc>
+            The image (eg company logo) displayed as the splash screen
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.GameSettingsAsset.SplashScreenColor">
+            <userdoc>
+            The color the splash screen fades in on top of
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.GameSettingsAsset.DoubleViewSplashScreen">
+            <userdoc>
+            If checked, the splash screen is display in VR double view.
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsAsset.TryGet``1">
+            <summary>
+            Tries to get the requested <see cref="T:Stride.Data.Configuration"/>, returns null if it doesn't exist
+            </summary>
+            <typeparam name="T">The <see cref="T:Stride.Data.Configuration"/> to get</typeparam>
+            <param name="profile">If not null, will filter the results by profile first</param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectLogAsset">
+            <summary>
+            Describes an effect asset. 
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Effect.EffectLogAsset.DefaultFile">
+            <summary>
+            The default file name used to store effect compile logs.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Effect.EffectLogAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Effect.EffectLogAsset"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectShaderAsset">
+            <summary>
+            Describes a shader effect asset (sdsl).
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Effect.EffectShaderAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Effect.EffectShaderAsset"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectCompositorAsset">
+            <summary>
+            Describes a shader effect asset (sdsl).
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Effect.EffectCompositorAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Effect.EffectCompositorAsset"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectByteCodeToSourceCodeWriter">
+            <summary>
+            Use this class to generate a code with embedded effect bytecode.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectCompileCommand">
+            <summary>
+            This command is responsible to compile a single permutation of an effect (sdfx or sdsl)
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectLogAssetCompiler">
+            <summary>
+            Compiles same effects as a previous recorded session.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Effect.EffectShaderAssetCompiler">
+            <summary>
+            Entry point to compile an <see cref="T:Stride.Assets.Effect.EffectShaderAsset"/>
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Entities.PrefabAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Entities.PrefabAsset"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.PrefabAsset.CreatePrefabInstance(System.String)">
+            <summary>
+            Creates a instance of this prefab that can be added to another <see cref="T:Stride.Assets.Entities.EntityHierarchyAssetBase"/>.
+            </summary>
+            <param name="targetLocation">The location of the target container asset.</param>
+            <returns>An <see cref="T:Stride.Core.Assets.AssetCompositeHierarchyData`2"/> containing the cloned entities of </returns>
+        </member>
+        <member name="M:Stride.Assets.Entities.PrefabAsset.CreatePrefabInstance(System.String,System.Guid@)">
+            <summary>
+            Creates a instance of this prefab that can be added to another <see cref="T:Stride.Assets.Entities.EntityHierarchyAssetBase"/>.
+            </summary>
+            <param name="targetLocation">The location of the target container asset.</param>
+            <param name="instanceId">The identifier of the created instance.</param>
+            <returns>An <see cref="T:Stride.Core.Assets.AssetCompositeHierarchyData`2"/> containing the cloned entities of </returns>
+        </member>
+        <member name="T:Stride.Assets.Entities.SceneAsset">
+            <summary>
+            A scene asset.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Entities.SceneAsset.ChildrenIds">
+            <summary>
+            A collection of identifier of all the children of this scene..
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Entities.SceneAsset.Parent">
+            <summary>
+            The parent scene.
+            </summary>
+            <userdoc>The parent scene.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Entities.SceneAsset.Offset">
+            <summary>
+            The translation offset relative to the <see cref="P:Stride.Assets.Entities.SceneAsset.Parent"/> scene.
+            </summary>
+            <userdoc>The translation offset of the scene with regard to its parent scene, if any.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.Entities.ComponentChecks.IEntityComponentCheck">
+            <summary>
+            Interface for component checks executed during asset compilation.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.IEntityComponentCheck.AppliesTo(System.Type)">
+            <summary>
+            A predicate determining if a component can be passed to <see cref="!:Check(EntityComponent)"/>.
+            </summary>
+            <param name="componentType">Type of the component to be checked.</param>
+            <returns>Returns <c>true</c> if the component of <paramref name="componentType"/> can be passed to <see cref="!:Check(EntityComponent)"/>.</returns>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.IEntityComponentCheck.Check(Stride.Engine.EntityComponent,Stride.Engine.Entity,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <summary>
+            Checks if the component state is valid and reports appropriate errors/warnings.
+            </summary>
+            <param name="component">Component to check.</param>
+            <param name="entity">Entity the <paramref name="component"/> is associated with.</param>
+            <param name="assetItem">Asset item the <paramref name="entity"/> belongs to.</param>
+            <param name="targetUrlInStorage">URL of the <paramref name="assetItem"/>.</param>
+            <param name="result">Logger result to write information to.</param>
+        </member>
+        <member name="T:Stride.Assets.Entities.ComponentChecks.ModelComponentCheck">
+            <summary>
+            Checks if the <see cref="T:Stride.Engine.ModelComponent"/> has a Model associated with it and that this Model has a reachable asset.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.ModelComponentCheck.AppliesTo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.ModelComponentCheck.Check(Stride.Engine.EntityComponent,Stride.Engine.Entity,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Entities.ComponentChecks.ModelNodeLinkComponentCheck">
+            <summary>
+            Checks the validity of a <see cref="T:Stride.Engine.ModelNodeLinkComponent"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.ModelNodeLinkComponentCheck.AppliesTo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.ModelNodeLinkComponentCheck.Check(Stride.Engine.EntityComponent,Stride.Engine.Entity,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Entities.ComponentChecks.RequiredMembersCheck">
+            <summary>
+            Checks if all members of a component with a <see cref="T:Stride.Core.Annotations.MemberRequiredAttribute"/> are assigned a value.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.RequiredMembersCheck.AppliesTo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.ComponentChecks.RequiredMembersCheck.Check(Stride.Engine.EntityComponent,Stride.Engine.Entity,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Entities.EntityDesign">
+            <summary>
+            Associate an <see cref="P:Stride.Assets.Entities.EntityDesign.Entity"/> with design-time data.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Assets.Entities.EntityDesign"/>.
+            </summary>
+            <remarks>
+            This constructor is used only for serialization.
+            </remarks>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.#ctor(Stride.Engine.Entity)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Assets.Entities.EntityDesign"/>.
+            </summary>
+            <param name="entity">The entity contained in this instance.</param>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.#ctor(Stride.Engine.Entity,System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Assets.Entities.EntityDesign"/>.
+            </summary>
+            <param name="entity">The entity contained in this instance.</param>
+            <param name="folder">The folder in which this entity is contained.</param>
+        </member>
+        <member name="P:Stride.Assets.Entities.EntityDesign.Folder">
+            <summary>
+            The folder where the entity is attached (folder is relative to parent folder). If null or empty, the entity doesn't belong to a folder.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Entities.EntityDesign.Entity">
+            <summary>
+            The entity.
+            </summary>
+            <remarks>
+            The setter should only be used during serialization.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Entities.EntityDesign.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Entities.EntityDesign.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Entities.EntityDesign.Stride#Core#Assets#IAssetPartDesign{Stride#Engine#Entity}#Part">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.Equals(Stride.Assets.Entities.EntityDesign)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.op_Equality(Stride.Assets.Entities.EntityDesign,Stride.Assets.Entities.EntityDesign)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.op_Inequality(Stride.Assets.Entities.EntityDesign,Stride.Assets.Entities.EntityDesign)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityDesign.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Entities.EntityHierarchyAssetBase">
+            <summary>
+            Base class for entity assets (<see cref="T:Stride.Assets.Entities.SceneAsset"/> and <see cref="T:Stride.Assets.Entities.PrefabAsset"/>)
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityHierarchyAssetBase.GetParent(Stride.Engine.Entity)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityHierarchyAssetBase.IndexOf(Stride.Engine.Entity)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityHierarchyAssetBase.GetChild(Stride.Engine.Entity,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityHierarchyAssetBase.GetChildCount(Stride.Engine.Entity)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Entities.EntityHierarchyAssetBase.EnumerateChildParts(Stride.Engine.Entity,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Entities.EntityHierarchyAssetBase.CharacterComponentGravityVector3Upgrader">
+            <summary>
+            Updates the Gravity field on all CharacterComponents in a SceneAsset from float to Vector3 to support three-dimensional gravity.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Materials.MaterialAsset">
+            <summary>
+            The material asset.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Materials.MaterialAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Materials.MaterialAsset"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Materials.MaterialAsset.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Assets.Materials.MaterialAsset"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Materials.MaterialAsset.Attributes">
+            <summary>
+            Gets or sets the material attributes.
+            </summary>
+            <value>The material attributes.</value>
+            <userdoc>The base attributes of the material.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Materials.MaterialAsset.Layers">
+            <summary>
+            Gets or sets the material compositor.
+            </summary>
+            <value>The material compositor.</value>
+            <userdoc>The layers overriding the base attributes of the material. Layers are displayed from bottom to top.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.Materials.MaterialStreamFactory">
+            <summary>
+            <see cref="T:Stride.Rendering.Materials.MaterialStreamDescriptor"/> factory.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Materials.MaterialStreamFactory.GetAvailableStreams">
+            <summary>
+            Gets the available streams.
+            </summary>
+            <returns>List&lt;MaterialStreamDescriptor&gt;.</returns>
+        </member>
+        <member name="F:Stride.Assets.Media.SoundAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Media.SoundAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Media.SoundAsset.Index">
+            <summary>
+            The track index in the file (i.e. a video files with several tracks).
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Media.VideoAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Media.VideoAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAsset.Source">
+            <summary>
+            The source file of this asset.
+            </summary>
+            <userdoc>
+            The source file of this asset.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAsset.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+            <value>The width.</value>
+            <userdoc>
+            The width of the video asset. The value is a percentage or the actual pixel size depending on whether Use percentages is enabled.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAsset.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+            <value>The height.</value>
+            <userdoc>
+            The height of the video asset. The value is a percentage or the actual pixel size depending on whether Use percentages is enabled.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAsset.IsSizeInPercentage">
+            <summary>
+            Gets or sets a value indicating whether this instance is using size in percentage. Default is true. See remarks.
+            </summary>
+            <value><c>true</c> if this instance is dimension absolute; otherwise, <c>false</c>.</value>
+            <remarks>
+            When this property is true (by default), <see cref="P:Stride.Assets.Media.VideoAsset.Width"/> and <see cref="P:Stride.Assets.Media.VideoAsset.Height"/> are epxressed 
+            in percentage, with 100.0f being 100% of the current size, and 50.0f half of the current size, otherwise
+            the size is in absolute pixels.
+            </remarks>
+            <userdoc>
+            Use percentages for width and height instead of actual pixel size
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Media.VideoAsset.VideoDuration">
+            <summary>
+            Gets or set the start and end time of the video.
+            </summary>
+            <userdoc>Trim the video by specifying the start and end times.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAsset.IsAudioChannelMono">
+            <summary>
+            If <c>true</c>, the compiler will re-encode the video's audio track to a mono channel.
+            </summary>
+            <userdoc>
+            If true, the compiler will re-encode the video's audio track to a mono channel.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.RawVideoAssetImporter.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Stride.Assets.Media.RawVideoAssetImporter.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Stride.Assets.Media.RawVideoAssetImporter.SupportedFileExtensions">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Assets.Media.SoundAssetCompiler">
+            <summary>
+            Asset compiler for <see cref="T:Stride.Assets.Media.SoundAsset"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Media.SoundAssetCompiler.Prepare(Stride.Core.Assets.Compiler.AssetCompilerContext,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Media.SoundAssetCompiler.DecodeSoundFileCommand.DoCommandOverride(Stride.Core.BuildEngine.ICommandContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Assets.Media.VideoAssetCompiler">
+            <summary>
+            Asset compiler for <see cref="T:Stride.Assets.Media.VideoAsset"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Media.VideoAssetCompiler.GetInputTypes(Stride.Core.Assets.AssetItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Media.VideoAssetCompiler.Prepare(Stride.Core.Assets.Compiler.AssetCompilerContext,Stride.Core.Assets.AssetItem,System.String,Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.Media.VideoAssetCompiler.EncodeVideoFileCommand.DoCommandOverride(Stride.Core.BuildEngine.ICommandContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Assets.Media.VideoConvertParameters">
+            <summary>
+            SharedParameters used for converting/processing the video in the storage.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Media.VideoAssetDuration">
+            <summary>
+            Enable video trimming
+            </summary>
+            <userdoc>
+            Trim the video by specifying the start and end times.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAssetDuration.StartTime">
+            <summary>
+            Gets or sets the start time the video.
+            </summary>
+            <userdoc>
+            Frames of the video before this time will be removed.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Media.VideoAssetDuration.EndTime">
+            <summary>
+            Gets or sets the end time the video.
+            </summary>
+            <userdoc>
+            Frames of the video after this time will be removed.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Navigation.NavigationMeshAsset.Scene">
+            <summary>
+            Scene that is used for building the navigation mesh
+            </summary>
+            <userdoc>
+            The scene this navigation mesh applies to
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Navigation.NavigationMeshAsset.IncludedCollisionGroups">
+            <summary>
+            Collision filter that indicates which colliders are used in navmesh generation
+            </summary>
+            <userdoc>
+            Set which collision groups the navigation mesh uses.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Navigation.NavigationMeshAsset.BuildSettings">
+            <summary>
+            Build settings used by Recast
+            </summary>
+            <userdoc>
+            Advanced settings for the navigation mesh
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Navigation.NavigationMeshAsset.SelectedGroups">
+            <summary>
+            Groups that this navigation mesh should be built for
+            </summary>
+            <userdoc>
+            The groups that use this navigation mesh
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.Navigation.NavigationMeshAssetCompiler.NavmeshBuildCommand.ComputeAssetIntermediateDataId">
+            <summary>
+            Computes a unique Id for this asset used to store intermediate / build cache data
+            </summary>
+            <returns>The object id for asset intermediate data</returns>
+        </member>
+        <member name="M:Stride.Assets.Navigation.NavigationMeshAssetCompiler.NavmeshBuildCommand.LoadIntermediateData(Stride.Core.Storage.ObjectId)">
+            <summary>
+            Loads intermediate data used for building a navigation mesh
+            </summary>
+            <param name="objectId">The unique Id for this data in the object database</param>
+            <returns>The found cached build or null if there is no previous build</returns>
+        </member>
+        <member name="M:Stride.Assets.Navigation.NavigationMeshAssetCompiler.NavmeshBuildCommand.SaveIntermediateData(Stride.Core.Storage.ObjectId,Stride.Navigation.NavigationMesh)">
+            <summary>
+            Saves intermediate data used for building a navigation mesh
+            </summary>
+            <param name="objectId">The unique Id for this data in the object database</param>
+            <param name="build">The build data to save</param>
+        </member>
+        <member name="T:Stride.Assets.Navigation.DefaultNavigationMeshFactory">
+            <summary>
+            Default factory for navigation meshes
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Physics.ColliderShapeAsset.ColliderShapes">
+            <userdoc>
+            The collection of shapes in this asset, a collection shapes will automatically generate a compound shape.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.HeightConversionParameters">
+            <summary>
+            Parameters to convert pixels to heights.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.Resizing">
+            <summary>
+            The size of the heightmap.
+            </summary>
+            <remarks>
+            X is width and Y is length.
+            They should be greater than or equal to 2.
+            The heightmap size will be same to the image size, if disabled.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.IsSRgb">
+            <summary>
+            Enable if needed to load the image file as sRGB.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.ScaleToHeightRange">
+            <summary>
+            If enabled, scale each of the heights to the height range before they are stored as heightmap.
+            </summary>
+            <remarks>
+            By the default, they are considered to be in [-1 .. 1] when the pixel format of the image file is floating-point component format.
+            Match FloatingPointComponentRange to actual range.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.FloatingPointComponentRange">
+            <summary>
+            The range of the floating-point component.
+            </summary>
+            <remarks>
+            Determine the range of the floating-point components.
+            This property affects nothing when not floating-point component.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapAsset.IsSymmetricShortComponent">
+            <summary>
+            The range of the signed short component.
+            </summary>
+            <remarks>
+            Enable if the R components are signed short integer in [-32767 .. 32767].
+            This property affects nothing when not signed short integer component.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Physics.ByteHeightmapHeightConversionParameters.HeightScaleCalculator">
+            <summary>
+            Select how to calculate HeightScale.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Physics.HeightmapResizingParameters.Size">
+            <summary>
+            New size of the heightmap.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Physics.ShortHeightmapHeightConversionParameters.HeightScaleCalculator">
+            <summary>
+            Select how to calculate HeightScale.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Rendering.GraphicsCompositorAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Rendering.GraphicsCompositorAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.Cameras">
+            <summary>
+            Gets the cameras used by this composition.
+            </summary>
+            <value>The cameras.</value>
+            <userdoc>The list of cameras used in the graphic pipeline</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.RenderStages">
+            <summary>
+            The list of render stages.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.RenderFeatures">
+            <summary>
+            The list of render features.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.SharedRenderers">
+            <summary>
+            The list of graphics compositors.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.Game">
+            <summary>
+            The entry point for the game compositor.
+            </summary>
+            <userdoc>
+            The renderer used by the game at runtime. It requires a properly set camera from the scene, found in the Cameras list.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.SingleView">
+            <summary>
+            The entry point for a compositor that can render a single view.
+            </summary>
+            <userdoc>
+            The utility renderer is used for rendering cubemaps, light maps, render-to-texture, etc. It should be a single-only view renderer with no post-processing. It doesn't require camera or render target, because they are supplied by the caller.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.Editor">
+            <summary>
+            The entry point for a compositor used by the scene editor.
+            </summary>
+            <userdoc>
+            The renderer used by the game studio while editing the scene. It can share the forward renderer with the game entry or not. It doesn't require a camera and uses the camera in the game studio instead.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Rendering.GraphicsCompositorAsset.BlockPositions">
+            <summary>
+            The positions of the blocks of the compositor in the editor canvas.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Scripts.VisualScriptAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Scripts.VisualScriptAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.VisualScriptAsset.UsingDirectives">
+            <summary>
+            The list of using directives.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.VisualScriptAsset.Properties">
+            <summary>
+            The list of member variables (properties and fields).
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.VisualScriptAsset.Methods">
+            <summary>
+            The list of functions.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Scripts.VisualScriptAsset.CollectParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Scripts.VisualScriptAsset.ContainsPart(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Scripts.VisualScriptAsset.FindPart(System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Scripts.Accessibility">
+            <summary>
+            Describes accessibility of a <see cref="T:Stride.Assets.Scripts.VisualScriptAsset"/>, <see cref="T:Stride.Assets.Scripts.Method"/> or <see cref="T:Stride.Assets.Scripts.Symbol"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Position">
+            <summary>
+            Gets or sets the position of the block.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Title">
+            <summary>
+            Gets the title of that node, as it will be displayed in the editor.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Slots">
+            <summary>
+            Gets the list of slots this block has.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Scripts.Block.GenerateSlots(System.Collections.Generic.IList{Stride.Assets.Scripts.Slot},Stride.Assets.Scripts.SlotGeneratorContext)">
+            <summary>
+            Generates a list of slot. This doesn't change any state in the <see cref="T:Stride.Assets.Scripts.Block"/>.
+            </summary>
+            <param name="newSlots">List to which generated slots will be added.</param>
+            <param name="context">The context that might be used to access additional information.</param>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Block.Stride#Core#Assets#IAssetPartDesign{Stride#Assets#Scripts#Block}#Part">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Scripts.BlockDropTargetAttribute">
+            <summary>
+            Specifies that this field or property should be set if a compatible object is dropped on its containing <see cref="T:Stride.Assets.Scripts.Block"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.BlockReference.Id">
+            <summary>
+            Gets or sets the identifier of the asset part represented by this reference.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Scripts.BlockReference.FakeBlock">
+            <summary>
+            Used temporarily during deserialization when creating references.
+            </summary>
+            <remarks>
+            We don't expose a public ctor so that is not listed in list of available blocks to create.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Link.Method">
+            <summary>
+            The function that contains this link.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Link.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Link.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Link.Stride#Core#Assets#IAssetPartDesign{Stride#Assets#Scripts#Link}#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Method.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Method.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Parameter.RefKind">
+            <summary>
+            Describes whether the parameter is passed by value or by reference.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Scripts.RegenerateSlotsAttribute">
+            <summary>
+            <see cref="P:Stride.Assets.Scripts.Block.Slots"/> need to be recomputed if a member with this attribute is changed.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Scripts.RegenerateTitleAttribute">
+            <summary>
+            <see cref="P:Stride.Assets.Scripts.Block.Title"/> need to be recomputed if a member with this attribute is changed.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Slot.Name">
+            <summary>
+            The name of this slot.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Slot.Type">
+            <summary>
+            The type of this slot, only used as hint for input slots.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.SlotDefinition.Name">
+            <summary>
+            The name of this slot.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.SlotDefinition.Type">
+            <summary>
+            The type of this slot, only used as hint for input slots.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Symbol.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Symbol.Name">
+            <summary>
+            Gets or sets the name of that variable.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Symbol.Type">
+            <summary>
+            Gets or sets the type of that variable.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Scripts.Symbol.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Scripts.VirtualModifier">
+            <summary>
+            Describes if a member is virtual, override or abstract.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Scripts.VisualScriptCompilerContext.connectivityToCurrentBlock">
+            <summary>
+            Specifies if a specific ExecutionBlock is executed or not before <see cref="P:Stride.Assets.Scripts.VisualScriptCompilerContext.CurrentBlock"/>, and if yes, is it executed in all path or not.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Scripts.VisualScriptCompilerContext.ExecutionBlockLinkState.Never">
+            <summary>
+            Never executed.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Scripts.VisualScriptCompilerContext.ExecutionBlockLinkState.Sometimes">
+            <summary>
+            Executed but not all the time.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Scripts.VisualScriptCompilerContext.ExecutionBlockLinkState.Always">
+            <summary>
+            Always executed.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Skyboxes.SkyboxAsset">
+            <summary>
+            The skybox asset.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Skyboxes.SkyboxAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Skyboxes.SkyboxAsset"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Skyboxes.SkyboxAsset.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Assets.Skyboxes.SkyboxAsset"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Skyboxes.SkyboxAsset.CubeMap">
+            <summary>
+            Gets or sets the type of skybox.
+            </summary>
+            <value>The type of skybox.</value>
+            <userdoc>The texture to use as skybox (eg a cubemap or panoramic texture)</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Skyboxes.SkyboxAsset.IsSpecularOnly">
+            <summary>
+            Gets or set if this skybox affects specular only, if <c>false</c> this skybox will affect ambient lighting
+            </summary>
+            <userdoc>
+            Use the skybox only for specular lighting
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Skyboxes.SkyboxAsset.DiffuseSHOrder">
+            <summary>
+            Gets or sets the diffuse sh order.
+            </summary>
+            <value>The diffuse sh order.</value>
+            <userdoc>The level of detail of the compressed skybox, used for diffuse lighting (dull materials). Order5 is more detailed than Order3.</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Skyboxes.SkyboxAsset.SpecularCubeMapSize">
+            <summary>
+            Gets or sets the specular cubemap size
+            </summary>
+            <value>The specular cubemap size.</value>
+            <userdoc>The cubemap size used for specular lighting. Larger cubemap have more detail.</userdoc>
+        </member>
+        <member name="M:Stride.Assets.Skyboxes.SkyboxAssetCompiler.SkyboxCompileCommand.ComputeParameterHash(Stride.Core.Serialization.BinarySerializationWriter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Skyboxes.SkyboxAssetCompiler.SkyboxCompileCommand.DoCommandOverride(Stride.Core.BuildEngine.ICommandContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Skyboxes.SkyboxPreFilteringDiffuseOrder">
+            <summary>
+            Order of a Spherical Harmonic used for the skybox
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Skyboxes.SkyboxPreFilteringDiffuseOrder.Order3">
+            <summary>
+            An order 3 SH.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Skyboxes.SkyboxPreFilteringDiffuseOrder.Order5">
+            <summary>
+            An orde 5 SH.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteSheetAsset">
+            <summary>
+            This asset represents a sheet (group) of sprites.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteSheetAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Sprite.SpriteSheetAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.Type">
+            <summary>
+            Gets or sets the type of the current sheet
+            </summary>
+            <userdoc>
+            The type of the sprite sheet.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.ColorKeyColor">
+            <summary>
+            Gets or sets the color key used when color keying for a texture is enabled. When color keying, all pixels of a specified color are replaced with transparent black.
+            </summary>
+            <value>The color key.</value>
+            <userdoc>
+            The color that should be made transparent in all images of the group.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.ColorKeyEnabled">
+            <summary>
+            Gets or sets a value indicating whether to enable color key. Default is false.
+            </summary>
+            <value><c>true</c> to enable color key; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Make the color specified in "Color key color" transparent in all images of the group during the asset build
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.IsCompressed">
+            <summary>
+            If Compressed, the final texture will be compressed to an appropriate format based on the target platform. The final texture size must be a multiple of 4.
+            </summary>
+            <userdoc>
+            Compress the texture to a format based on the target platform. The final texture size will be a multiple of 4.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.UseSRgbSampling">
+            <summary>
+            Indicates if the texture is in sRGB format (standard for color textures). When working in Linear color space the texture will bed converted to linear space when sampling.
+            </summary>
+            <userdoc>
+            Should be checked for all color textures, unless they are explicitly in linear space. When working in Linear color space, the texture will be stored in sRGB format and converted to linear space when sampling.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.Alpha">
+            <summary>
+            Gets or sets the alpha format.
+            </summary>
+            <value>The alpha format.</value>
+            <userdoc>
+            The texture alpha format in which all the images of the group should be converted to.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.GenerateMipmaps">
+            <summary>
+            Gets or sets a value indicating whether [generate mipmaps].
+            </summary>
+            <value><c>true</c> if [generate mipmaps]; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Generate mipmaps for all images in the group
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.IsStreamable">
+            <summary>
+            Gets or sets a value indicating whether to stream texture.
+            </summary>
+            <value><c>true</c> if strema texture; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Stream the texture dynamically at runtime. This improves performance and loading times. Not recommended for important textures you always want to be loaded, such as splash screens
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.PremultiplyAlpha">
+            <summary>
+            Gets or sets a value indicating whether to convert the texture in pre-multiply alpha.
+            </summary>
+            <value><c>true</c> to convert the texture in pre-multiply alpha.; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Pre-multiply all color components of the images by their alpha-component.
+            Use this when elements are rendered with standard blending (not transitive blending).
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.Packing">
+            <summary>
+            Gets or sets the sprites of the sheet.
+            </summary>
+            <userdoc>
+            The parameters used to pack the sprites into atlases
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAsset.Sprites">
+            <summary>
+            Gets or sets the sprites of the sheet.
+            </summary>
+            <userdoc>
+            The list of sprites in the sheet
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.Sprite.SpriteSheetAsset.BuildTextureUrl(Stride.Core.IO.UFile,System.Int32)">
+            <summary>
+            Retrieves Url for a texture given absolute path and sprite index
+            </summary>
+            <param name="textureAbsolutePath">Absolute Url of a texture</param>
+            <param name="spriteIndex">Sprite index</param>
+        </member>
+        <member name="M:Stride.Assets.Sprite.SpriteSheetAsset.BuildTextureAtlasUrl(Stride.Core.IO.UFile,System.Int32)">
+            <summary>
+            Retrieves Url for an atlas texture given absolute path and atlas index
+            </summary>
+            <param name="textureAbsolutePath">Absolute Url of an atlas texture</param>
+            <param name="atlasIndex">Atlas index</param>
+        </member>
+        <member name="T:Stride.Assets.Sprite.PackingAttributes">
+            <summary>
+            Specify how the sprite should be packed into atlas
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Sprite.PackingAttributes.#ctor">
+            <summary>
+            Creates a default instance of packing attributes.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Sprite.PackingAttributes.Enabled">
+            <summary>
+            Gets or sets a value indicating whether to generate texture atlas
+            </summary>
+            <userdoc>Pack the sprites into atlas textures</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.PackingAttributes.PackingAlgorithm">
+            <summary>
+            Gets or sets MaxRects rectangles placement algorithm
+            </summary>
+            <userdoc>The algorithm used to pack the sprites into atlas</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.PackingAttributes.AllowMultipacking">
+            <summary>
+            Gets or sets the use of Multipack atlas mode which allows more than one texture atlas to fit all given textures
+            </summary>
+            <userdoc>If the sprites don't fit into a single atlas, generate several atlas textures</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.PackingAttributes.AllowRotations">
+            <summary>
+            Gets or sets whether or not to use Rotation for images inside atlas texture
+            </summary>
+            <userdoc>Allow the packer to rotate the sprites by 90 degrees if it can reduce the size of the atlas</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.PackingAttributes.BorderSize">
+            <summary>
+            Gets or sets the size of the border for sprites inside atlas texture
+            </summary>
+            <userdoc>The size in pixels of the border around the sprites. 
+            Note that having a space between sprites (a border) is important to prevent various atlassing side effects from occurring.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteInfo">
+            <summary>
+            This class contains all the information to describe one sprite.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteInfo.Source">
+            <summary>
+            Gets or sets the source file of this 
+            </summary>
+            <value>The source.</value>
+            <userdoc>
+            The path to the file containing the image data.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteInfo.Name">
+            <summary>
+            Gets or sets the name of the sprite.
+            </summary>
+            <userdoc>
+            The name of the sprite instance.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteInfo.TextureRegion">
+            <summary>
+            The rectangle specifying the region of the texture to use.
+            </summary>
+            <userdoc>
+            The rectangle specifying the sprite region in the source file.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteInfo.PixelsPerUnit">
+            <summary>
+            The number of pixels representing a unit of 1 in the scene.
+            </summary>
+            <userdoc>
+            The number of pixels representing a unit of 1 in the scene.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.Orientation">
+            <summary>
+            Gets or sets the rotation to apply to the texture region when rendering the sprite
+            </summary>
+            <userdoc>
+            The orientation of the sprite in the source file.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteInfo.Center">
+            <summary>
+            The position of the center of the sprite in pixels.
+            </summary>
+            <userdoc>
+            The position of the center of the sprite in pixels. 
+            Depending on the value of 'CenterFromMiddle', it is the offset from the top/left corner or the middle of the sprite.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.CenterFromMiddle">
+            <summary>
+            Gets or sets the value indicating position provided to <see cref="F:Stride.Assets.Sprite.SpriteInfo.Center"/> is from the middle of the sprite region or from the left/top corner.
+            </summary>
+            <userdoc>
+            If enabled, the value in Center represents the offset of the sprite center from the middle of the sprite
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.Borders">
+            <summary>
+            Gets or sets the size of the non-stretchable borders of the sprite.
+            </summary>
+            <userdoc>
+            The size in pixels of the non-stretchable parts of the sprite.
+            The part sizes are organized as follows: X->Left, Y->Top, Z->Right, W->Bottom.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.BorderModeU">
+            <summary>
+            Gets or sets atlas border mode in X axis for images inside atlas texture
+            </summary>
+            <usderdoc>The method used to color the sprite outside its texture region along the X axis. 
+            This information is essentially used during texture packing to avoid artifacts at sprite borders.</usderdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.BorderModeV">
+            <summary>
+            Gets or sets atlas border mode in Y axis for images inside atlas texture
+            </summary>
+            <usderdoc>The method used to color the sprite outside its texture region along the Y axis. 
+            This information is essentially used during texture packing to avoid artifacts at sprite borders.</usderdoc>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteInfo.BorderColor">
+            <summary>
+            Gets or sets atlas border color for images inside atlas texture where Border mode is used in BorderModeU/V
+            </summary>
+            <usderdoc>The color used for this sprite outside of its texture region. 
+            This parameter is used only when either 'BorderModeU' or 'BorderModeV' is set to 'Border'.</usderdoc>
+        </member>
+        <member name="M:Stride.Assets.Sprite.SpriteInfo.#ctor">
+            <summary>
+            Creates an empty instance of SpriteInfo
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteSheetAssetCompiler">
+            <summary>
+            The <see cref="T:Stride.Assets.Sprite.SpriteSheetAsset"/> compiler.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand">
+            <summary>
+            Command used to convert the texture in the storage
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.CreateAtlasTextures(Stride.Core.BuildEngine.ICommandContext,System.Collections.Generic.Dictionary{Stride.Assets.Sprite.SpriteInfo,Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.PackedSpriteInfo}@)">
+            <summary>
+            Creates and Saves texture atlas image from images in GroupAsset
+            </summary>
+            <param name="commandContext">The command context</param>
+            <param name="spriteToPackedSprite">A map associating the packed sprite info to the original sprite</param>
+            <returns>Status of building</returns>
+        </member>
+        <member name="M:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.LoadImage(Stride.TextureConverter.TextureTool,Stride.Core.IO.UFile,System.Boolean)">
+            <summary>
+            Loads image from a path with texTool
+            </summary>
+            <param name="texTool">A tool for loading an image</param>
+            <param name="sourcePath">Source path of an image</param>
+            <param name="isSRgb">Indicate if the texture to load is sRGB</param>
+            <returns></returns>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.PackedSpriteInfo.AtlasTextureIndex">
+            <summary>
+            The index of the atlas texture the sprite has been packed in.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.PackedSpriteInfo.Region">
+            <summary>
+            Gets the region of the packed sprite.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetCommand.PackedSpriteInfo.IsRotated">
+            <summary>
+            Indicate if the packed sprite have been rotated.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteSheetAssetCompiler.SpriteSheetParameters">
+            <summary>
+            SharedParameters used for converting/processing the texture in the storage.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Sprite.SpriteSheetType">
+            <summary>
+            The different types of the sprite sheets.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteSheetType.Sprite2D">
+            <summary>
+            A sprite sprite sheet designed for 2D sprites.
+            </summary>
+            <userdoc>A sprite sprite sheet designed for 2D sprites.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Sprite.SpriteSheetType.UI">
+            <summary>
+            A sprite sheet designed for UI.
+            </summary>
+            <userdoc>A sprite sheet designed for UI.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.SpriteFontAsset">
+            <summary>
+            Description of a font.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.SpriteFontAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.SpriteFont.SpriteFontAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.FontType">
+            <summary>
+             Gets or sets the value determining if and how the characters are pre-generated off-line or at run-time.
+            </summary>
+            <userdoc>
+            Static font has fixed font size and is pre-compiled
+            Dynamic font which can change its font size at runtime and is also compiled at runtime
+            Signed Distance Field font is pre-compiled but can still be scaled at runtime
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.DefaultCharacter">
+            <summary>
+            Gets or sets the fallback character used when asked to render a character that is not
+            included in the font. If zero, missing characters throw exceptions.
+            </summary>
+            <userdoc>
+            The fallback character to use when a given character is not available in the font file data.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.Spacing">
+            <summary>
+            Gets or sets the extra character spacing in pixels (relative to the font size). Zero is default spacing, negative closer together, positive further apart
+            </summary>
+             <userdoc>
+            The extra spacing to add between characters in pixels. Zero is default spacing, negative closer together, positive further apart.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.LineSpacing">
+            <summary>
+            Gets or sets the extra line spacing in pixels (relative to the font size). Zero is default spacing, negative closer together, positive further apart.
+            </summary>
+            <userdoc>
+            The extra interline space to add at each return of line (in pixels). Zero is default spacing, negative closer together, positive further apart.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.LineGapFactor">
+            <summary>
+            Gets or sets the factor to apply to the default line gap that separate each line. Default is <c>1.0f</c>
+            </summary>
+            <userdoc>
+            The factor to use when calculating the LineGap of the font. 
+            The LineGap affects both the space between two lines and the space at the top of the first line.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontAsset.LineGapBaseLineFactor">
+            <summary>
+            Gets or sets the factor to apply to LineGap when calculating the font base line. See remarks. Default is <c>1.0f</c>
+            </summary>
+            <remarks>
+            A Font total height = LineGap * LineGapFactor + Ascent + Descent
+            A Font baseline = LineGap * LineGapFactor * LineGapBaseLineFactor + Ascent
+            The <see cref="P:Stride.Assets.SpriteFont.SpriteFontAsset.LineGapBaseLineFactor"/> specify where the line gap should start. A value of 1.0 means that the line gap
+            should appear completely at the top of the line, while 0.0 would mean that the line gap would appear at the bottom
+            of the line.
+            </remarks>
+            <userdoc>
+            The factor to use when calculating the font base line. Moving the base line of font changes the repartition of the space at the top/bottom of the line.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.Size">
+            <summary>
+            The size in points (pt).
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.OriginalFont">
+            <summary>
+            The reference to the original source asset.
+            </summary>
+            <userdoc>The sprite font asset that has been used to generate this precompiled font.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.FontDataFile">
+            <summary>
+            The file containing the font data.
+            </summary>
+            <userdoc>The image file containing the extracted font data.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.IsSrgb">
+            <summary>
+            Indicate if the font data in stored in sRGB mode.
+            </summary>
+            <userdoc>If checked the font data contained in the source image is considered as sRGB.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.DefaultCharacter">
+            <summary>
+            The default character of the font.
+            </summary>
+            <userdoc>The fallback character when trying to draw a character not existing in the font.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.BaseOffset">
+            <summary>
+            The base offset of the font.
+            </summary>
+            <userdoc>The position of the base line of the font with respect to the glyphs top pixel (in pixels).</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.DefaultLineSpacing">
+            <summary>
+            The space between two lines
+            </summary>
+            <userdoc>The space between two lines in pixels.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.ExtraSpacing">
+            <summary>
+            The extra horizontal spacing of the font.
+            </summary>
+            <userdoc>The extra horizontal spacing between characters.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.ExtraLineSpacing">
+            <summary>
+            The extra vertical spacing between two lines.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.Glyphs">
+            <summary>
+            The font glyph information
+            </summary>
+            <userdoc>The glyph information specifying the position of the characters in the data image.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.PrecompiledSpriteFontAsset.Kernings">
+            <summary>
+            The kerning information.
+            </summary>
+            <userdoc>The kerning information</userdoc>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.CharacterRegion">
+            <summary>
+            Describes a range of consecutive characters that should be included in the font.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.CharacterRegion.#ctor(System.Char,System.Char)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Assets.SpriteFont.CharacterRegion"/> class.
+            </summary>
+            <param name="start">The start.</param>
+            <param name="end">The end.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.CharacterRegion.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Assets.SpriteFont.CharacterRegion"/> class.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.CharacterRegion.Start">
+            <summary>
+            The first character to include in the region.
+            </summary>
+            <userdoc>
+            The first character of the region.
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.SpriteFont.CharacterRegion.End">
+            <summary>
+            The second character to include in the region.
+            </summary>
+            <userdoc>
+            The last character of the region.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.Compiler.ContentCompilerResult">
+            <summary>
+            Result of a compilation.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.Compiler.ContentCompilerResult.HasErrors">
+            <summary>
+            Gets a value indicating whether this instance has errors.
+            </summary>
+            <value><c>true</c> if this instance has errors; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.Compiler.ContentCompilerResult.Logger">
+            <summary>
+            Gets the logger containing compilation messages..
+            </summary>
+            <value>The logger.</value>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.IFontImporter.Import(Stride.Assets.SpriteFont.SpriteFontAsset,System.Collections.Generic.List{System.Char})">
+            <summary>
+            Import Glyph and Bitmap of a sprite font asset.
+            </summary>
+            <param name="options">The sprite font asset to import</param>
+            <param name="characters">The character set to import</param>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.Compiler.OfflineRasterizedFontCompiler">
+            <summary>
+            Main class used to compile a Font file XML file.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.OfflineRasterizedFontCompiler.Compile(Stride.Graphics.Font.IFontFactory,Stride.Assets.SpriteFont.SpriteFontAsset,System.Boolean)">
+            <summary>
+            Compiles the specified font description into a <see cref="T:Stride.Graphics.Font.OfflineRasterizedSpriteFont" /> object.
+            </summary>
+            <param name="fontFactory">The font factory used to create the fonts</param>
+            <param name="fontAsset">The font description.</param>
+            <param name="srgb"></param>
+            <returns>A SpriteFontData object.</returns>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontCompiler">
+            <summary>
+            Main class used to compile a Font file XML file.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontCompiler.Compile(Stride.Graphics.Font.IFontFactory,Stride.Assets.SpriteFont.SpriteFontAsset)">
+            <summary>
+            Compiles the specified font description into a <see cref="T:Stride.Graphics.Font.SignedDistanceFieldSpriteFont" /> object.
+            </summary>
+            <param name="fontFactory">The font factory used to create the fonts</param>
+            <param name="fontAsset">The font description.</param>
+            <returns>A SpriteFontData object.</returns>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontImporter.LoadSDFBitmap(System.Char,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Generates and load a SDF font glyph using the msdfgen.exe
+            </summary>
+            <param name="c">Character code</param>
+            <param name="width">Width of the output glyph</param>
+            <param name="height">Height of the output glyph</param>
+            <param name="offsetx">Left side offset of the glyph from the image border</param>
+            <param name="offsety">Bottom side offset of the glyph from the image border</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontImporter.Normalize(System.Drawing.Bitmap)">
+            <summary>
+            Inverts the color channels if the signed distance appears to be negative.
+            Msdfgen will produce an inverted picture on occasion.
+            Because we use offset we can easily detect if the corner pixel has negative (correct) or positive distance (incorrect)
+            </summary>
+            <param name="bitmap"></param>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontImporter.Import(Stride.Assets.SpriteFont.SpriteFontAsset,System.Collections.Generic.List{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.Compiler.SignedDistanceFieldFontImporter.ImportGlyph(SharpDX.DirectWrite.FontFace,System.Char,SharpDX.DirectWrite.FontMetrics,System.Single)">
+            <summary>
+            Imports a single glyph as a bitmap using the msdfgen to convert it to a signed distance field image
+            </summary>
+            <param name="fontFace">FontFace, use to obtain the metrics for the glyph</param>
+            <param name="character">The glyph's character code</param>
+            <param name="fontMetrics">Font metrics, used to obtain design units scale</param>
+            <param name="fontSize">Requested font size. The bigger, the more precise the SDF image is going to be</param>
+            <returns></returns>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.FileFontProvider.Source">
+            <summary>
+            Gets or sets the source file containing the font data. This can be a TTF file or a bitmap file.
+            </summary>
+            <value>The source.</value>
+            <userdoc>
+            The path to the file containing the font data to use.
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FileFontProvider.GetFontFace">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FileFontProvider.GetFontPath(Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FileFontProvider.GetFontName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FontProviderBase.GetFontFace">
+            <summary>
+            Gets the associated <see cref="T:SharpDX.DirectWrite.FontFace"/>
+            </summary>
+            <returns><see cref="T:SharpDX.DirectWrite.FontFace"/> from the specified source or <c>null</c> if not found</returns>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FontProviderBase.GetFontPath(Stride.Core.Assets.Compiler.AssetCompilerResult)">
+            <summary>
+            Gets the actual file path to the font file
+            </summary>
+            <returns>Path to the font file</returns>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.FontProviderBase.GetFontName">
+            <summary>
+            Gets the actual font name
+            </summary>
+            <returns>The name of the font</returns>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.OfflineRasterizedSpriteFontType.Size">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.OfflineRasterizedSpriteFontType.CharacterSet">
+            <summary>
+             Gets or sets the text file referencing which characters to include when generating the static fonts (eg. "ABCDEF...")
+            </summary>
+            <userdoc>
+            The path to a file containing the characters to import from the font source file. This property is ignored when 'IsDynamic' is checked.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.OfflineRasterizedSpriteFontType.CharacterRegions">
+            <summary>
+            Gets or set the additional character ranges to include when generating the static fonts (eg. "/CharacterRegion:0x20-0x7F /CharacterRegion:0x123")
+            </summary>
+            <userdoc>
+            The list of series of character to import from the font source file. This property is ignored when 'IsDynamic' is checked.
+            Note that this property only represents an alternative way of indicating character to import, the result is the same as using the 'CharacterSet' property.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.OfflineRasterizedSpriteFontType.AntiAlias">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.OfflineRasterizedSpriteFontType.IsPremultiplied">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.RuntimeRasterizedSpriteFontType.Size">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.RuntimeRasterizedSpriteFontType.AntiAlias">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SignedDistanceFieldSpriteFontType.Size">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SignedDistanceFieldSpriteFontType.CharacterSet">
+            <summary>
+             Gets or sets the text file referencing which characters to include when generating the static fonts (eg. "ABCDEF...")
+            </summary>
+            <userdoc>
+            The path to a file containing the characters to import from the font source file. This property is ignored when 'IsDynamic' is checked.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SignedDistanceFieldSpriteFontType.CharacterRegions">
+            <summary>
+            Gets or set the additional character ranges to include when generating the static fonts (eg. "/CharacterRegion:0x20-0x7F /CharacterRegion:0x123")
+            </summary>
+            <userdoc>
+            The list of series of character to import from the font source file. This property is ignored when 'IsDynamic' is checked.
+            Note that this property only represents an alternative way of indicating character to import, the result is the same as using the 'CharacterSet' property.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.SpriteFontAssetCompiler.SignedDistanceFieldFontCommand">
+            <summary>
+            Scalable (SDF) font build step
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.SpriteFont.SpriteFontAssetCompiler.FailedFontCommand">
+            <summary>
+            Proxy command which always fails, called when font is compiled with the wrong assets
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.SpriteFontAssetExtensions.GeneratePrecompiledSpriteFont(Stride.Assets.SpriteFont.SpriteFontAsset,Stride.Core.Assets.AssetItem,System.String,System.Boolean)">
+            <summary>
+            Generate a precompiled sprite font from the current sprite font asset.
+            </summary>
+            <param name="asset">The sprite font asset</param>
+            <param name="sourceAsset">The source sprite font asset item</param>
+            <param name="texturePath">The path of the source texture</param>
+            <param name="srgb">Indicate if the generated texture should be srgb</param>
+            <returns>The precompiled sprite font asset</returns>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.SpriteFontAssetExtensions.GeneratePrecompiledSDFSpriteFont(Stride.Assets.SpriteFont.SpriteFontAsset,Stride.Core.Assets.AssetItem,System.String)">
+            <summary>
+            Generate a precompiled sprite font from the current sprite font asset.
+            </summary>
+            <param name="asset">The sprite font asset</param>
+            <param name="sourceAsset">The source sprite font asset item</param>
+            <param name="texturePath">The path of the source texture</param>
+            <param name="srgb">Indicate if the generated texture should be srgb</param>
+            <returns>The precompiled sprite font asset</returns>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontTypeBase.Size">
+            <summary>
+             Gets or sets the size in virtual pixels of the font (ignored when converting a bitmap font).
+            </summary>
+            <userdoc>
+            The size of the font in virtual pixels for static fonts, the default size for dynamic fonts. This property is ignored when the font source is a bitmap.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontTypeBase.AntiAlias">
+            <summary>
+            Gets or sets the font anti-aliasing mode. By default, levels of grays are used.
+            </summary>
+            <userdoc>
+            The type of anti-aliasing to use when rendering the font. 
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SpriteFontTypeBase.IsPremultiplied">
+            <summary>
+            Gets or sets the value indicating if the font texture should be generated pre-multiplied by alpha component. 
+            </summary>
+            <userdoc>
+            If checked, the texture generated for this font is not pre-multiplied by the alpha component.
+            Check this property if you prefer to use interpolative alpha blending when rendering the font.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SystemFontProvider.FontName">
+            <summary>
+            Gets or sets the name of the font family to use when the <see cref="!:Source"/> is not specified.
+            </summary>
+            <userdoc>
+            The name of the font family to use. Only the fonts installed on the system can be used here.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.SpriteFont.SystemFontProvider.Style">
+            <summary>
+            Gets or sets the style of the font. A combination of 'regular', 'bold', 'italic'. Default is 'regular'.
+            </summary>
+            <userdoc>
+            The style of the font (regular / bold / italic). Note that this property is ignored is the desired style is not available in the font's source file.
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.SystemFontProvider.GetFontFace">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.SpriteFont.SystemFontProvider.GetFontName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureAsset">
+            <summary>
+            Describes a texture asset.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.TextureAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Textures.TextureAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+            <value>The width.</value>
+            <userdoc>
+            The width of the texture in-game. The value is a percentage or the actual pixel size depending on whether Use percentages is enabled.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+            <value>The height.</value>
+            <userdoc>
+            The height of the texture in-game. The value is a percentage or the actual pixel size depending on whether Use percentages is enabled.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.IsSizeInPercentage">
+            <summary>
+            Gets or sets a value indicating whether this instance is using size in percentage. Default is true. See remarks.
+            </summary>
+            <value><c>true</c> if this instance is dimension absolute; otherwise, <c>false</c>.</value>
+            <remarks>
+            When this property is true (by default), <see cref="P:Stride.Assets.Textures.TextureAsset.Width"/> and <see cref="P:Stride.Assets.Textures.TextureAsset.Height"/> are epxressed 
+            in percentage, with 100.0f being 100% of the current size, and 50.0f half of the current size, otherwise
+            the size is in absolute pixels.
+            </remarks>
+            <userdoc>
+            Use percentages for width and height instead of actual pixel size
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.IsCompressed">
+            <summary>
+            Compress the final texture to a format based on the target platform and usage. The final texture must be a multiple of 4
+            </summary>
+            <userdoc>
+            Compress the final texture to a format based on the target platform and usage. The final texture must be a multiple of 4.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.GenerateMipmaps">
+            <summary>
+            Gets or sets a value indicating whether to generate mipmaps.
+            </summary>
+            <value><c>true</c> if mipmaps are generated; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Generate mipmaps for the texture
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.IsStreamable">
+            <summary>
+            Gets or sets a value indicating whether to stream texture.
+            </summary>
+            <value><c>true</c> if strema texture; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Stream the texture dynamically at runtime. This improves performance and loading times. Not recommended for important textures you always want to be loaded, such as splash screens
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.TextureAsset.Type">
+            <summary>
+            The description of the data contained in the texture. See remarks.
+            </summary>
+            <remarks>This description helps the texture compressor to select the appropriate format based on the HW Level and 
+            platform.</remarks>
+            <userdoc>Select Color for textures you want to display as images, Normal map for normal maps, and Greyscale to provide values for other things (eg specular maps, metalness maps, roughness maps)</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Textures.RenderTextureAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.Textures.RenderTextureAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.RenderTextureAsset.Width">
+            <summary>
+            The width in pixel.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.RenderTextureAsset.Height">
+            <summary>
+            The height in pixel.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.RenderTextureAsset.Format">
+            <summary>
+            The format.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.RenderTextureAsset.UseSRgbSampling">
+            <summary>
+            Texture will be stored in sRGB format (standard for color textures) and converted to linear space when sampled. Only relevant when working in Linear color space.
+            </summary>
+            <userdoc>
+            Should be checked for all color textures, unless they are explicitly in linear space. Texture will be stored in sRGB format (standard for color textures) and converted to linear space when sampled. Only relevant when working in Linear color space.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Textures.AlphaFormat">
+            <summary>
+            Represents the different formats of alpha channel possibly desired.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.AlphaFormat.None">
+            <summary>
+            Alpha channel should be ignored.
+            </summary>
+            <userdoc>No alpha channel</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Textures.AlphaFormat.Mask">
+            <summary>
+            Alpha channel should be stored as 1-bit mask if possible.
+            </summary>
+            <userdoc>Ensures an alpha channel composed of only absolute opaque or absolute transparent values.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Textures.AlphaFormat.Explicit">
+            <summary>
+            Alpha channel should be stored with explicit compression. Well suited to sharp alpha transitions between translucent and opaque areas.
+            </summary>
+            <userdoc>Ensures an alpha channel well suited for sharp alpha transitions between translucent and opaque areas.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Textures.AlphaFormat.Interpolated">
+            <summary>
+            Alpha channel should be stored using interpolation. Well suited for alpha gradient.
+            </summary>
+            <userdoc>Ensure an alpha channel well suited for alpha gradient.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.Textures.AlphaFormat.Auto">
+            <summary>
+            Automatic alpha detection.
+            </summary>
+            <userdoc>Automatic alpha detection</userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.ColorTextureType.UseSRgbSampling">
+            <summary>
+            Texture will be stored in sRGB format (standard for color textures) and converted to linear space when sampled. Only relevant when working in Linear color space.
+            </summary>
+            <userdoc>
+            Store the texture in sRGB format and convert to linear space when sampled. We recommend you enable this for all color textures, unless they're explicitly in linear space.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.ColorTextureType.ColorKeyEnabled">
+            <summary>
+            Gets or sets a value indicating whether to enable color key. Default is false.
+            </summary>
+            <value><c>true</c> to enable color key; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Replace all pixels of the color set in the **Color key color** property with transparent black
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.ColorTextureType.ColorKeyColor">
+            <summary>
+            Gets or sets the color key used when color keying for a texture is enabled. When color keying, all pixels of a specified color are replaced with transparent black.
+            </summary>
+            <value>The color key.</value>
+            <userdoc>
+            If **Color key** is enabled, replace all pixels of this color with transparent black
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.ColorTextureType.Alpha">
+            <summary>
+            Gets or sets the alpha format.
+            </summary>
+            <value>The alpha format.</value>
+            <userdoc>
+            The format to use for alpha in the texture
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.ColorTextureType.PremultiplyAlpha">
+            <summary>
+            Gets or sets a value indicating whether to convert the texture in premultiply alpha.
+            </summary>
+            <value><c>true</c> to convert the texture in premultiply alpha.; otherwise, <c>false</c>.</value>
+            <userdoc>
+            Premultiply the color values by the **Alpha** value
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Textures.GrayscaleTextureType">
+            <summary>
+            A single channel texture which can be used for luminance, height map, specular texture, etc.
+            </summary>
+            <userdoc>
+            A single channel texture which can be used for luminance, height map, specular texture, etc.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Assets.Textures.NormapMapTextureType.InvertY">
+            <summary>
+            Indicating whether the Y-component of normals should be inverted, to compensate for a flipped tangent-space.
+            </summary>
+            <userdoc>
+            Indicates that a positive Y-component (green) faces up in tangent space. This options depends on your normal maps generation tools.
+            </userdoc>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.AtlasTextureElement">
+            <summary>
+            This represent an element of the atlas texture.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.Name">
+            <summary>
+            The name of the atlas element.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.Texture">
+            <summary>
+            Gets or sets CPU-resource texture
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.SourceRegion">
+            <summary>
+            The region of the atlas element in its original texture.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.DestinationRegion">
+            <summary>
+            The region of the atlas element in the output atlas texture (it includes the border size!).
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.BorderSize">
+            <summary>
+            The size of the border around the atlas elements
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.BorderModeU">
+            <summary>
+            Gets or sets border modes in X axis which applies specific TextureAddressMode in the border of each texture element in a given size of border
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.BorderModeV">
+            <summary>
+            Gets or sets border modes in Y axis which applies specific TextureAddressMode in the border of each texture element in a given size of border
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureElement.BorderColor">
+            <summary>
+            Gets or sets Border color when BorderModeU is set to Border mode
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.AtlasTextureElement.#ctor">
+            <summary>
+            Create an empty atlas texture element.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.AtlasTextureElement.#ctor(System.String,Stride.Graphics.Image,Stride.Assets.Textures.Packing.RotableRectangle,System.Int32,Stride.Graphics.TextureAddressMode,Stride.Graphics.TextureAddressMode,System.Nullable{Stride.Core.Mathematics.Color})">
+            <summary>
+            Create an atlas texture element that contains all the information from the source texture.
+            </summary>
+            <param name="name">The reference name of the element</param>
+            <param name="texture"></param>
+            <param name="sourceRegion">The region of the element in the source texture</param>
+            <param name="borderSize">The size of the border around the element in the output atlas</param>
+            <param name="borderModeU">The border mode along the U axis</param>
+            <param name="borderModeV">The border mode along the V axis</param>
+            <param name="borderColor">The color of the border</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.AtlasTextureElement.Clone">
+            <summary>
+            Clone the current element.
+            </summary>
+            <returns>A copy of the current element</returns>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.AtlasTextureFactory">
+            <summary>
+            A Atlas Texture Factory that contains APIs related to atlas texture creation
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.AtlasTextureFactory.CreateTextureAtlas(Stride.Assets.Textures.Packing.AtlasTextureLayout,System.Boolean)">
+            <summary>
+            Creates texture atlas image from a given texture atlas
+            </summary>
+            <param name="atlasTextureLayout">Input texture atlas</param>
+            <param name="srgb">True if the texture atlas should be generated to a SRgb texture</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.AtlasTextureFactory.GetSourceTextureCoordinate(System.Int32,System.Int32,Stride.Graphics.TextureAddressMode)">
+            <summary>
+            Gets index texture from a source image from a given value, max value and texture address mode.
+            If index is in [0, maxValue), the output index will be the same as the input index.
+            Otherwise, the output index will be determined by the texture address mode.
+            </summary>
+            <param name="value">Input index value</param>
+            <param name="maxValue">Max value of an input</param>
+            <param name="mode">Border mode</param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.AtlasTextureLayout">
+            <summary>
+            This specifies the full layout of an atlas texture.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureLayout.Textures">
+            <summary>
+            Gets or sets a list of packed AtlasTextureElement
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureLayout.Width">
+            <summary>
+            Gets or sets Width of the texture atlas
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.AtlasTextureLayout.Height">
+            <summary>
+            Gets or sets Height of the texture atlas
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.MaxRectanglesBinPack">
+            <summary>
+            Implementation of texture packer using MaxRects algorithm.
+            Reference: http://clb.demon.fi/files/RectangleBinPack.pdf by Jukka Jylanki.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.PackedElements">
+            <summary>
+            Gets those elementsToPack that are already packed
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of MaxRectanglesBinPack
+            </summary>
+            <param name="width">Expected width of a bin</param>
+            <param name="height">Expected height of a bin</param>
+            <param name="useRotation">Indicate whether rectangle are allowed to be rotated</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.Initialize(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a bin given new sets of parameters, and clear states of MaxRectanglesBinPack
+            </summary>
+            <param name="width">Expected width of a bin</param>
+            <param name="height">Expected height of a bin</param>
+            <param name="allowRotation">Indicate whether rectangle are allowed to be rotated</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.PackRectangles(System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureElement},Stride.Assets.Textures.Packing.TexturePackingMethod)">
+            <summary>
+            Packs input elements using the MaxRects algorithm.
+            Note that any element that could be packed is removed from the elementsToPack collection.
+            </summary>
+            <param name="elementsToPack">a list of rectangles to be packed</param>
+            <param name="method">MaxRects heuristic method which default value is BestShortSideFit</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.TakeSpaceForRectangle(Stride.Assets.Textures.Packing.RotableRectangle)">
+            <summary>
+            Places a given rectangle in the free space.
+            </summary>
+            <param name="rectangleToPlace">The rectangle to place</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.PruneFreeList">
+            <summary>
+            Removes those free elementsToPack that are sub-regions of other elementsToPack
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.SplitFreeNode(Stride.Core.Mathematics.Rectangle,Stride.Assets.Textures.Packing.RotableRectangle)">
+            <summary>
+            Splits a free region by a usedNode rectangle
+            </summary>
+            <param name="freeNode">Free rectangle to be splitted</param>
+            <param name="usedNode">UsedNode rectangle</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.ChooseTargetPosition(System.Int32,System.Int32,Stride.Assets.Textures.Packing.TexturePackingMethod,System.Int32@,System.Int32@)">
+            <summary>
+            Determines a target position to place a given rectangle by a given heuristic method
+            </summary>
+            <param name="method">A heuristic placement method</param>
+            <param name="score1">First score</param>
+            <param name="score2">Second score</param>
+            <param name="width">The width of the element to place</param>
+            <param name="height">The height of the element to place</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.FindPositionForNewNodeBestShortSideFit(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Finds a placement position using NewNodeBestShortSideFit heuristic method
+            </summary>
+            <param name="height"></param>
+            <param name="bestShortSideFit"></param>
+            <param name="bestLongSideFit"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.FindPositionForNewNodeBottomLeft(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            The heuristic rule used by this algorithm is to Orient and place each-
+            rectangle to the position where the y-coordinate of the top side of the rectangle
+            is the smallest and if there are several such valid positions, pick the
+            one that has the smallest x-coordinate value
+            </summary>
+            <param name="height"></param>
+            <param name="bestY"></param>
+            <param name="bestX"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.FindPositionForNewNodeContactPoint(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Finds a placement position using NodeContactPoint heuristic method
+            </summary>
+            <param name="height"></param>
+            <param name="bestContactScore"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.ContactPointScoreNode(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Calculates ContactPoint score
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.FindPositionForNewNodeBestLongSideFit(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Finds a placement position using BestLongSideFit heuristic method
+            </summary>
+            <param name="height"></param>
+            <param name="bestShortSideFit"></param>
+            <param name="bestLongSideFit"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.MaxRectanglesBinPack.FindPositionForNewNodeBestAreaFit(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Finds a placement position using BestAreaFit heuristic method
+            </summary>
+            <param name="height"></param>
+            <param name="bestAreaFit"></param>
+            <param name="bestShortSideFit"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.RotableRectangle">
+            <summary>
+            RotableRectangle adds a rotating status to Rectangle struct type indicating that this rectangle is rotated by 90 degree and that width and height is swapped.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.RotableRectangle.X">
+            <summary>
+            The starting position of the rectangle along X.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.RotableRectangle.Y">
+            <summary>
+            The starting position of the rectangle along Y.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.RotableRectangle.Width">
+            <summary>
+            The width of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.RotableRectangle.Height">
+            <summary>
+            The height of the rectangle
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.RotableRectangle.IsRotated">
+            <summary>
+            Gets or sets a rotation flag to indicate that this rectangle is rotated by 90 degree
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.RotableRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of RotableRectangle with top-left position: x, y, width and height of the rectangle with an optional key 
+            </summary>
+            <param name="x">Left value in X axis</param>
+            <param name="y">Top value in Y axis</param>
+            <param name="width">Width of a rectangle</param>
+            <param name="height">Height of a rectangle</param>
+            <param name="isRotated">Indicate if the rectangle is rotated or not</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.RotableRectangle.#ctor(Stride.Core.Mathematics.Rectangle,System.Boolean)">
+            <summary>
+            Initializes a new instance of RotableRectangle from an rectangle
+            </summary>
+            <param name="rectangle">Reference rectangle</param>
+            <param name="isRotated">Indicate if the rectangle is rotated or not</param>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.RotableRectangle.IsEmpty">
+            <summary>
+            Specify if the rectangle is empty. That is, if it has a null area.
+            </summary>
+            <returns><value>True</value> if empty</returns>
+        </member>
+        <member name="P:Stride.Assets.Textures.Packing.RotableRectangle.Right">
+            <summary>
+            Gets the position of the right border of the triangle
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.Packing.RotableRectangle.Bottom">
+            <summary>
+            Gets the position of the bottom border of the triangle
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.TexturePacker">
+            <summary>
+            TexturePacker class for packing several textures, using MaxRects <see cref="T:Stride.Assets.Textures.Packing.MaxRectanglesBinPack"/>, into one or more texture atlases
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.Algorithm">
+            <summary>
+            Gets or sets MaxRects heuristic algorithm to place rectangles
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.AllowRotation">
+            <summary>
+            Gets or sets the use of rotation for packing
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.AllowMultipack">
+            <summary>
+            Gets or sets the use of Multipack.
+            If Multipack is enabled, a packer could create more than one texture atlases to fit all textures,
+            whereas if Multipack is disabled, a packer always creates only one texture atlas which might not fit all textures.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.AllowNonPowerOfTwo">
+            <summary>
+            Allow the atlas texture to have a size that is not power of 2.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.MaxWidth">
+            <summary>
+            Gets or sets MaxWidth for expected AtlasTextureLayout
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.Packing.TexturePacker.MaxHeight">
+            <summary>
+            Gets or sets MaxHeight for expected AtlasTextureLayout
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Textures.Packing.TexturePacker.AtlasTextureLayouts">
+            <summary>
+            Gets available Texture Atlases which contain a set of textures that are already packed
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.Reset">
+            <summary>
+            Resets the generated list of atlas layouts of the packer.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.PackTextures(System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureElement})">
+            <summary>
+            Packs the provided texture elementsToPack into <see cref="P:Stride.Assets.Textures.Packing.TexturePacker.AtlasTextureLayouts"/>.
+            </summary>
+            <param name="textureElements">The texture elementsToPack to pack</param>
+            <returns><value>True</value> if the texture could be packed, <value>False</value> otherwise</returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.CompareTextureAtlasLists(System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureLayout},System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureLayout})">
+            <summary>
+            Compares two atlas List to check which list is more optimal in term of the number of atlas and areas
+            </summary>
+            <param name="atlasList1">Source 1</param>
+            <param name="atlasList2">Source 2</param>
+            <returns>Return -1 if atlasList1 is less optimal, 0 if the two list is the same level of optimal, 1 if atlasList1 is more optimal </returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.PackTextures(System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureElement},Stride.Assets.Textures.Packing.TexturePackingMethod)">
+            <summary>
+            Packs the provided texture elementsToPack into <see cref="P:Stride.Assets.Textures.Packing.TexturePacker.AtlasTextureLayouts"/>, given the provided heuristic algorithm.
+            </summary>
+            <param name="textureElements">The texture elementsToPack to pack</param>
+            <param name="algorithm">Packing algorithm to use</param>
+            <returns>True indicates all textures could be packed; False otherwise</returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.CreateBestAtlasLayout(System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureElement},Stride.Assets.Textures.Packing.TexturePackingMethod,System.Collections.Generic.List{Stride.Assets.Textures.Packing.AtlasTextureElement}@)">
+            <summary>
+            Create the best atlas layout possible given the elementsToPack to pack, the algorithm and the atlas maximum size.
+            Note: when all the elementsToPack cannot fit into the texture, it tries to pack as much as possible of them.
+            </summary>
+            <returns>False if</returns>
+        </member>
+        <member name="M:Stride.Assets.Textures.Packing.TexturePacker.CalculatePackedRectanglesBound(System.Collections.Generic.IReadOnlyCollection{Stride.Assets.Textures.Packing.AtlasTextureElement})">
+            <summary>
+            Calculates bound for the packed textures
+            </summary>
+            <param name="elements"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Assets.Textures.Packing.TexturePackingMethod">
+            <summary>
+            The Heuristic methods used to place sprites in atlas.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.RenderTextureAssetCompiler.RenderTextureConvertCommand">
+            <summary>
+            Command used to convert the texture in the storage
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureAssetCompiler">
+            <summary>
+            Texture asset compiler.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureAssetCompiler.TextureConvertCommand">
+            <summary>
+            Command used to convert the texture in the storage
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureConvertParameters">
+            <summary>
+            SharedParameters used for converting/processing the texture in the storage.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureHelper">
+            <summary>
+            An helper for the compile commands that needs to process textures.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureHelper.ImportParameters">
+            <summary>
+            Parameters used to import/convert a texture.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Textures.TextureHelper.FindBestTextureSize(Stride.Assets.Textures.TextureHelper.ImportParameters,Stride.Graphics.PixelFormat,Stride.Core.Mathematics.Size2,Stride.Core.Diagnostics.ILogger)">
+            <summary>
+            Utility function to check that the texture size is supported on the graphics platform for the provided graphics profile.
+            </summary>
+            <param name="parameters">The import parameters</param>
+            <param name="outputFormat">The output format</param>
+            <param name="textureSize">The texture size requested.</param>
+            <param name="logger">The logger.</param>
+            <returns>true if the texture size is supported</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">graphicsProfile</exception>
+        </member>
+        <member name="M:Stride.Assets.Textures.TextureHelper.FindMaximumTextureSize(Stride.Assets.Textures.TextureHelper.ImportParameters,Stride.Core.Mathematics.Size2,Stride.Core.Diagnostics.ILogger)">
+            <summary>
+            Utility function to check that the texture size is supported on the graphics platform for the provided graphics profile.
+            </summary>
+            <param name="parameters">The import parameters</param>
+            <param name="textureSize">The texture size requested.</param>
+            <param name="logger">The logger.</param>
+            <returns>true if the texture size is supported</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">graphicsProfile</exception>
+        </member>
+        <member name="M:Stride.Assets.Textures.TextureHelper.DetermineOutputFormat(Stride.Assets.Textures.TextureHelper.ImportParameters,Stride.Core.Mathematics.Size2,Stride.Graphics.PixelFormat)">
+            <summary>
+            Determine the output format of the texture depending on the platform and asset properties.
+            </summary>
+            <param name="parameters">The conversion request parameters</param>
+            <param name="imageSize">The texture output size</param>
+            <param name="inputImageFormat">The pixel format of the input image</param>
+            <returns>The pixel format to use as output</returns>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureHint">
+            <summary>
+            Gives a hint to the texture compressor on the kind of textures to select the appropriate compression format depending
+            on the HW Level and platform.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.TextureHint.Color">
+            <summary>
+            The texture is using the full color.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.TextureHint.Grayscale">
+            <summary>
+            The texture is a grayscale.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.TextureHint.NormalMap">
+            <summary>
+            The texture is a normal map.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Textures.TextureQuality">
+            <summary>
+            The desired texture quality.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.Textures.TextureSettings.TextureQuality">
+            <summary>
+            Gets or sets the texture quality.
+            </summary>
+            <userdoc>The texture quality when encoding textures. Higher settings might result in much slower build depending on the target platform.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.UI.UIPageAsset">
+            <summary>
+            This assets represents a tree of UI elements. 
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.UI.UIPageAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.UI.UIPageAsset"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.UI.UILibraryAsset.FileExtension">
+            <summary>
+            The default file extension used by the <see cref="T:Stride.Assets.UI.UILibraryAsset"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.UI.UILibraryAsset.PublicUIElements">
+            <summary>
+            Gets the dictionary of publicly exposed controls.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.UI.UILibraryAsset.CreateElementInstance(Stride.Assets.UI.UIAssetBase,System.String,System.Guid)">
+            <summary>
+            Creates a instance of the given control that can be added to another <see cref="T:Stride.Assets.UI.UIAssetBase"/>.
+            </summary>
+            <param name="targetContainer">The container in which the instance will be added.</param>
+            <param name="targetLocation">The location of the <see paramref="targetContainer"/> asset.</param>
+            <param name="elementId">The id of the element to instantiate.</param>
+            <returns>An <see cref="T:Stride.Core.Assets.AssetCompositeHierarchyData`2"/> containing the cloned elements of </returns>
+            <remarks>This method will update the <see cref="!:Asset.BaseParts"/> property of the <see paramref="targetContainer"/>.</remarks>
+        </member>
+        <member name="M:Stride.Assets.UI.UILibraryAsset.CreateElementInstance(Stride.Assets.UI.UIAssetBase,System.String,System.Guid,System.Guid@)">
+            <summary>
+            Creates a instance of the given control that can be added to another <see cref="T:Stride.Assets.UI.UIAssetBase"/>.
+            </summary>
+            <param name="targetContainer">The container in which the instance will be added.</param>
+            <param name="targetLocation">The location of this asset.</param>
+            <param name="elementId">The id of the element to instantiate.</param>
+            <param name="instanceId">The identifier of the created instance.</param>
+            <returns>An <see cref="T:Stride.Core.Assets.AssetCompositeHierarchyData`2"/> containing the cloned elements of </returns>
+            <remarks>This method will update the <see cref="!:Asset.BaseParts"/> property of the <see paramref="targetContainer"/>.</remarks>
+        </member>
+        <member name="T:Stride.Assets.UI.UIAssetBase">
+            <summary>
+            Base class for assets containing a hierarchy of <see cref="T:Stride.UI.UIElement"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.UI.UIAssetBase.GetParent(Stride.UI.UIElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.UI.UIAssetBase.IndexOf(Stride.UI.UIElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.UI.UIAssetBase.GetChild(Stride.UI.UIElement,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.UI.UIAssetBase.GetChildCount(Stride.UI.UIElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.UI.UIAssetBase.EnumerateChildParts(Stride.UI.UIElement,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.UI.UIElementDesign">
+            <summary>
+            Associate an <see cref="P:Stride.Assets.UI.UIElementDesign.UIElement"/> with design-time data.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Assets.UI.UIElementDesign"/>.
+            </summary>
+            <remarks>
+            This constructor is used only for serialization.
+            </remarks>
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.#ctor(Stride.UI.UIElement)">
+            <summary>
+            Initializes a new instance of <see cref="T:Stride.Assets.UI.UIElementDesign"/>.
+            </summary>
+            <param name="uiElement">The UI Element</param>
+        </member>
+        <member name="P:Stride.Assets.UI.UIElementDesign.UIElement">
+            <summary>
+            The UI element.
+            </summary>
+            <remarks>
+            The setter should only be used during serialization.
+            </remarks>
+        </member>
+        <member name="P:Stride.Assets.UI.UIElementDesign.Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.UI.UIElementDesign.Stride#Core#Assets#IAssetPartDesign#Part">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Assets.UI.UIElementDesign.Stride#Core#Assets#IAssetPartDesign{Stride#UI#UIElement}#Part">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.Equals(Stride.Assets.UI.UIElementDesign)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Assets.UI.UIElementDesign.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="F:Stride.Assets.EditorSettings.RenderingMode">
+            <userdoc>
+            Applies to thumbnails and asset previews
+            </userdoc>
+        </member>
+        <member name="F:Stride.Assets.EditorSettings.AnimationFrameRate">
+            <userdoc>
+            The framerate at which Stride displays animations. Animation data itself isn't affected.
+            </userdoc>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsAssetExtensions.GetGameSettingsAsset(Stride.Core.Assets.Package)">
+            <summary>
+            Retrieves the <see cref="T:Stride.Assets.GameSettingsAsset"/> from the given <see cref="T:Stride.Core.Assets.Package"/> if available, or null otherwise.
+            </summary>
+            <param name="package">The package from which to retrieve the game settings.</param>
+            <returns>The <see cref="T:Stride.Assets.GameSettingsAsset"/> from the given <see cref="T:Stride.Core.Assets.Package"/> if available. Null otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsAssetExtensions.GetGameSettingsAssetOrDefault(Stride.Core.Assets.Package)">
+            <summary>
+            Retrieves the <see cref="T:Stride.Assets.GameSettingsAsset"/> from the given <see cref="T:Stride.Core.Assets.Package"/> if available,
+            or otherwise attempts to retrieve it from the from the <see cref="!:PackageSession.CurrentPackage"/> of the session.
+            If none is available, this method returns a new default instance.
+            </summary>
+            <param name="package">The package from which to retrieve the game settings.</param>
+            <returns>The <see cref="T:Stride.Assets.GameSettingsAsset"/> from either the given package or the session if available. A new default instance otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsAssetExtensions.GetGameSettingsAssetOrDefault(Stride.Core.Assets.PackageSession)">
+            <summary>
+            Retrieves the <see cref="T:Stride.Assets.GameSettingsAsset"/> from the <see cref="!:PackageSession.CurrentPackage"/> of the given session if available,
+            or a new default instance otherwise.
+            </summary>
+            <param name="session">The package session from which to retrieve the game settings.</param>
+            <returns>The <see cref="T:Stride.Assets.GameSettingsAsset"/> from the given session if available. A new default instance otherwise.</returns>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsAssetExtensions.GetReferenceColorSpace(Stride.Core.Assets.PackageSession,Stride.Core.PlatformType)">
+            <summary>
+            Retrieves the reference <see cref="T:Stride.Graphics.ColorSpace"/> to use according to the <see cref="!:PackageSession.CurrentPackage"/> of the given package.
+            If the current package is null, this method returns the value of <see cref="!:RenderingSettings.DefaultColorSpace"/>.
+            </summary>
+            <param name="session">The package session from which to retrieve the color space.</param>
+            <param name="platform">The platform for which to return the color space.</param>
+            <returns>The color space of the current package of the session, or <see cref="!:RenderingSettings.DefaultColorSpace"/>.</returns>
+        </member>
+        <member name="M:Stride.Assets.GameSettingsFactory.New">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.GameSettingsProfileBase">
+            <summary>
+            Default game settings profile. This is currently used internally only.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.IGameSettingsProfile">
+            <summary>
+            Base interface for game settings for a particular profile
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.IGameSettingsProfile.GraphicsPlatform">
+            <summary>
+            Gets the GraphicsPlatform used by this profile.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.IGameSettingsProfile.GetSupportedGraphicsPlatforms">
+            <summary>
+            Gets the <see cref="P:Stride.Assets.IGameSettingsProfile.GraphicsPlatform"/> list supported by this profile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Assets.RenderingMode">
+            <summary>
+            A rendering mode of Preview and Thumbnail for a game.
+            </summary>
+        </member>
+        <member name="F:Stride.Assets.RenderingMode.LDR">
+            <summary>
+            The preview and thumbnail will use a low dynamic range settings when displaying assets.
+            </summary>
+            <userdoc>The preview and thumbnail will use a low dynamic range settings when displaying assets.</userdoc>
+        </member>
+        <member name="F:Stride.Assets.RenderingMode.HDR">
+            <summary>
+            The preview and thumbnail will use a high dynamic range settings when displaying assets.
+            </summary>
+            <userdoc>The preview and thumbnail will use a high dynamic range settings when displaying assets.</userdoc>
+        </member>
+        <member name="T:Stride.Assets.Serializers.EntitySerializer">
+            <summary>
+            A serializer for the <see cref="T:Stride.Engine.Entity"/> type.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Serializers.EntitySerializer.TryCreate(Stride.Core.Yaml.Serialization.SerializerContext,Stride.Core.Reflection.ITypeDescriptor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.Serializers.EntitySerializer.CreateOrTransformObject(Stride.Core.Yaml.Serialization.ObjectContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Serializers.ParameterKeySerializer">
+            <summary>
+            A Yaml serializer for <see cref="T:Stride.Rendering.ParameterKey"/>
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Serializers.SceneCameraSlotIdSerializer">
+            <summary>
+            A Yaml serializer for <see cref="T:Stride.Core.Reflection.ItemId"/> without associated data.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Serializers.SceneCameraSlotIdSerializer.ConvertFrom(Stride.Core.Yaml.Serialization.ObjectContext@,Stride.Core.Yaml.Events.Scalar)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Assets.StrideConfig.RegisterSolutionPlatforms">
+            <summary>
+            Registers the solution platforms supported by Stride.
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.StrideConfig.IsVSComponentAvailableAnyVersion(System.Collections.Generic.IDictionary{System.Version,System.String})">
+            <summary>
+            Checks if any of the provided component versions are available on this system
+            </summary>
+            <param name="vsVersionToComponent">A dictionary of Visual Studio versions to their respective paths for a given component</param>
+            <returns>true if any of the components in the dictionary are available, false otherwise</returns>
+        </member>
+        <member name="M:Stride.Assets.StrideConfig.IsVSComponentAvailableForIDE(Stride.Core.VisualStudio.IDEInfo,System.Collections.Generic.IDictionary{System.Version,System.String})">
+            <summary>
+            Check if a particular component set for this IDE version
+            </summary>
+            <param name="ideInfo">The IDE info to search for the components</param>
+            <param name="vsVersionToComponent">A dictionary of Visual Studio versions to their respective paths for a given component</param>
+            <returns>true if the IDE has any of the component versions available, false otherwise</returns>
+        </member>
+        <member name="M:Stride.Assets.StridePackageUpgrader.UpgradeAfterAssetsLoaded(Stride.Core.Assets.PackageLoadParameters,Stride.Core.Assets.PackageSession,Stride.Core.Diagnostics.ILogger,Stride.Core.Assets.Package,Stride.Core.Assets.PackageDependency,Stride.Core.Assets.Package,Stride.Core.PackageVersionRange)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Assets.Tasks.PackageDeployTask">
+            <summary>
+            Task in charge of syncing a <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Directory"/> to a different <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Machine"/> using a <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Username"/> and
+            <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Password"/> in a <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Location"/>
+            </summary>
+        </member>
+        <member name="M:Stride.Assets.Tasks.PackageDeployTask.Execute">
+            <summary>
+            Execute deploy task
+            </summary>
+            <returns>True on success, false otherwise</returns>
+        </member>
+        <member name="M:Stride.Assets.Tasks.PackageDeployTask.SyncTo(System.String)">
+            <summary>
+            Sync output of current compilation to <paramref name="dir"/>
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Stride.Assets.Tasks.PackageDeployTask.Directory">
+            <summary>
+            Directory to copy over to <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Machine"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Tasks.PackageDeployTask.Machine">
+            <summary>
+            Machine where <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Directory"/> will be copied.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Tasks.PackageDeployTask.Username">
+            <summary>
+            Username used to log onto <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Machine"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Tasks.PackageDeployTask.Password">
+            <summary>
+            Password used to log onto <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Machine"/> with <see cref="P:Stride.Assets.Tasks.PackageDeployTask.Username"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Assets.Tasks.PackageDeployTask.Port">
+            <summary>
+            Port on which we will connect, by default 22
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.Templates.SelectedSolutionPlatform">
+            <summary>
+            Represents a <see cref="T:Stride.Core.Assets.SolutionPlatform"/> with some additional parameters (such as <see cref="T:Stride.Core.Assets.SolutionPlatformTemplate"/>), as selected in <see cref="!:NewGameTemplateGenerator"/> or <see cref="!:UpdatePlatformsTemplateGenerator"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Assets.WindowsGameSettingsProfile">
+            <summary>
+            Base settings for Windows profile.
+            </summary>
+        </member>
+        <member name="M:Stride.ShellHelper.RunProcessAndGetOutputAsync(System.String,System.String,Stride.Core.Diagnostics.ILogger,System.Threading.CancellationToken)">
+            <summary>
+            Run the process and get the output without deadlocks.
+            </summary>
+            <param name="command">The name or path of the command.</param>
+            <param name="parameters">The parameters of the command.</param>
+            <returns>The outputs.</returns>
+        </member>
+        <member name="M:Stride.ShellHelper.RunProcessAndGetOutput(System.String,System.String)">
+            <summary>
+            Run the process and get the output without deadlocks.
+            </summary>
+            <param name="command">The name or path of the command.</param>
+            <param name="parameters">The parameters of the command.</param>
+            <returns>The outputs.</returns>
+        </member>
+        <member name="M:Stride.ShellHelper.RunProcess(System.String,System.String)">
+            <summary>
+            Run a process without waiting for its output.
+            </summary>
+            <param name="command">The name or path of the command.</param>
+            <param name="parameters">The parameters of the command.</param>
+        </member>
+        <member name="M:Stride.ShellHelper.LockProcessAndAddDataToList(System.Diagnostics.Process,System.Collections.Generic.List{System.String},System.Diagnostics.DataReceivedEventArgs)">
+            <summary>
+            Lock the process and save the string.
+            </summary>
+            <param name="process">The current process.</param>
+            <param name="output">List of saved strings.</param>
+            <param name="args">arguments of the process.</param>
+        </member>
+        <member name="M:Stride.ShellHelper.LockProcessAndAddDataToLogger(System.Diagnostics.Process,Stride.Core.Diagnostics.LoggerResult,System.Boolean,System.Diagnostics.DataReceivedEventArgs)">
+            <summary>
+            Lock the process and save the string.
+            </summary>
+            <param name="process">The current process.</param>
+            <param name="logger">Logger were out current process.</param>
+            <param name="isError">Is this the error output or the standard one?</param>
+            <param name="args">arguments of the process.</param>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

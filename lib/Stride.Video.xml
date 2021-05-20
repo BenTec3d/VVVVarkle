@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Video</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Video.FFmpeg.AudioStream">
+            <summary>
+            Represents an audio stream from a FFmpeg media.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.AudioStream.ChannelCount">
+            <summary>
+            The number of audio channels in the stream.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.AudioStream.SampleRate">
+            <summary>
+            The number of audio samples per second.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.AudioStream.Type">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Video.FFmpeg.FFmpegCodec">
+            <summary>
+            Represents a codec.
+            </summary>
+            <seealso cref="T:FFmpeg.AutoGen.AVCodec"/>
+            <seealso cref="T:FFmpeg.AutoGen.AVCodecContext"/>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegCodec.#ctor(Stride.Graphics.GraphicsDevice,FFmpeg.AutoGen.AVCodecContext*)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Video.FFmpeg.FFmpegCodec"/> class.
+            </summary>
+        </member>
+        <member name="T:Stride.Video.FFmpeg.FFmpegMedia">
+            <summary>
+            Represents a media, i.e. a context with a collection of streams and associated codecs from a unique source.
+            </summary>
+            <seealso cref="!:FFmpeg.AutoGen.AVFormatContext"/>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegMedia.#ctor(Stride.Graphics.GraphicsDevice)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Video.FFmpeg.FFmpegMedia"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegMedia.Duration">
+            <summary>
+            The duration of the media.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegMedia.Streams">
+            <summary>
+            A collection of streams retrieved from this media.
+            </summary>
+            <remarks>
+            The collection is empty until the media is open.
+            </remarks>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegMedia.Url">
+            <summary>
+            The url to the media.
+            </summary>
+            <remarks>
+            It can include a specific protocol such as http or subfile.
+            </remarks>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegMedia.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegMedia.Open(System.String,System.Int64,System.Int64)">
+            <summary>
+            Opens this media.
+            </summary>
+            <remarks>
+            Once the media is open, the collection of <see cref="P:Stride.Video.FFmpeg.FFmpegMedia.Streams"/> is populated.
+            </remarks>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegMedia.IsStereoscopicVideo(Stride.Video.FFmpeg.FFmpegStream)">
+            <summary>
+            Returns true if the provided stream is a stereoscopic video.
+            </summary>
+            <remarks>This function may read the first frame of the video if necessary</remarks>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegMedia.ExtractNextImage(Stride.Video.FFmpeg.FFmpegMedia.StreamInfo,FFmpeg.AutoGen.AVPacket*,FFmpeg.AutoGen.AVStream*,FFmpeg.AutoGen.byte_ptrArray4,FFmpeg.AutoGen.int_array4)">
+            <returns>return true if reached end of stream</returns>
+        </member>
+        <member name="T:Stride.Video.FFmpeg.FFmpegStream">
+            <summary>
+            Represents a single stream from a FFmpeg media.
+            </summary>
+            <seealso cref="T:FFmpeg.AutoGen.AVStream"/>
+        </member>
+        <member name="F:Stride.Video.FFmpeg.FFmpegStream.AVStream">
+            <summary>
+            A pointer to the underlying stream.
+            </summary>
+        </member>
+        <member name="F:Stride.Video.FFmpeg.FFmpegStream.Media">
+            <summary>
+            The media this stream belongs to.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegStream.#ctor(FFmpeg.AutoGen.AVStream*,Stride.Video.FFmpeg.FFmpegMedia)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Video.FFmpeg.FFmpegStream"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegStream.Codec">
+            <summary>
+            The codec of the media.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegStream.Duration">
+            <summary>
+            The duration of the media this stream belongs to.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegStream.Index">
+            <summary>
+            The index of this stream in the associated format context.
+            </summary>
+            <seealso cref="T:FFmpeg.AutoGen.AVFormatContext"/>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.FFmpegStream.Type">
+            <summary>
+            The type of this stream.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegStream.Create(FFmpeg.AutoGen.AVStream*,Stride.Video.FFmpeg.FFmpegMedia)">
+            <summary>
+            Creates a new instance of <see cref="T:Stride.Video.FFmpeg.FFmpegStream"/> from the provided <paramref name="pStream"/>.
+            </summary>
+            <param name="pStream">A pointer to the underlying stream.</param>
+            <param name="media">The media containing this stream.</param>
+            <returns></returns>
+            <remarks>
+            The actual type of the returned instance depends on the type of stream.
+            </remarks>
+            <seealso cref="T:Stride.Video.FFmpeg.AudioStream"/>
+            <seealso cref="T:Stride.Video.FFmpeg.SubtitleStream"/>
+            <seealso cref="T:Stride.Video.FFmpeg.VideoStream"/>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegStream.TimestampToTime(System.Int64)">
+            <summary>
+            Converts a timestamp to a real-time value.
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegStream.TimeToTimestamp(System.TimeSpan)">
+            <summary>
+            Converts a real-time value to the corresponding timestamp.
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Video.FFmpeg.FFmpegUtils">
+            <summary>
+            Collection of utilities when invoking <see cref="N:FFmpeg.AutoGen"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegUtils.Initialize">
+            <summary>
+            Initialize FFmpeg.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegUtils.PreloadLibraries">
+            <summary>
+            Preload all FFmpeg libraries.
+            </summary>
+            <remarks>
+            Must be called before any attempt to use FFmpeg API or this will have no effect.
+            </remarks>
+        </member>
+        <member name="M:Stride.Video.FFmpeg.FFmpegUtils.ToDictionary(FFmpeg.AutoGen.AVDictionary*)">
+            <summary>
+            Converts a <see cref="T:FFmpeg.AutoGen.AVDictionary"/>* to a Dictionary&lt;string,string&gt;.
+            </summary>
+            <param name="avDictionary">A pointer to a <see cref="T:FFmpeg.AutoGen.AVDictionary"/> struct</param>
+            <returns>A new dictionary containing a copy of all entries.</returns>
+        </member>
+        <member name="T:Stride.Video.FFmpeg.SubtitleStream">
+            <summary>
+            Represents a subtitle stream from a FFmpeg media.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.SubtitleStream.Type">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Video.FFmpeg.VideoStream">
+            <summary>
+            Represents a video stream from a FFmpeg media.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.FPS">
+            <summary>
+            Video frames per second.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.FrameDuration">
+            <summary>
+            Time interval between two frames.
+            </summary>
+            <remarks>
+            Is it equal to the inverse of <see cref="P:Stride.Video.FFmpeg.VideoStream.FPS"/>.
+            </remarks>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.PixelFormat">
+            <summary>
+            The pixel format of the encoded video.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.Height">
+            <summary>
+            The height of a frame in the video, in pixels.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.FFmpeg.VideoStream.Width">
+            <summary>
+            The width of a frame in the video, in pixels.
+            </summary>
+        </member>
+        <member name="T:Stride.Video.Video">
+            <summary>
+            Video content.
+            </summary>
+        </member>
+        <member name="T:Stride.Video.VideoComponent">
+            <summary>
+            Component representing a video.
+            </summary>
+            <remarks>
+            <para>
+            Associate this component to an entity to render a video into a texture.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.Source">
+            <summary>
+            The source video.
+            </summary>
+            <userdoc>
+            The video asset used as a source.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.Target">
+            <summary>
+            The target texture where frames from the video will be rendered.
+            </summary>
+            <userdoc>
+            A texture used as target from rendering the frames of the video.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.LoopVideo">
+            <summary>
+            If activated, the video will automatically restart when reaching the end
+            </summary>
+            <userdoc>
+            If activated, the video will automatically restart when reaching the end
+            </userdoc>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.MaxMipMapCount">
+            <summary>
+            Defines the maximum number of mip maps that will be generated for the video texture.
+            </summary>
+            <userdoc>
+            The maximum number of mip maps to generate for the video texture.
+            </userdoc>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.PlayAudio">
+            <summary>
+            If activated, the video's audio track will be played
+            </summary>
+            <userdoc>
+            If activated, the video's audio track will be played
+            </userdoc>
+        </member>
+        <member name="P:Stride.Video.VideoComponent.AudioEmitters">
+            <summary>
+            The list of audioEmitteur components.
+            </summary>
+        </member>
+        <member name="T:Stride.Video.VideoImage">
+            <summary>
+            Represents an image extracted from a video.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoImage.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Video.VideoImage"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoImage.Buffer">
+            <summary>
+            Buffer to the image data.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoImage.BufferSize">
+            <summary>
+            Size of the buffer in bytes.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoImage.Height">
+            <summary>
+            Image height.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoImage.Width">
+            <summary>
+            Image width.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.#ctor(Stride.Core.IServiceRegistry,Stride.Video.VideoComponent)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Video.VideoInstance"/> class.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="videoComponent">The video component associated with this instance</param>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.Duration">
+            <summary>
+            The duration of the video.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.PlayState">
+            <summary>
+            The current state of the video.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.SpeedFactor">
+            <summary>
+            Applies a speed factor the to the video playback. The default value is <c>1.0f</c>.
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.IsLooping">
+            <summary>
+            Define if the video loop or not after reaching the end of the range
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.LoopRange">
+            <summary>
+            if Loop is set to true: set the time at which we restart the video when we arrive at LoopRangeEnd 
+            </summary>
+        </member>
+        <member name="P:Stride.Video.VideoInstance.Volume">
+            <summary>
+            The global volume at which the sound is played.
+            </summary>
+            <remarks>Volume is ranging from 0.0f (silence) to 1.0f (full volume). Values beyond those limits are clamped.</remarks>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Release">
+            <summary>
+            Release the VideoInstance
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Play">
+            <summary>
+            Plays or resumes the video.
+            </summary>
+            <remarks>
+            If the video was stopped, plays from the beginning. If the video was paused, resumes playing.
+            If the video is already playing, this method does nothing.
+            </remarks>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Pause">
+            <summary>
+            Pauses the video.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Seek(System.TimeSpan)">
+            <summary>
+            Seeks the video to the provided <paramref name="time"/>.
+            </summary>
+            <param name="time"></param>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.RestartVideo">
+            <summary>
+            Restarts the video from the beginning.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Stop">
+            <summary>
+            Stops the video.
+            </summary>
+            <remarks>
+            The resources used by the video are also released.
+            </remarks>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.Update(System.TimeSpan)">
+            <summary>
+            Advances the play time to the provided <paramref name="elapsed"/> time.
+            </summary>
+            <param name="elapsed"></param>
+            <returns><c>true</c> if </returns>
+        </member>
+        <member name="M:Stride.Video.VideoInstance.OnPause">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.VideoInstance.OnResume">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.VideoInstance.OnPlaybackCallback(SharpDX.MediaFoundation.MediaEngineEvent,System.Int64,System.Int32)">
+            <summary>
+            Called when [playback callback].
+            </summary>
+            <param name="playEvent">The play event.</param>
+            <param name="param1">The param1.</param>
+            <param name="param2">The param2.</param>
+        </member>
+        <member name="T:Stride.Video.Rendering.VideoProcessor">
+            <summary>
+            Processor in charge of updating the <see cref="T:Stride.Video.VideoComponent"/>s.
+            </summary>
+        </member>
+        <member name="F:Stride.Video.Rendering.VideoProcessor.Logger">
+            <summary>
+            The logger of the <see cref="T:Stride.Video.Rendering.VideoProcessor"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.Draw(Stride.Rendering.RenderContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.GenerateComponentData(Stride.Engine.Entity,Stride.Video.VideoComponent)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.IsAssociatedDataValid(Stride.Engine.Entity,Stride.Video.VideoComponent,Stride.Video.Rendering.VideoProcessor.AssociatedData)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.OnEntityComponentAdding(Stride.Engine.Entity,Stride.Video.VideoComponent,Stride.Video.Rendering.VideoProcessor.AssociatedData)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.OnEntityComponentRemoved(Stride.Engine.Entity,Stride.Video.VideoComponent,Stride.Video.Rendering.VideoProcessor.AssociatedData)">
+            <inheritdoc />
+        </member>
+        <member name="M:Stride.Video.Rendering.VideoProcessor.OnSystemAdd">
+            <inheritdoc />
+        </member>
+        <member name="T:Stride.Video.VideoSerializer">
+            <summary>
+            Used internally to serialize Video
+            </summary>
+        </member>
+        <member name="F:Stride.Video.VideoTexture.effectDecoderTextureCopy">
+            <summary>
+            Effect used to copy the <see cref="!:decoderOutputTexture"/> into the <see cref="F:Stride.Video.VideoTexture.renderTargetTexture"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Video.VideoTexture.effectTexture2DCopy">
+            <summary>
+            Effect used to create mipmap inside the <see cref="F:Stride.Video.VideoTexture.renderTargetTexture"/>
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoTexture.UpdateTargetTexture(Stride.Graphics.Texture)">
+            <summary>
+            Update the current target texture the video should be decoding into.
+            </summary>
+            <param name="newTargetTexture"></param>
+        </member>
+        <member name="M:Stride.Video.VideoTexture.SetTargetContentToVideoStream(Stride.Graphics.Texture)">
+            <summary>
+             Swap the mip mapped video texture with the one supplied. This way all references stay intact but the contents of the texture change.
+            </summary>
+        </member>
+        <member name="M:Stride.Video.VideoTexture.SetTargetContentToOriginalPlaceholder">
+            <summary>
+             Reverts the content of the target texture to the original placeholder.
+            </summary>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

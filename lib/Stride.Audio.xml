@@ -1,0 +1,1061 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Audio</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Audio.AudioDevice">
+            <summary>
+            Reprensent an Audio Hardware Device.
+            Can be used when creating an <see cref="T:Stride.Audio.AudioEngine"/> to specify the device on which to play the sound.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.AudioDevice.Name">
+            <summary>
+            Returns the name of the current device.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioEmitter">
+            <summary>
+            Represents a 3D audio emitter in the audio scene. 
+            This object, used in combination with an <see cref="T:Stride.Audio.AudioListener"/>, can simulate 3D audio localization effects for a given sound implementing the <see cref="T:Stride.Audio.IPositionableSound"/> interface.
+            For more details take a look at the <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> function.
+            </summary>
+            <seealso cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/>
+            <seealso cref="T:Stride.Audio.AudioListener"/>
+        </member>
+        <member name="F:Stride.Audio.AudioEmitter.Position">
+            <summary>
+            The position of the emitter in the 3D world.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEmitter.Velocity">
+            <summary>
+            The velocity of the emitter in the 3D world. 
+            </summary>
+            <remarks>This is only used to calculate the doppler effect on the sound effect</remarks>
+        </member>
+        <member name="P:Stride.Audio.AudioEmitter.Up">
+            <summary>
+            Gets or sets the Up orientation vector for this emitter. This vector up of the world for the emitter.
+            </summary>
+            <remarks>
+            <para>By default, this value is (0,1,0).</para>
+            <para>The value provided will be normalized if it is not already.</para>
+            <para>The values of the Forward and Up vectors must be orthonormal (at right angles to one another). 
+            Behavior is undefined if these vectors are not orthonormal.</para>
+            <para>Doppler and Matrix values between an <see name="AudioEmitter"/> and an <see cref="T:Stride.Audio.AudioEmitter"/> are effected by the emitter orientation.</para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The value provided to the set accessor is (0,0,0).</exception>
+        </member>
+        <member name="P:Stride.Audio.AudioEmitter.Forward">
+            <summary>
+            Gets or sets the forward orientation vector for this emitter. This vector represents the orientation the emitter is looking at.
+            </summary>
+            <remarks>
+            <para>By default, this value is (0,0,1).</para>
+            <para>The value provided will be normalized if it is not already.</para>
+            <para>The values of the Forward and Up vectors must be orthonormal (at right angles to one another). 
+            Behavior is undefined if these vectors are not orthonormal.</para>
+            <para>Doppler and Matrix values between an <see name="AudioEmitter"/> and an <see cref="T:Stride.Audio.AudioEmitter"/> are effected by the emitter orientation.</para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The value provided to the set accessor is (0,0,0) or <see cref="P:Stride.Audio.AudioEmitter.Up"/>.</exception>
+        </member>
+        <member name="M:Stride.Audio.AudioEmitter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.AudioEmitter"/> class.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioEngine">
+            <summary>
+            Represents the audio engine. 
+            In current version, the audio engine necessarily creates its context on the default audio hardware of the device.
+            The audio engine is required when creating or loading sounds.
+            </summary>
+            <remarks/>The AudioEngine is Disposable. Call the <see cref="!:ComponentBase.Dispose"/> function when you do not need to play sounds anymore to free memory allocated to the audio system. 
+            A call to Dispose automatically stops and disposes all the <see cref="T:Stride.Audio.SoundBase"/>, <see cref="T:Stride.Audio.SoundInstance"/>
+        </member>
+        <member name="F:Stride.Audio.AudioEngine.Logger">
+            <summary>
+            The logger of the audio engine.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.#ctor(System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.AudioEngine"/> class with the default audio device.
+            </summary>
+            <param name="sampleRate">The desired sample rate of the audio graph. 0 let the engine choose the best value depending on the hardware.</param>
+            <exception cref="T:Stride.Audio.AudioInitializationException">Initialization of the audio engine failed. May be due to memory problems or missing audio hardware.</exception>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.#ctor(Stride.Audio.AudioDevice,System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.AudioEngine"/> class with the default audio device.
+            </summary>
+            <param name="device">Device on which to create the audio engine.</param>
+            <param name="sampleRate">The desired sample rate of the audio graph. 0 let the engine choose the best value depending on the hardware.</param>
+            <exception cref="T:Stride.Audio.AudioInitializationException">Initialization of the audio engine failed. May be due to memory problems or missing audio hardware.</exception>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.InitializeAudioEngine(Stride.Audio.AudioLayer.DeviceFlags)">
+            <summary>
+            Initialize audio engine
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.DestroyAudioEngine">
+            <summary>
+            Platform specifc implementation of <see cref="M:Stride.Audio.AudioEngine.Destroy"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEngine.pausedSounds">
+            <summary>
+            The list of the sounds that have been paused by the call to <see cref="M:Stride.Audio.AudioEngine.PauseAudio"/> and should be resumed by <see cref="M:Stride.Audio.AudioEngine.ResumeAudio"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.AudioEngine.AudioSampleRate">
+            <summary>
+            The underlying sample rate of the audio system.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.Update">
+            <summary>
+            Method that updates all the sounds play status. 
+            </summary>
+            <remarks>Should be called in same thread as user main thread.</remarks>
+            <exception cref="T:System.InvalidOperationException">One or several of the sounds asked for play had invalid data (corrupted or unsupported formats).</exception>
+        </member>
+        <member name="P:Stride.Audio.AudioEngine.State">
+            <summary>
+            The current state of the <see cref="T:Stride.Audio.AudioEngine"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.AudioEngine.MasterVolume">
+            <summary>
+            Gets or sets the Global audio volume
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.PauseAudio">
+            <summary>
+            Pause the audio engine. That is, pause all the currently playing <see cref="T:Stride.Audio.SoundInstance"/>, and block any future play until <see cref="M:Stride.Audio.AudioEngine.ResumeAudio"/> is called.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.ResumeAudio">
+            <summary>
+            Resume all audio engine. That is, resume the sounds paused by <see cref="M:Stride.Audio.AudioEngine.PauseAudio"/>, and re-authorize future calls to play.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngine.Destroy">
+            <summary>
+            Destroys the instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioEngineFactory.NewAudioEngine(Stride.Audio.AudioDevice,Stride.Audio.AudioLayer.DeviceFlags)">
+            <summary>
+            Based on compilation setting, returns the proper instance of sounds.
+            </summary>
+            <returns>A platform specific instance of <see cref="T:Stride.Audio.AudioEngine"/></returns>
+        </member>
+        <member name="P:Stride.Audio.AudioEngineSettings.HrtfSupport">
+            <summary>
+            Enables HRTF audio. Note that only audio emitters with HRTF enabled produce HRTF audio
+            </summary>
+            <userdoc>
+            Enables HRTF audio. Note that only audio emitters with HRTF enabled produce HRTF audio
+            </userdoc>
+        </member>
+        <member name="T:Stride.Audio.AudioEngineState">
+            <summary>
+            Describe the possible states of the <see cref="T:Stride.Audio.AudioEngine"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEngineState.Running">
+            <summary>
+            The audio engine is currently running.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEngineState.Paused">
+            <summary>
+            The audio engine is currently paused. Any calls to play will be dropped.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEngineState.Invalidated">
+            <summary>
+            The audio engine is not currently usable due to missing audio hardware or unplugged audio output.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioEngineState.Disposed">
+            <summary>
+            The audio engine is disposed. The current instance cannot be used to play or create sounds anymore.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioInitializationException">
+            <summary>
+            The exception that is thrown when audio engine failed to initialized.
+            Most of the time is happens when no hardware is present, or when audio hardware is installed, but it is not enabled or where there is no output connected. 
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.NoMicrophoneConnectedException">
+            <summary>
+            The exception that is thrown when <see cref="T:Stride.Audio.Microphone"/> API calls are made on a disconnected microphone. 
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioDeviceInvalidatedException">
+            <summary>
+            The exception that is thrown when the audio device became unusable through being unplugged or some other event.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioSystemInternalException">
+            <summary>
+            The exception that is thrown when an internal error happened in the Audio System. That is an error that is not due to the user behaviour.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioListener">
+            <summary>
+            Represents a 3D audio listener in the audio scene. 
+            This object, used in combination with an <see cref="T:Stride.Audio.AudioEmitter"/>, can simulate 3D audio localization effects for a sound implemention the <see cref="T:Stride.Audio.IPositionableSound"/> interface.
+            For more details take a look at the <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> function.
+            </summary>
+            <seealso cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/>
+            <seealso cref="T:Stride.Audio.AudioEmitter"/>
+        </member>
+        <member name="F:Stride.Audio.AudioListener.Position">
+            <summary>
+            The position of the listener in the 3D world.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioListener.Velocity">
+            <summary>
+            The velocity of the listener in the 3D world. 
+            </summary>
+            <remarks>This is only used to calculate the doppler effect on the sound effect</remarks>
+        </member>
+        <member name="P:Stride.Audio.AudioListener.Up">
+            <summary>
+            Gets or sets the Up orientation vector for this listener. This vector up of the world for the listener.
+            </summary>
+            <remarks>
+            <para>By default, this value is (0,1,0).</para>
+            <para>The value provided will be normalized if it is not already.</para>
+            <para>The values of the Forward and Up vectors must be orthonormal (at right angles to one another). 
+            Behavior is undefined if these vectors are not orthonormal.</para>
+            <para>Doppler and Matrix values between an <see name="AudioEmitter"/> and an <see cref="T:Stride.Audio.AudioListener"/> are effected by the listener orientation.</para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The value provided to the set accessor is (0,0,0).</exception>
+        </member>
+        <member name="P:Stride.Audio.AudioListener.Forward">
+            <summary>
+            Gets or sets the forward orientation vector for this listener. This vector represents the orientation the listener is looking at.
+            </summary>
+            <remarks>
+            <para>By default, this value is (0,0,1).</para>
+            <para>The value provided will be normalized if it is not already.</para>
+            <para>The values of the Forward and Up vectors must be orthonormal (at right angles to one another). 
+            Behavior is undefined if these vectors are not orthonormal.</para>
+            <para>Doppler and Matrix values between an <see name="AudioEmitter"/> and an <see cref="T:Stride.Audio.AudioListener"/> are effected by the listener orientation.</para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The value provided to the set accessor is (0,0,0) or <see cref="P:Stride.Audio.AudioListener.Up"/>.</exception>
+        </member>
+        <member name="M:Stride.Audio.AudioListener.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.AudioListener"/> class.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.AudioListener.Listener">
+            <summary>
+            Internal OpenAL object that represents a device context actually, this is to allow multiple listeners
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.AudioListener.Dispose">
+            <summary>
+            Disposes the Listener
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.CompressedSoundPacket">
+            <summary>
+            Used internally in SoundAsset
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.CompressedSoundPacket.Length">
+            <summary>
+            The length of the Data.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.CompressedSoundPacket.Data">
+            <summary>
+            The Data.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.CompressedSoundSource.#ctor(Stride.Audio.SoundInstance,Stride.Core.IO.IVirtualFileProvider,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.CompressedSoundSource"/> class.
+            This type of DynamicSoundSource is streamed from Disk and reads compressed Celt encoded data, used internally.
+            </summary>
+            <param name="instance">The associated SoundInstance</param>
+            <param name="fileProvider">The file provider to read the stream from</param>
+            <param name="soundStreamUrl">The compressed stream internal URL</param>
+            <param name="numberOfPackets">The number of packets</param>
+            <param name="sampleRate">The sample rate of the compressed data</param>
+            <param name="channels">The number of channels of the compressed data</param>
+            <param name="maxCompressedSize">The maximum size of a compressed packet</param>
+        </member>
+        <member name="P:Stride.Audio.CompressedSoundSource.MaxNumberOfBuffers">
+            <summary>
+            Gets the max numbers of buffered buffers
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.CompressedSoundSource.SetLooped(System.Boolean)">
+            <summary>
+            Sets if the stream should be played in loop
+            </summary>
+            <param name="loop">if looped or not</param>
+        </member>
+        <member name="P:Stride.Audio.CompressedSoundSource.PlayRange">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Audio.CompressedSoundSource.DisposeInternal">
+            <summary>
+            Destroys the instance.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.DynamicSoundSource.AsyncCommand">
+            <summary>
+            The possible async commands that can be queued and be handled by subclasses
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.DynamicSoundSource.Commands">
+            <summary>
+            The commands derived classes should execute.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.ReadyToPlay">
+            <summary>
+            Gets a task that will be fired once the source is ready to play.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.Ended">
+            <summary>
+            Gets a task that will be fired once there will be no more queueud data.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.DynamicSoundSource.soundInstance">
+            <summary>
+            The sound instance associated.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.DynamicSoundSource.state">
+            <summary>
+            If we are in the paused state.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.DynamicSoundSource.playingQueued">
+            <summary>
+            If we are waiting to play.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.DynamicSoundSource.isSourcePausedOrPlaying">
+            <summary>
+            If the source is actually playing sound
+            this takes into account multiple factors: Playing, Ended task, and Audio layer playing state
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.#ctor(Stride.Audio.SoundInstance,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.DynamicSoundSource"/> class.
+            Sub classes can implement their own streaming sources.
+            </summary>
+            <param name="soundInstance">the sound instance associated.</param>
+            <param name="numberOfBuffers">the size of the streaming ring-buffer.</param>
+            <param name="maxBufferSizeBytes">the maximum size of each buffer.</param>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.Dispose">
+            <summary>
+            Enqueues a dispose command, to dispose this instance.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.CanFill">
+            <summary>
+            Checks if a buffer can be filled, before calling FillBuffer this should be checked.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.MaxNumberOfBuffers">
+            <summary>
+            Max number of buffers that are going to be queued.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.Play">
+            <summary>
+            Enqueues a Play command, to Play this instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.Pause">
+            <summary>
+            Enqueues a Pause command, to Pause this instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.Stop">
+            <summary>
+            Enqueues a Stop command, to Stop this instance.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.IsPausedOrPlaying">
+            <summary>
+            Gets if this instance is in the playing state.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.DynamicSoundSource.PlayRange">
+            <summary>
+            Gets or sets the region of time to play from the audio clip.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.SetLooped(System.Boolean)">
+            <summary>
+            Sets if the stream should be played in loop.
+            </summary>
+            <param name="looped">if looped or not</param>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.UpdateInternal">
+            <summary>
+            Update the sound source
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.RestartInternal">
+            <summary>
+            Restarts streaming from the beginning.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.PrepareInternal">
+            <summary>
+            Prepare the source for playback
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.DisposeInternal">
+            <summary>
+            Destroys the instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.FillBuffer(System.IntPtr,System.Int32,Stride.Audio.AudioLayer.BufferType)">
+            <summary>
+            If CanFillis true with this method you can fill the next free buffer
+            </summary>
+            <param name="pcm">The pointer to PCM data</param>
+            <param name="bufferSize">The full size in bytes of PCM data</param>
+            <param name="type">If this buffer is the last buffer of the stream set to true, if not false</param>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.FillBuffer(System.Int16[],System.Int32,Stride.Audio.AudioLayer.BufferType)">
+            <summary>
+            If CanFillis true with this method you can fill the next free buffer
+            </summary>
+            <param name="pcm">The array containing PCM data</param>
+            <param name="bufferSize">The full size in bytes of PCM data</param>
+            <param name="type">If this buffer is the last buffer of the stream set to true, if not false</param>
+        </member>
+        <member name="M:Stride.Audio.DynamicSoundSource.FillBuffer(System.Byte[],System.Int32,Stride.Audio.AudioLayer.BufferType)">
+            <summary>
+            If CanFillis true with this method you can fill the next free buffer
+            </summary>
+            <param name="pcm">The array containing PCM data</param>
+            <param name="bufferSize">The full size in bytes of PCM data</param>
+            <param name="type">If this buffer is the last buffer of the stream set to true, if not false</param>
+        </member>
+        <member name="T:Stride.Audio.IAudioEngineProvider">
+            <summary>
+            Used internally to find the currently active audio engine 
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.IPlayableSound">
+            <summary>
+            Interface for a playable sound.
+            A playable sound can loop (ref <see cref="!:IsLooped"/>), be played (ref <see cref="M:Stride.Audio.IPlayableSound.Play"/>), be paused (ref <see cref="M:Stride.Audio.IPlayableSound.Pause"/>), be resumed (ref <see cref="M:Stride.Audio.IPlayableSound.Play"/>), 
+            be stopped (ref <see cref="M:Stride.Audio.IPlayableSound.Stop"/>) and be attenuated (ref <see cref="P:Stride.Audio.IPlayableSound.Volume"/>).
+            To query the current state of a sound use the <see cref="P:Stride.Audio.IPlayableSound.PlayState"/> property. 
+            To stop a sound after its currently loop use <see cref="!:ExitLoop"/>
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IPlayableSound.PlayState">
+            <summary>
+            The current state of the sound. 
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IPlayableSound.IsLooping">
+            <summary>
+            Gets or sets whether the sound is automatically looping from beginning when it reaches the end.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.IPlayableSound.Play">
+            <summary>
+            Start or resume playing the sound.
+            </summary>
+            <remarks>A call to Play when the sound is already playing has no effects.</remarks>
+        </member>
+        <member name="M:Stride.Audio.IPlayableSound.Pause">
+            <summary>
+            Pause the sounds.
+            </summary>
+            <remarks>A call to Pause when the sound is already paused or stopped has no effects.</remarks>
+        </member>
+        <member name="M:Stride.Audio.IPlayableSound.Stop">
+            <summary>
+            Stop playing the sound immediately and reset the sound to the beginning of the track.
+            </summary>
+            <remarks>A call to Stop when the sound is already stopped has no effects</remarks>
+        </member>
+        <member name="P:Stride.Audio.IPlayableSound.Volume">
+            <summary>
+            The global volume at which the sound is played.
+            </summary>
+            <remarks>Volume is ranging from 0.0f (silence) to 1.0f (full volume). Values beyond those limits are clamped.</remarks>
+        </member>
+        <member name="T:Stride.Audio.IPositionableSound">
+            <summary>
+            Interface for 3D localizable sound.
+            The interface currently supports only mono and stereo sounds (ref <see cref="P:Stride.Audio.IPositionableSound.Pan"/>).
+            The user can localize its sound with <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> by creating one <see cref="T:Stride.Audio.AudioEmitter"/> 
+            and one <see cref="T:Stride.Audio.AudioListener"/> respectly corresponding to the source of the sound and the listener.
+            The <see cref="P:Stride.Audio.IPositionableSound.Pan"/> function enable the user to change the distribution of sound between the left and right speakers.
+            </summary>
+            <remarks>Functions <see cref="P:Stride.Audio.IPositionableSound.Pan"/> and <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> cannot be used together. 
+            A call to <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> will reset <see cref="P:Stride.Audio.IPositionableSound.Pan"/> to its default value and inverse.</remarks>
+            <seealso cref="T:Stride.Audio.Sound"/>
+            <seealso cref="T:Stride.Audio.SoundInstance"/>
+        </member>
+        <member name="P:Stride.Audio.IPositionableSound.Pan">
+            <summary>
+            Set the sound balance between left and right speaker.
+            </summary>
+            <remarks>Panning is ranging from -1.0f (full left) to 1.0f (full right). 0.0f is centered. Values beyond this range are clamped. 
+            Panning modifies the total energy of the signal (Pan == -1 => Energy = 1 + 0, Pan == 0 => Energy = 1 + 1, Pan == 0.5 => Energy = 1 + 0.5, ...) 
+            <para>A call to <see cref="P:Stride.Audio.IPositionableSound.Pan"/> cancels the effect of Apply3D.</para></remarks>
+        </member>
+        <member name="P:Stride.Audio.IPositionableSound.Pitch">
+            <summary>
+            Gets or sets the pitch of the sound, might conflict with spatialized sound spatialization.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)">
+            <summary>
+            Applies 3D positioning to the sound. 
+            More precisely adjust the channel volumes and pitch of the sound, 
+            such that the sound source seems to come from the <paramref name="emitter"/> to the listener/>.
+            </summary>
+            <param name="emitter">The emitter that correspond to this sound</param>
+            <remarks>
+            <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> can be used only on mono-sounds.
+            <para>A call to <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> reset <see cref="P:Stride.Audio.IPositionableSound.Pan"/> to its default values.</para>
+            <para>A call to <see cref="M:Stride.Audio.IPositionableSound.Apply3D(Stride.Audio.AudioEmitter)"/> does not modify the value of <see cref="P:Stride.Audio.IPlayableSound.Volume"/>, 
+            the effective volume of the sound is a combination of the two effects.</para>
+            <para>
+            The final resulting pitch depends on the listener and emitter relative velocity. 
+            The final resulting channel volumes depend on the listener and emitter relative positions and the value of <see cref="P:Stride.Audio.IPlayableSound.Volume"/>. 
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Stride.Audio.IRecorder">
+            <summary>
+            <para>Interface for an audio input recorder</para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IRecorder.BufferDuration">
+            <summary>
+            Gets or sets audio capture buffer duration. 
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IRecorder.BufferSize">
+            <summary>
+            Gets or sets audio capture buffer size in bytes. 
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IRecorder.SampleRate">
+            <summary>
+            Returns the sample rate in Hertz (Hz) at which the microphone is capturing audio data. 
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.IRecorder.State">
+            <summary>
+            Returns the recording state of the recorder object. 
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.GetSampleDuration(System.Int32)">
+            <summary>
+            Returns the duration of audio playback based on the hypotetical given size of the buffer. 
+            </summary>
+            <param name="sizeInBytes">Size, in bytes, of the audio data of which we want to know the duration.</param>
+            <returns><see cref="T:System.TimeSpan"/> object that represents the duration of the audio playback.</returns>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.GetSampleSizeInBytes(System.TimeSpan)">
+            <summary>
+            Returns the size of the byte array required to hold the specified duration of audio for this microphone object. 
+            </summary>
+            <param name="duration"><see cref="T:System.TimeSpan"/> object that contains the duration of the audio sample of which we want to know the size. </param>
+            <returns>Size in bytes, of the audio buffer.</returns>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.Start">
+            <summary>
+            Starts microphone audio capture. 
+            </summary>
+            <exception cref="T:Stride.Audio.NoMicrophoneConnectedException">The microphone has been unplugged since the creation of the recorder instance</exception>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.Stop">
+            <summary>
+            Stops microphone audio capture. 
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.GetData(System.Byte[])">
+            <summary>
+            Gets the latest recorded data from the microphone based on the audio capture buffer size.
+            </summary>
+            <param name="buffer">Buffer, in bytes, that will contain the captured audio data. The audio format is PCM wave data.</param>
+            <returns>The buffer size, in bytes, of the audio data.</returns>
+            <exception cref="T:System.ArgumentException">buffer is null, has zero length, or does not satisfy alignment requirements.</exception>
+        </member>
+        <member name="M:Stride.Audio.IRecorder.GetData(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Gets the latest captured audio data from the microphone based on the specified offset and byte count.
+            </summary>
+            <param name="buffer">Buffer, in bytes, that will contain the captured audio data. The audio format is PCM wave data.</param>
+            <param name="offset">Offset, in bytes, to the desired starting position of the data.</param>
+            <param name="count">Amount, in bytes, of desired audio data.</param>
+            <returns>The buffer size, in bytes, of the audio data.</returns>
+            <exception cref="T:System.ArgumentException">
+            The exception thrown when the following arguments are invalid: 
+            <list type="bullet">
+            <item>buffer is null, has zero length, or does not satisfy alignment requirements.</item>
+            <item>offset is less than zero, is greater than or equal to the size of the buffer, or does not satisfy alignment requirements. </item>
+            <item>The sum of count and offset is greater than the size of the buffer, count is less than or equal to zero, or does not satisfy alignment requirements. </item>
+            </list>
+            </exception>
+        </member>
+        <member name="E:Stride.Audio.IRecorder.BufferReady">
+            <summary>
+            Event that occurs when the audio capture buffer is ready to processed. 
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.Microphone">
+            <summary>
+            Class implementing the IRecoder interface designed to capture microphone audio input. Refer to <see cref="T:Stride.Audio.IRecorder"/> for more details.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.Microphone.#ctor">
+            <summary>
+            Create a new instance of Microphone ready for recording.
+            </summary>
+            <exception cref="T:Stride.Audio.NoMicrophoneConnectedException">No microphone is currently plugged.</exception>
+        </member>
+        <member name="T:Stride.Audio.NamespaceDoc">
+            <summary>
+            The <see cref="N:Stride.Audio"/> namespace contains types to manage sound and music.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.AudioLayer">
+            <summary>
+            Wrapper around OpenAL
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.Celt">
+            <summary>
+            Wrapper around Celt
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.Celt.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initialize the Celt encoder/decoder
+            </summary>
+            <param name="sampleRate">Required sample rate</param>
+            <param name="bufferSize">Required buffer size</param>
+            <param name="channels">Required channels</param>
+            <param name="decoderOnly">If we desire only to decode set this to true</param>
+        </member>
+        <member name="M:Stride.Audio.Celt.Dispose">
+            <summary>
+            Dispose the Celt encoder/decoder
+            Do not call Encode or Decode after disposal!
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.Celt.Decode(System.Byte[],System.Int32,System.Int16[])">
+            <summary>
+            Decodes compressed celt data into PCM 16 bit shorts
+            </summary>
+            <param name="inputBuffer">The input buffer</param>
+            <param name="inputBufferSize">The size of the valid bytes in the input buffer</param>
+            <param name="outputSamples">The output buffer, the size of frames should be the same amount that is contained in the input buffer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Audio.Celt.Decode(System.Byte[],System.Int32,System.Int16*)">
+            <summary>
+            Decodes compressed celt data into PCM 16 bit shorts
+            </summary>
+            <param name="inputBuffer">The input buffer</param>
+            <param name="inputBufferSize">The size of the valid bytes in the input buffer</param>
+            <param name="outputSamples">The output buffer, the size of frames should be the same amount that is contained in the input buffer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Audio.Celt.ResetDecoder">
+            <summary>
+            Reset decoder state.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.Celt.GetDecoderSampleDelay">
+            <summary>
+            Gets the delay between encoder and decoder (in number of samples). This should be skipped at the beginning of a decoded stream.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Audio.Celt.Encode(System.Int16[],System.Byte[])">
+            <summary>
+            Encode PCM audio into celt compressed format
+            </summary>
+            <param name="audioSamples">A buffer containing interleaved channels (as from constructor channels) and samples (can be any number of samples)</param>
+            <param name="outputBuffer">An array of bytes, the size of the array will be the max possible size of the compressed packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Audio.Celt.Decode(System.Byte[],System.Int32,System.Single[])">
+            <summary>
+            Decodes compressed celt data into PCM 32 bit floats
+            </summary>
+            <param name="inputBuffer">The input buffer</param>
+            <param name="inputBufferSize">The size of the valid bytes in the input buffer</param>
+            <param name="outputSamples">The output buffer, the size of frames should be the same amount that is contained in the input buffer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Audio.Celt.Encode(System.Single[],System.Byte[])">
+            <summary>
+            Encode PCM audio into celt compressed format
+            </summary>
+            <param name="audioSamples">A buffer containing interleaved channels (as from constructor channels) and samples (can be any number of samples)</param>
+            <param name="outputBuffer">An array of bytes, the size of the array will be the max possible size of the compressed packet</param>
+            <returns></returns>
+        </member>
+        <member name="T:Stride.Audio.RecorderState">
+            <summary>
+            Enumeration describing the possible Recording States.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.RecorderState.Started">
+            <summary>
+            The recorder is currently recording.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.RecorderState.Stopped">
+            <summary>
+            The recorder is currently stopped.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.Sound">
+            <summary>
+            Sound content.
+            </summary>
+            <remarks>
+            Sound is played with a <see cref="T:Stride.Audio.SoundInstance"/>.
+            </remarks>
+        </member>
+        <member name="M:Stride.Audio.Sound.CreateInstance(Stride.Audio.AudioListener,System.Boolean,System.Boolean,System.Single,Stride.Audio.HrtfEnvironment)">
+            <summary>
+            Create a new sound effect instance of the sound effect. 
+            The audio data are shared between the instances so that useless memory copies is avoided. 
+            Each instance that can be played and localized independently from others.
+            </summary>
+            <returns>A new sound instance</returns>
+            <exception cref="T:System.ObjectDisposedException">The sound has already been disposed</exception>
+        </member>
+        <member name="T:Stride.Audio.SoundBase">
+            <summary>
+            Base class for a Sound content.
+            </summary>
+            <remarks>
+            Sound is played with a <see cref="T:Stride.Audio.SoundInstance"/>.
+            </remarks>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.AttachEngine(Stride.Audio.AudioEngine)">
+            <summary>
+            Create the audio engine to the sound base instance.
+            </summary>
+            <param name="engine">A valid AudioEngine.</param>
+            <exception cref="T:System.ArgumentNullException">The engine argument is null.</exception>
+        </member>
+        <member name="F:Stride.Audio.SoundBase.Instances">
+            <summary>
+            Current instances of the SoundEffect.
+            We need to keep track of them to stop and dispose them when the soundEffect is disposed.
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.SoundBase.soundEffectCreationCount">
+            <summary>
+            The number of SoundEffect Created so far. Used only to give a unique name to the SoundEffect.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.SoundBase.TotalLength">
+            <summary>
+            Gets the total length in time of the Sound.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.CreateInstance(Stride.Audio.AudioListener,System.Boolean,System.Single,Stride.Audio.HrtfEnvironment)">
+            <summary>
+            Create a new sound effect instance of the sound effect. 
+            Each instance that can be played and localized independently from others.
+            </summary>
+            <returns>A new sound instance</returns>
+            <exception cref="T:System.ObjectDisposedException">The sound has already been disposed</exception>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.StopAllInstances">
+            <summary>
+            Stop all registered instances of the <see cref="T:Stride.Audio.SoundBase"/>.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.StopConcurrentInstances(Stride.Audio.SoundInstance)">
+            <summary>
+            Stop all registered instances different from the provided main instance
+            </summary>
+            <param name="mainInstance">The main instance of the sound effect</param>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.UnregisterInstance(Stride.Audio.SoundInstance)">
+            <summary>
+            Unregister a disposed Instance.
+            </summary>
+            <param name="instance"></param>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.RegisterInstance(Stride.Audio.SoundInstance)">
+            <summary>
+            Register a new instance to the soundEffect.
+            </summary>
+            <param name="instance">new instance to register.</param>
+        </member>
+        <member name="F:Stride.Audio.SoundBase.intancesCreationCount">
+            <summary>
+            The number of Instances Created so far by this SoundEffect. Used only to give a unique name to the SoundEffectInstance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundBase.Destroy">
+            <summary>
+            Destroys the instance.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.SoundInstance">
+            <summary>
+            Base class for sound that creates voices
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.#ctor(Stride.Audio.AudioEngine,Stride.Audio.AudioListener,Stride.Audio.DynamicSoundSource,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Single,Stride.Audio.HrtfEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Audio.SoundInstance"/> class using a dynamic sound source.
+            </summary>
+            <param name="engine">The audio engine that will be used to play this instance</param>
+            <param name="listener">The listener of this instance</param>
+            <param name="dynamicSoundSource">The source from where the PCM data will be fetched</param>
+            <param name="sampleRate">The sample rate of this audio stream</param>
+            <param name="mono">Set to true if the souce is mono, false if stereo</param>
+            <param name="spatialized">If the SoundInstance will be used for spatialized audio set to true, if not false, if true mono must also be true</param>
+            <param name="useHrtf">If the engine should use Hrtf for spatialization</param>
+            <param name="directionalFactor"></param>
+            <param name="environment"></param>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.IsLooping">
+            <summary>
+            Gets or sets whether the sound is automatically looping from beginning when it reaches the end.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.Pan">
+            <summary>
+            Set the sound balance between left and right speaker.
+            </summary>
+            <remarks>Panning is ranging from -1.0f (full left) to 1.0f (full right). 0.0f is centered. Values beyond this range are clamped.
+            Panning modifies the total energy of the signal (Pan == -1 => Energy = 1 + 0, Pan == 0 => Energy = 1 + 1, Pan == 0.5 => Energy = 1 + 0.5, ...)
+            </remarks>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.Volume">
+            <summary>
+            The global volume at which the sound is played.
+            </summary>
+            <remarks>Volume is ranging from 0.0f (silence) to 1.0f (full volume). Values beyond those limits are clamped.</remarks>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.Pitch">
+            <summary>
+            Gets or sets the pitch of the sound, might conflict with spatialized sound spatialization.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.ReadyToPlay">
+            <summary>
+            A task that completes when the sound is ready to play
+            </summary>
+            <returns>Returns a task that will complete when the sound has been buffered and ready to play</returns>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Apply3D(Stride.Audio.AudioEmitter)">
+            <summary>
+            Applies 3D positioning to the sound.
+            More precisely adjust the channel volumes and pitch of the sound,
+            such that the sound source seems to come from the <paramref name="emitter"/> to the listener/>.
+            </summary>
+            <param name="emitter">The emitter that correspond to this sound</param>
+            <remarks>
+            <see cref="M:Stride.Audio.SoundInstance.Apply3D(Stride.Audio.AudioEmitter)"/> can be used only on mono-sounds.
+            <para>
+            The final resulting pitch depends on the listener and emitter relative velocity.
+            The final resulting channel volumes depend on the listener and emitter relative positions and the value of <see cref="P:Stride.Audio.IPlayableSound.Volume"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Pause">
+            <summary>
+            Pause the sounds.
+            </summary>
+            <remarks>A call to Pause when the sound is already paused or stopped has no effects.</remarks>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Play">
+            <summary>
+            Play or resume the sound effect instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.PlayExclusive">
+            <summary>
+            Play or resume the sound effect instance, stopping sibling instances.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Stop">
+            <summary>
+            Stop playing the sound immediately and reset the sound to the beginning of the track.
+            </summary>
+            <remarks>A call to Stop when the sound is already stopped has no effects.</remarks>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Destroy">
+            <summary>
+            Destroys the instance.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.Play(System.Boolean)">
+            <summary>
+            Play the sound instance.
+            </summary>
+            <param name="stopSiblingInstances">if true any other istance of the same Sound will be stopped.</param>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.PlayState">
+            <summary>
+            Gets the state of the SoundInstance.
+            </summary>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.DynamicSoundSource">
+            <summary>
+            Gets the DynamicSoundSource, might be null if the sound is not using DynamicSoundSource, e.g. not streamed from disk or not using a DynamicSoundSource derived class as backing.
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.SoundInstance.SetRange(Stride.Media.PlayRange)">
+            <summary>
+            Sets the range of the sound to play.
+            </summary>
+            <param name="range">a PlayRange structure that describes the starting offset and ending point of the sound to play in seconds.</param>
+        </member>
+        <member name="P:Stride.Audio.SoundInstance.Position">
+            <summary>
+            Gets the position in time of this playing instance.
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.SoundInstanceStreamedBuffer">
+            <summary>
+            A Sound Instance where the SoundSource comes from a StreamedBufferSoundSource, and implementing ISynchronizedMediaExtractor interface
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.SoundSerializer">
+            <summary>
+            Used internally to serialize Sound
+            </summary>
+        </member>
+        <member name="T:Stride.Audio.StreamedBufferSound">
+            <summary>
+            Sound streamed buffer
+            </summary>
+            <remarks>
+            The sound comes from an external process (such like a video decoder, ...) streaming the audio data into a buffer
+            </remarks>
+        </member>
+        <member name="M:Stride.Audio.StreamedBufferSound.CreateInstance(Stride.Audio.AudioListener,System.Boolean,System.Single,Stride.Audio.HrtfEnvironment)">
+            <summary>
+            Create a new sound effect instance of the sound effect. 
+            Each instance that can be played and localized independently from others.
+            </summary>
+            <returns>A new sound instance</returns>
+            <exception cref="T:System.ObjectDisposedException">The sound has already been disposed</exception>
+        </member>
+        <member name="F:Stride.Audio.StreamedBufferSoundSource.MinBufferSizeBytesBeforeFlushingStorageBuffer">
+            <summary>
+            Specifies how much data we wait to have extracted before we send the storage buffer to the audio buffer
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.StreamedBufferSoundSource.storageBuffer">
+            <summary>
+            Temporary buffers for accumulating the data we're extracting before sending them to the AudioLayer
+            </summary>
+        </member>
+        <member name="F:Stride.Audio.StreamedBufferSoundSource.seekRequestCompleted">
+            <summary>
+            The media scheduler will check this field to determine whether he can stop waiting for the extractors getting ready
+            </summary>
+        </member>
+        <member name="M:Stride.Audio.StreamedBufferSoundSource.SetLooped(System.Boolean)">
+            <summary>
+            Sets if the stream should be played in loop
+            </summary>
+            <param name="loop">if looped or not</param>
+        </member>
+        <member name="P:Stride.Audio.StreamedBufferSoundSource.PlayRange">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Audio.StreamedBufferSoundSource.SeekInternal">
+            <summary>
+            Should be called from working thread only (or add proper locks)
+            </summary>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

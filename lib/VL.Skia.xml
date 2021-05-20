@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VL.Skia</name>
+    </assembly>
+    <members>
+        <member name="T:VL.Skia.CallerInfo">
+            <summary>
+            Information from downstream that gets handed over to upstream on render and on notify. Immutable
+            </summary>
+        </member>
+        <member name="M:VL.Skia.CallerInfo.InRenderer(System.Int32,System.Int32,SkiaSharp.SKCanvas,SkiaSharp.GRContext)">
+            <summary>
+            Renderers call this to set up the caller info
+            </summary>
+        </member>
+        <member name="M:VL.Skia.CallerInfo.PushTransformation(SkiaSharp.SKMatrix)">
+            <summary>
+            Adjust the space for upstream - based on the downstream tranformation.
+            Can be used by cameras or normal object to world space transformations.
+            Adjust the camera further downstream to make it work as expected.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.CallerInfo.InViewport(SkiaSharp.SKRect,System.Func{VL.Skia.CallerInfo,SkiaSharp.SKMatrix})">
+            <summary>
+            Setup a new viewport.
+            If we are already in a viewport this places the new viewport inside the downstream viewport.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.CallerInfo.GetWithinSpaceTransformation(SkiaSharp.SKRect,VL.Skia.Sizing,System.Single,System.Single,VL.Lib.Mathematics.RectangleAnchor)">
+            <summary>
+            Applies the space by resetting the Transformation.
+            Further upstream you may use cameras and other transformations and thus invent your own space.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.CallerInfo.WithRenderPaintHack(System.Func{SkiaSharp.SKPaint,SkiaSharp.SKPaint})">
+            <summary>
+            Use this to implement semantics-like features.
+            With the delegate you can influence all rendering nodes upstream.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.CommonSpace.Normalized">
+            <summary>
+            Height goes from -1 Top to 1 Bottom. The origin is located in the center.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.CommonSpace.DIP">
+            <summary>
+            Works with device independant pixels. One unit equals 100 actual DIP. The origin is located in the center.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.CommonSpace.DIPTopLeft">
+            <summary>
+            Works with device independant pixels. One unit equals 100 actual DIP. The origin is located at the top left.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.CommonSpace.PixelTopLeft">
+            <summary>
+            Works with pixels. One unit equals 100 actual pixels. The origin is located at the top left.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.Imaging.TryFromImage(VL.Lib.Basics.Imaging.IImage,System.Boolean,SkiaSharp.SKImage@)">
+            <summary>
+            Tries to convert an IImage to an SKImage
+            </summary>
+            <param name="image"></param>
+            <param name="discardHigherBits">Skia cannot handle 16bit images. Therefore in case the input is of type R16 this decides whether to discard the higher or lower bits in the conversion to 8bit</param>
+            <param name="skImage">The converted image or null if the conversion was not possible.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VL.Skia.Imaging.FromImage(VL.Lib.Basics.Imaging.IImage,System.Boolean)">
+            <summary>
+            Convertes an IImage to an SKImage
+            </summary>
+            <param name="image"></param>
+            <param name="discardHigherBits">Skia cannot handle 16bit images. Therefore in case the input is of type R16 this decides whether to discard the higher or lower bits in the conversion to 8bit</param>
+            <returns></returns>
+        </member>
+        <member name="T:VL.Skia.Sizing">
+            <summary>
+            Allows to adjust the units of the coordinate space 
+            </summary>
+        </member>
+        <member name="F:VL.Skia.Sizing.Pixels">
+            <summary>
+            Pixel space. One unit equals 100 acutal pixels.  
+            </summary>
+        </member>
+        <member name="F:VL.Skia.Sizing.DIP">
+            <summary>
+            Device Independant Pixels are like pixels, but respect the scaling factor of the display. One unit equals 100 actual DIP.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.Sizing.ManualSize">
+            <summary>
+            Adjust with and height manually. 
+            Setting either width or height to 0 results in computing width depending on height or vice versa, 
+            while respecting the aspect ratio of the renderer or viewport.
+            </summary>
+        </member>
+        <member name="T:VL.Skia.ILayer">
+            <summary>
+            Scene graph nodes may 
+            * render themselves into the layer
+            * react on or modify notifications from downstream 
+            </summary>
+        </member>
+        <member name="M:VL.Skia.ILayer.Render(VL.Skia.CallerInfo)">
+            <summary>
+            Renders the layer. Called from downstream. 
+            Scene graph elements should render themselves before calling render upstream.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.ILayer.Notify(VL.Lib.IO.Notifications.INotification,VL.Skia.CallerInfo)">
+            <summary>
+            Scene graph nodes typically notify upstream before considering to apply own logic.
+            Typically only apply own logic if notification didn't get processed by upstream. 
+            Return if notification got processed.
+            </summary>
+        </member>
+        <member name="T:VL.Skia.IRendering">
+            <summary>
+            Allows to concentrate on the rendering of a single layer. 
+            No need for calling anything upstream, no need to think about notifications.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.IRendering.Render(VL.Skia.CallerInfo)">
+            <summary>
+            Renders the layer. 
+            </summary>
+        </member>
+        <member name="T:VL.Skia.IBehavior">
+            <summary>
+            Allows to concentrate on the behavior of a single layer. 
+            No need for calling anything upstream, no need to think about rendering.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.IBehavior.Notify(VL.Lib.IO.Notifications.INotification,VL.Skia.CallerInfo)">
+            <summary>
+            If notification got processed return true.
+            </summary>
+        </member>
+        <member name="T:VL.Skia.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:VL.Skia.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:VL.Skia.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:VL.Skia.Properties.Resources.QuadIcon">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:VL.Skia.SkiaRenderer.RenderTime">
+            <summary>
+            The time to evaluate and draw the layer input in μs.
+            </summary>
+        </member>
+        <member name="F:VL.Skia.SkiaRenderer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:VL.Skia.SkiaRenderer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="P:VL.Skia.RenderStopwatch.RenderTime">
+            <summary>
+            The time between StartRender and EndRender in μs.
+            </summary>
+        </member>
+        <member name="P:VL.Skia.SkiaControl.RenderTime">
+            <summary>
+            The time to evaluate the layer input in μs.
+            </summary>
+        </member>
+        <member name="P:VL.Skia.SkiaGLControl.RenderTime">
+            <summary>
+            The time to evaluate the layer input in μs.
+            </summary>
+        </member>
+        <member name="T:VL.Skia.IVarying`1">
+            <summary>
+            IVarying models a snapshot, while it may wrap around a mutable T.
+            You need to tell it when T mutates so that it responds with a new snapshot.
+            From outside you now can use reference equality checks.
+            </summary>
+        </member>
+        <member name="T:VL.Skia.MutatingVarying`1">
+            <summary>
+            Mutating varying models a versioning system. T may mutate.
+            You need to tell it when T mutates so that it responds with evelving (counting up version number).
+            From outside you can compare track versions and thereby reason if something has changed in regards to when you last looked at it.
+            </summary>
+        </member>
+    </members>
+</doc>

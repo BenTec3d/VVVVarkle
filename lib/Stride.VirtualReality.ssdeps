@@ -1,0 +1,4 @@
+NativeLib;x64\openvr_api.dll;x64\openvr_api.dll
+NativeLib;x86\openvr_api.dll;x86\openvr_api.dll
+NativeLib;x86\libstridevr.dll;x86\libstridevr.dll
+NativeLib;x64\libstridevr.dll;x64\libstridevr.dll

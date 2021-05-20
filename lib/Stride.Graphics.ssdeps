@@ -1,0 +1,4 @@
+NativeLib;x64\SDL2.dll;x64\SDL2.dll
+NativeLib;x86\SDL2.dll;x86\SDL2.dll
+NativeLib;x64\freetype.dll;x64\freetype.dll
+NativeLib;x86\freetype.dll;x86\freetype.dll

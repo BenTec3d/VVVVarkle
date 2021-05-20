@@ -1,0 +1,748 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stride.Core.IO</name>
+    </assembly>
+    <members>
+        <member name="T:Stride.Core.IO.DirectoryWatcher">
+            <summary>
+            Track file system events from several directories.
+            </summary>
+        </member>
+        <member name="E:Stride.Core.IO.DirectoryWatcher.Modified">
+            <summary>
+            Occurs when a file/directory change occurred.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.IO.DirectoryWatcher"/> class.
+            </summary>
+            <param name="fileFilter">The file filter By default null default to *.*</param>
+        </member>
+        <member name="P:Stride.Core.IO.DirectoryWatcher.FileFilter">
+            <summary>
+            Gets the file filter used by this instance.
+            </summary>
+            <value>The file filter.</value>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.GetTrackedDirectories">
+            <summary>
+            Gets a list of current directories being tracked.
+            </summary>
+            <returns>A list of current directories being tracked</returns>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.Track(System.String)">
+            <summary>
+            Tracks the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <remarks>
+            If path is a file, this will used the parent directory. If the path is invalid, it will not fail but just skip it.
+            </remarks>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.UnTrack(System.String)">
+            <summary>
+            UnTracks the specified path.
+            </summary>
+            <remarks>
+            If path is a file, this will used the parent directory. If the path is invalid, it will not fail but just skip it.
+            </remarks>
+        </member>
+        <member name="M:Stride.Core.IO.DirectoryWatcher.OnModified(System.Object,Stride.Core.IO.FileEvent)">
+            <summary>
+            Called when a file event occurred.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The file event.</param>
+        </member>
+        <member name="T:Stride.Core.IO.DriveFileProvider">
+            <summary>
+            Exposes the whole file system through folder similar to Cygwin.
+            As an example, "/c/Program Files/Test/Data.dat" would work.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.DriveFileProvider.GetLocalPath(System.String)">
+            <summary>
+            Resolves the VFS URL from a given file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Stride.Core.IO.DriveFileProvider.ConvertUrlToFullPath(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.DriveFileProvider.ConvertFullPathToUrl(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Core.IO.FileEvent">
+            <summary>
+            � file event used notified by <see cref="T:Stride.Core.IO.DirectoryWatcher"/>
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.FileEvent.#ctor(Stride.Core.IO.FileEventChangeType,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.IO.FileEvent"/> class.
+            </summary>
+            <param name="changeType">Type of the change.</param>
+            <param name="name">The name.</param>
+            <param name="fullPath">The full path.</param>
+        </member>
+        <member name="P:Stride.Core.IO.FileEvent.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>The type of the change.</value>
+        </member>
+        <member name="P:Stride.Core.IO.FileEvent.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Stride.Core.IO.FileEvent.FullPath">
+            <summary>
+            Gets the full path.
+            </summary>
+            <value>The full path.</value>
+        </member>
+        <member name="T:Stride.Core.IO.FileRenameEvent">
+            <summary>
+            � file rename event used notified by <see cref="T:Stride.Core.IO.DirectoryWatcher"/>
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.FileRenameEvent.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.IO.FileRenameEvent"/> class.
+            </summary>
+            <param name="changeType">Type of the change.</param>
+            <param name="name">The name.</param>
+            <param name="fullPath">The full path.</param>
+            <param name="oldFullPath">The old full path. (before rename) </param>
+        </member>
+        <member name="P:Stride.Core.IO.FileRenameEvent.OldFullPath">
+            <summary>
+            Gets the full path. (in case of rename)
+            </summary>
+            <value>The full path. (in case of rename)</value>
+        </member>
+        <member name="T:Stride.Core.IO.FileEventChangeType">
+            <summary>
+            Change type of file used by <see cref="T:Stride.Core.IO.FileEvent"/> and <see cref="T:Stride.Core.IO.DirectoryWatcher"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.FileSystemProvider">
+            <summary>
+            A file system implementation for IVirtualFileProvider.
+            </summary>
+            <summary>
+            A file system implementation for IVirtualFileProvider.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.FileSystemProvider.localBasePath">
+            <summary>
+            Base path of this provider (every path will be relative to this one).
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.IO.FileSystemProvider" /> class with the given base path.
+            </summary>
+            <param name="rootPath">The root path of this provider.</param>
+            <param name="localBasePath">The path to a local directory where this instance will load the files from.</param>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.CreateDirectory(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.FileExists(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.FileDelete(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.FileMove(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.FileMove(System.String,Stride.Core.IO.IVirtualFileProvider,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.TryGetFileLocation(System.String,System.String@,System.Int64@,System.Int64@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.OpenStream(System.String,Stride.Core.IO.VirtualFileMode,Stride.Core.IO.VirtualFileAccess,Stride.Core.IO.VirtualFileShare,Stride.Core.IO.StreamFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.FileSystemProvider.ListFiles(System.String,System.String,Stride.Core.IO.VirtualSearchOption)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Core.IO.IVirtualFileProvider">
+            <summary>
+            A virtual file provider, that can returns a Stream for a given path.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.IO.IVirtualFileProvider.RootPath">
+            <summary>
+            Gets or sets the root path of this provider. See remarks.
+            </summary>
+            <value>
+            The root path.
+            </value>
+            <remarks>
+            All path are relative to the root path.
+            </remarks>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.GetAbsolutePath(System.String)">
+            <summary>
+            Gets the absolute  path for the specified local path from this provider.
+            </summary>
+            <param name="path">The path local to this instance.</param>
+            <returns>An absolute path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.TryGetFileLocation(System.String,System.String@,System.Int64@,System.Int64@)">
+            <summary>
+            Gets the absolute path and location if the specified path physically exist on the disk in an uncompressed form (could be inside another file).
+            </summary>
+            <param name="path">The path.</param>
+            <param name="filePath">The file containing the data.</param>
+            <param name="start">The start offset in the file.</param>
+            <param name="end">The end offset in the file (can be -1 if full file).</param>
+            <returns>True if success, false if not supported and entry is found (note: even when true, the file might not actually exists).</returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.OpenStream(System.String,Stride.Core.IO.VirtualFileMode,Stride.Core.IO.VirtualFileAccess,Stride.Core.IO.VirtualFileShare,Stride.Core.IO.StreamFlags)">
+            <summary>
+            Opens a Stream from the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="mode">The mode.</param>
+            <param name="access">The access.</param>
+            <param name="share">The process sharing mode.</param>
+            <param name="streamFlags">The type of stream needed</param>
+            <returns>The opened stream.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.ListFiles(System.String,System.String,Stride.Core.IO.VirtualSearchOption)">
+            <summary>
+            Returns the list of files from the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="searchPattern">The search pattern.</param>
+            <param name="searchOption">The search option.</param>
+            <returns>A list of files from the specified path</returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.CreateDirectory(System.String)">
+            <summary>
+            Creates all directories so that url exists.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.DirectoryExists(System.String)">
+            <summary>
+            Determines whether the specified path points to an existing directory.
+            </summary>
+            <param name="url">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.FileExists(System.String)">
+            <summary>
+            Determines whether the specified path points to an existing file.
+            </summary>
+            <param name="url">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.FileDelete(System.String)">
+            <summary>
+            Deletes the specified file.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.FileMove(System.String,System.String)">
+            <summary>
+            Move the specified file specified from its sourceUrl to the location pointed by destinationUrl. Do not overwrite, throw IOException if the file can't be moved.
+            </summary>
+            <param name="sourceUrl">The source URL of the file</param>
+            <param name="destinationUrl">The destination URL of the file</param>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.FileMove(System.String,Stride.Core.IO.IVirtualFileProvider,System.String)">
+            <summary>
+            Move the specified file specified from its sourceUrl to the location pointed by destinationUrl in the destination provider. Do not overwrite, throw IOException if the file can't be moved.
+            </summary>
+            <param name="sourceUrl">The source URL.</param>
+            <param name="destinationProvider">The destination provider.</param>
+            <param name="destinationUrl">The destination URL, relative to the destination provider.</param>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.FileSize(System.String)">
+            <summary>
+            Returns the size of the specified file in bytes
+            </summary>
+            <param name="url">The file or directory for which to obtain size</param>
+            <returns>A long value representing the file size in bytes</returns>
+        </member>
+        <member name="M:Stride.Core.IO.IVirtualFileProvider.GetLastWriteTime(System.String)">
+            <summary>
+            Returns the date and time the specified file or directory was last written to. 
+            </summary>
+            <param name="url">The file or directory for which to obtain write date and time information.</param>
+            <returns>A DateTime structure set to the date and time that the specified file or directory was last written to.</returns>
+        </member>
+        <member name="T:Stride.Core.IO.NamespaceDoc">
+            <summary>
+            The <see cref="N:Stride.Core.IO"/> namespace contains additional types for reading and writing to streams, and types that provide directory and path support.
+            It also provides a <see cref="T:Stride.Core.IO.VirtualFileSystem"/> layer that abstracts file accesses and paths of local disks, network, databases, etc.
+            <ul>
+            <li>The <see cref="T:Stride.Core.IO.NativeStream"/> class allows stream reading to and writing from unmanaged data using an <see cref="T:System.IntPtr"/> native pointer.</li>
+            <li>The <see cref="!:UPath"/> class allows manipulation of paths and provides various operation such as absolute/relative path conversion, normalization, etc.</li>
+            </ul>
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.StreamFlags">
+            <summary>
+            Describes the different type of streams.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.StreamFlags.None">
+            <summary>
+            Returns the default underlying stream without any alterations. Can be a seek-able stream or not depending on the file.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.StreamFlags.Seekable">
+            <summary>
+            A stream in which we can seek
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.VirtualFileAccess">
+            <summary>
+            File access equivalent of <see cref="T:System.IO.FileAccess"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileAccess.Read">
+            <summary>
+            Read access.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileAccess.Write">
+            <summary>
+            Write access.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileAccess.ReadWrite">
+            <summary>
+            Read/Write Access,
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.VirtualFileMode">
+            <summary>
+            File mode equivalent of <see cref="T:System.IO.FileMode"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.CreateNew">
+            <summary>
+            Creates a new file. The function fails if a specified file exists.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.Create">
+            <summary>
+            Creates a new file, always.
+            If a file exists, the function overwrites the file, clears the existing attributes, combines the specified file attributes,
+            and flags with FILE_ATTRIBUTE_ARCHIVE, but does not set the security descriptor that the SECURITY_ATTRIBUTES structure specifies.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.Open">
+            <summary>
+            Opens a file. The function fails if the file does not exist.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.OpenOrCreate">
+            <summary>
+            Opens a file, always.
+            If a file does not exist, the function creates a file as if dwCreationDisposition is CREATE_NEW.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.Truncate">
+            <summary>
+            Opens a file and truncates it so that its size is 0 (zero) bytes. The function fails if the file does not exist.
+            The calling process must open the file with the GENERIC_WRITE access right.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileMode.Append">
+            <summary>
+            Opens a file if it exists and go at the end, otherwise creates a new file.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.VirtualFileProviderBase">
+            <summary>
+            Abstract base class for <see cref="T:Stride.Core.IO.IVirtualFileProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.IO.VirtualFileProviderBase.RootPath">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.GetAbsolutePath(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.TryGetFileLocation(System.String,System.String@,System.Int64@,System.Int64@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.OpenStream(System.String,Stride.Core.IO.VirtualFileMode,Stride.Core.IO.VirtualFileAccess,Stride.Core.IO.VirtualFileShare,Stride.Core.IO.StreamFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.ResolvePath(System.String)">
+            <summary>
+            Resolves the path (can map virtual to absolute path).
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The resolved path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.ListFiles(System.String,System.String,Stride.Core.IO.VirtualSearchOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.FileExists(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.FileDelete(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.FileMove(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.FileMove(System.String,Stride.Core.IO.IVirtualFileProvider,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.FileSize(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.GetLastWriteTime(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileProviderBase.CreateDirectory(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.Core.IO.VirtualFileShare">
+            <summary>
+            File share capabilities, equivalent of <see cref="T:System.IO.FileShare"/>.
+            </summary>
+        </member>
+        <member name="T:Stride.Core.IO.VirtualFileSystem">
+            <summary>
+            Virtual abstraction over a file system.
+            It handles access to files, http, packages, path rewrite, etc...
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationData">
+            <summary>
+            The application data file provider.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationObjectDatabase">
+            <summary>
+            The application database file provider (ObjectId level).
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationDatabase">
+            <summary>
+            The application database file provider (Index level).
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationCache">
+            <summary>
+            The application cache folder.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationRoaming">
+            <summary>
+            The application user roaming folder. Included in backup.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationLocal">
+            <summary>
+            The application user local folder. Included in backup.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationTemporary">
+            <summary>
+            The application temporary data provider.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.ApplicationBinary">
+            <summary>
+            The application binary folder.
+            </summary>
+        </member>
+        <member name="F:Stride.Core.IO.VirtualFileSystem.Drive">
+            <summary>
+            The whole host file system. This should be used only in tools.
+            </summary>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Stride.Core.IO.VirtualFileSystem"/> class.
+            </summary>
+        </member>
+        <member name="P:Stride.Core.IO.VirtualFileSystem.Providers">
+            <summary>
+            Gets the registered providers.
+            </summary>
+            <value>The providers.</value>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.RegisterProvider(Stride.Core.IO.IVirtualFileProvider)">
+            <summary>
+            Registers the specified virtual file provider at the specified mount location.
+            </summary>
+            <param name="provider">The provider.</param>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.UnregisterProvider(Stride.Core.IO.IVirtualFileProvider,System.Boolean)">
+            <summary>
+            Unregisters the specified virtual file provider.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="dispose">Indicate that the provider should be disposed, if it inherits from IDisposable interface.</param>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.MountFileSystem(System.String,System.String)">
+            <summary>
+            Mounts the specified path in the specified virtual file mount point.
+            </summary>
+            <param name="mountPoint">The mount point in the VFS.</param>
+            <param name="path">The directory path.</param>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.RemountFileSystem(System.String,System.String)">
+            <summary>
+            Mounts or remounts the specified path in the specified virtual file mount point.
+            </summary>
+            <param name="mountPoint">The mount point in the VFS.</param>
+            <param name="path">The directory path.</param>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.FileExists(System.String)">
+            <summary>
+            Checks the existence of a file.
+            </summary>
+            <param name="path">The path of the file to check.</param>
+            <returns>True if the file exists, false otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.DirectoryExists(System.String)">
+            <summary>
+            Checks the existence of a directory.
+            </summary>
+            <param name="path">The path of the directory to check.</param>
+            <returns>True if the directory exists, false otherwise.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.CreateDirectory(System.String)">
+            <summary>
+            Creates all directories so that path exists.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.OpenStream(System.String,Stride.Core.IO.VirtualFileMode,Stride.Core.IO.VirtualFileAccess,Stride.Core.IO.VirtualFileShare)">
+            <summary>
+            Opens the stream from a given path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="mode">The stream opening mode (append, open, create, etc...).</param>
+            <param name="access">The stream access.</param>
+            <param name="share">The stream share mode.</param>
+            <returns>The stream.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.OpenStream(System.String,Stride.Core.IO.VirtualFileMode,Stride.Core.IO.VirtualFileAccess,Stride.Core.IO.VirtualFileShare,Stride.Core.IO.IVirtualFileProvider@)">
+            <summary>
+            Opens the stream from a given path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="mode">The stream opening mode (append, open, create, etc...).</param>
+            <param name="access">The stream access.</param>
+            <param name="share">The stream share mode.</param>
+            <param name="provider">The provider used to load the stream.</param>
+            <returns>The stream.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.GetAbsolutePath(System.String)">
+            <summary>
+            Gets the absolute path (system dependent) for the specified path in the context of the virtual file system.
+            </summary>
+            <param name="path">The path local to the virtual file system.</param>
+            <returns>An absolute path (system dependent .i.e C:\Path\To\Your\File.x).</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.ResolvePath(System.String)">
+            <summary>
+            Resolves the path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The resolved path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.ListFiles(System.String,System.String,Stride.Core.IO.VirtualSearchOption)">
+            <summary>
+            Lists the files matching a pattern in a specified directory.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="searchPattern">The search pattern.</param>
+            <param name="searchOption">The search option.</param>
+            <returns>The list of files matching the pattern.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.GetTempFileName">
+            <summary>
+            Creates a temporary zero-byte file and returns its full path.
+            </summary>
+            <returns>The full path of the created temporary file.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.ResolveAbsolutePath(System.String)">
+            <summary>
+            Returns the path with its .. or . parts simplified.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The resolved absolute path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.Combine(System.String,System.String)">
+            <summary>
+            Combines the specified paths.
+            Similiar to <see cref="M:System.IO.Path.Combine(System.String,System.String)"/>.
+            </summary>
+            <param name="path1">The path1.</param>
+            <param name="path2">The path2.</param>
+            <returns>The combined path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.GetParentFolder(System.String)">
+            <summary>
+            Gets the parent folder.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The parent folder.</returns>
+            <exception cref="T:System.ArgumentNullException">path</exception>
+            <exception cref="T:System.ArgumentException">path doesn't contain a /;path</exception>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.GetFileName(System.String)">
+            <summary>
+            Gets the file's name with its extension ("/path/to/file/fileName.ext"->"fileName.ext")
+            </summary>
+            <param name="path">path containing file's path and name </param>
+            <returns>The name of the file with its extension</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.CreateRelativePath(System.String,System.String)">
+            <summary>
+            Creates the relative path that can access to <see cref="!:target"/> from <see cref="!:sourcePath"/>.
+            </summary>
+            <param name="target">The target.</param>
+            <param name="sourcePath">The source path.</param>
+            <returns>The relative path.</returns>
+        </member>
+        <member name="M:Stride.Core.IO.VirtualFileSystem.ResolveProvider(System.String,System.Boolean)">
+            <summary>
+            Resolves the virtual file provider for a given path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="resolveTop">if set to <c>true</c> [resolve top].</param>
+            <returns>The virtual file system provider and local path in it.</returns>
+            <exception cref="T:System.InvalidOperationException">path cannot be resolved to a provider.</exception>
+        </member>
+        <member name="T:Stride.Core.Serialization.VirtualFileStream">
+            <summary>
+            A multithreaded wrapper over a Stream, used by the VirtualFileSystem.
+            It also allows restricted access to subparts of the Stream (useful for serialization and data streaming).
+            </summary>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.#ctor(System.IO.Stream,System.Int64,System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Stride.Core.Serialization.VirtualFileStream" /> class.
+            </summary>
+            <param name="internalStream">The internal stream.</param>
+            <param name="startPosition">The start position.</param>
+            <param name="endPosition">The end position.</param>
+            <param name="disposeInternalStream">if set to <c>true</c> this instance has ownership of the internal stream and will dispose it].</param>
+            <exception cref="T:System.ArgumentException">startPosition and endPosition doesn't fit inside current bounds</exception>
+            <exception cref="T:System.NotSupportedException">Attempted to create a VirtualFileStream from a Stream which doesn't support seeking.</exception>
+        </member>
+        <member name="P:Stride.Core.Serialization.VirtualFileStream.CanRead">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Core.Serialization.VirtualFileStream.CanSeek">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Core.Serialization.VirtualFileStream.CanWrite">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.Flush">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Core.Serialization.VirtualFileStream.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Stride.Core.Serialization.VirtualFileStream.Position">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.ReadByte">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.SetLength(System.Int64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Stride.Core.Serialization.VirtualFileStream.WriteByte(System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Stride.StrideVersion">
+            <summary>
+            Internal version used to identify Stride version.
+            </summary>
+            <remarks>
+            During package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:Stride.StrideVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:Stride.StrideVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            Three possible values:
+            - Empty: official release
+            - -betaXX: development version (XX should corespond to development asset versioning)
+            - -betaXX-YYYY: beta release (YYYY is the git height since current version has been bumped)
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.BuildMetadata">
+            <summary>
+            The build metadata, usually +g[git_hash] during package. Automatically set by Stride.GitVersioning.GenerateVersionFile.
+            </summary>
+        </member>
+        <member name="F:Stride.StrideVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -beta01 or +g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="T:Stride.PublicKeys">
+            <summary>
+            Assembly signing information.
+            </summary>
+        </member>
+        <member name="F:Stride.PublicKeys.Default">
+            <summary>
+            Assembly name suffix that contains signing information.
+            </summary>
+        </member>
+    </members>
+</doc>

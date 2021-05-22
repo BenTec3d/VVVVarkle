@@ -13,7 +13,12 @@ namespace VVVVarkleCS
         public DiceSet ActiveDiceSet { get; private set; }
         public Vector4 AreaActiveDiceSet { get; private set; }
         public List<DiceSet> PassiveDiceSets { get; private set; }
-        public IEnumerable<Player> Players { get; private set; }
+        private List<Player> players;
+        public IEnumerable<Player> Players 
+        { 
+            get {return (IEnumerable<Player>)players; } 
+            private set { players = value.ToList(); } 
+        }
         public Player CurrentPlayer { get; private set; }
         public int CurrentScore { get; private set; }
         public int RoundsPlayed { get; private set; }
@@ -33,6 +38,7 @@ namespace VVVVarkleCS
             AreaActiveDiceSet = areaActiveDiceSet;
             ResetDiceSets();
             Players = players;
+            this.players.Shuffle();
             foreach (Player p in Players)
             {
                 p.Score = 0;
@@ -555,5 +561,6 @@ namespace VVVVarkleCS
             ActiveDiceSet = new DiceSet(DiceCount, AreaActiveDiceSet, Random);
             PassiveDiceSets = new List<DiceSet>();
         }
+
     }
 }

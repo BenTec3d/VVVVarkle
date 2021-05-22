@@ -33,7 +33,6 @@ namespace VVVVarkleCS
             AreaActiveDiceSet = areaActiveDiceSet;
             ResetDiceSets();
             Players = players;
-            Players.OrderBy(a => Random.Next()).ToList();
             foreach (Player p in Players)
             {
                 p.Score = 0;
@@ -114,14 +113,15 @@ namespace VVVVarkleCS
                 ResetDiceSets();
             }
 
-            AllowedToShake = false;
+            CheckForVarkled();
 
-            if (CheckForVarkled())
+            if (Varkled)
             {
-                Varkled = true;
                 CurrentScore = 0;
                 PassiveDiceSets.Clear();
             }
+
+            AllowedToShake = false;
 
             NumberOfChanges++;
         }
@@ -373,9 +373,9 @@ namespace VVVVarkleCS
         }
 
         //Checks for Varkled (No way to score after shaking the Dice) 
-        private bool CheckForVarkled()
+        private void CheckForVarkled()
         {
-            bool noLuck = true;
+            bool varkled = true;
 
             List<int> values = new List<int>();
             List<int> countOfEachValue = new List<int> { 0, 0, 0, 0, 0, 0 };
@@ -450,25 +450,25 @@ namespace VVVVarkleCS
             //1-6 straight
             if (countOfEachValue[0] == 1 && countOfEachValue[1] == 1 && countOfEachValue[2] == 1 && countOfEachValue[3] == 1 && countOfEachValue[4] == 1 && countOfEachValue[5] == 1)
             {
-                noLuck = false;
+                varkled = false;
             }
 
             //Three pairs
             else if (pairs == 3)
             {
-                noLuck = false;
+                varkled = false;
             }
 
             //Four of any number with a pairs
             else if (quadruples == 1 && pairs == 1)
             {
-                noLuck = false;
+                varkled = false;
             }
 
             //Two triplets
             else if (triplets == 2)
             {
-                noLuck = false;
+                varkled = false;
             }
 
             else
@@ -479,41 +479,42 @@ namespace VVVVarkleCS
                     //Six times
                     if (countOfEachValue[i - 1] == 6)
                     {
-                        noLuck = false;
+                        varkled = false;
                     }
 
                     //Five times
                     if (countOfEachValue[i - 1] == 5)
                     {
-                        noLuck = false;
+                        varkled = false;
                     }
 
                     //Four times
                     if (countOfEachValue[i - 1] == 4)
                     {
-                        noLuck = false;
+                        varkled = false;
                     }
 
                     //Three times
                     if (countOfEachValue[i - 1] == 3)
                     {
-                        noLuck = false;
+                        varkled = false;
                     }
                 }
 
                 //Contains ones
                 if (countOfEachValue[0] > 0)
                 {
-                    noLuck = false;
+                    varkled = false;
                 }
 
                 //Contains fives
                 if (countOfEachValue[4] > 0)
                 {
-                    noLuck = false;
+                    varkled = false;
                 }
             }
-            return noLuck;
+
+            Varkled = varkled;
         }
 
         //Ends the current Round
@@ -529,7 +530,7 @@ namespace VVVVarkleCS
                 ResetDiceSets();
                 AllowedToShake = false;
                 InvalidSelection = false;
-                Varkled = false;
+                CheckForVarkled();
                 CurrentPlayer = Players.ElementAt(RoundsPlayed % Players.Count());
             }
 

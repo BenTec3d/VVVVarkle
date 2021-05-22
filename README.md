@@ -9,8 +9,6 @@ Mouse ray does not get the updated screen size when going fullscreen.<br>
 This is an issue with the Stride Engine and not something I can fix.<br>
 Workaround: Do not set window to fullscreen.<br>
 <br>
-Game doesn't set Varkled to true if varkled occurs at the beginning of a round.<br>
-<br>
 <br>
 Planned improvements:<br>
 New Dice Material<br>

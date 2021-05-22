@@ -12,7 +12,7 @@
     "@BrokerPort": "1883",
     "@BrokerLogin": "vvvvarkle",
     "@BrokerPassword": "ghwMTiu5SLwoGQR6",
-    "@LobbyName": "",
-    "@PlayerName": ""
+    "@LobbyName": "test",
+    "@PlayerName": "ben"
   }
 }

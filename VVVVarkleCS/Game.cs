@@ -367,7 +367,6 @@ namespace VVVVarkleCS
             if (values.Count != 0)
             {
                 InvalidSelection = true;
-                CurrentScore = 0;
             }
 
             return combinations;

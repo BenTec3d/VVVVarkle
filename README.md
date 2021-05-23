@@ -4,7 +4,4 @@ Login data to a demo instance is provided, though it might not always be availab
 You can deploy your own MQTT instance for free at: https://www.shiftr.io/<br>
 <br>
 <br>
-Known issues:<br>
-The mouse ray does not get the updated screen size when going fullscreen.<br>
-This is an issue with the Stride Engine and not something I can fix.<br>
-As a workaround I disabled the ability to go into fullscreen mode.<br>
+Fullscreen mode is disabled due to an issue with the mouse ray in the Stride Engine.
